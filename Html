@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Школа фокусов «Абракадабра» | Воистину волшебный опыт</title>
+
+  <!-- SEO / Social -->
+  <meta name="description" content="Школа фокусов «Абракадабра». Последние технологии дизайна для создания воистину волшебного сайта. Учим уверенности, речи и артистизму." />
+  <meta property="og:title" content="Школа фокусов «Абракадабра» | Premium Magic" />
+  <meta property="og:description" content="Где ребёнок перестаёт быть незаметным и выходит на сцену. Почувствуйте магию." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://placehold.co/1200x630/0a0a0a/e9c17b?text=Abrakadabra" />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-light: #1a1a1a;
+      --gold: #e9c17b;
+      --gold-dark: #b48c4f;
+      --text: #e0e0e0;
+      --text-muted: #a0a0a0;
+      /* Fluid Typography */
+      --font-size-hero: clamp(2.75rem, 10vw, 6rem); /* 44px -> 96px */
+      --font-size-h2: clamp(2.25rem, 8vw, 4.5rem); /* 36px -> 72px */
+      --font-size-h3: clamp(1.5rem, 5vw, 2.25rem); /* 24px -> 36px */
+      --font-size-body: clamp(1rem, 2.5vw, 1.125rem); /* 16px -> 18px */
+    }
+    html {
+      font-family: 'Montserrat', sans-serif;
+      font-size: var(--font-size-body);
+    }
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    body.js-loaded.no-touch {
+      cursor: none;
+    }
+    .magic-cursor, .cursor-trail { display: none; }
+    body.js-loaded.no-touch .magic-cursor,
+    body.js-loaded.no-touch .cursor-trail { display: block; }
+    .magic-cursor {
+      position: fixed; width: 20px; height: 20px; border: 2px solid var(--gold); border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background-color 0.3s; z-index: 9999;
+    }
+    .magic-cursor.hover { width: 40px; height: 40px; background-color: rgba(233, 193, 123, 0.2); }
+    .cursor-trail {
+      position: fixed; width: 6px; height: 6px; background-color: var(--gold); border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); z-index: 9998; transition: opacity 0.5s;
+    }
+
+    .hero-bg {
+      background-color: var(--bg);
+      background-image: radial-gradient(circle at 50% 50%, rgba(233, 193, 123, 0.05) 0%, rgba(233, 193, 123, 0) 70%);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-gold {
+      background: linear-gradient(145deg, var(--gold), var(--gold-dark)); color: #1a0f22; font-weight: 700; border-radius: 50px; padding: 1rem 2.25rem; font-size: clamp(0.9rem, 2.5vw, 1rem); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.4), 0 0 0 1px var(--gold-dark);
+    }
+    .section-title { color: var(--gold); }
+    .card {
+      background-color: transparent; border: 1px solid rgba(233, 193, 123, 0.15); border-radius: 20px; transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s, background-color 0.4s; position: relative; overflow: hidden;
+    }
+    .path-step {
+      position: relative; padding-left: 40px; padding-bottom: 40px;
+    }
+    .path-line {
+      position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background-color: var(--gold-dark); transform-origin: top; transform: scaleY(0);
+    }
+    .path-icon {
+      position: absolute; left: 0; top: 0; width: 42px; height: 42px; border-radius: 50%; background-color: var(--bg); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .centered-container {
+      max-width: 800px; margin-left: auto; margin-right: auto; text-align: center;
+    }
+    [data-anim] {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    #webgl-bg {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; display: none;
+    }
+
+    .custom-icon {
+      filter: brightness(0) saturate(100%) invert(80%) sepia(21%) saturate(934%) hue-rotate(359deg) brightness(95%) contrast(86%);
+    }
+    .benefit-icon {
+        filter: invert(71%) sepia(54%) saturate(413%) hue-rotate(85deg) brightness(105%) contrast(91%);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .btn-gold:hover {
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 12px 40px rgba(233,193,123,0.35), 0 0 0 1px var(--gold);
+      }
+      .card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        border-color: rgba(233, 193, 123, 0.4);
+        background-color: var(--bg-light);
+      }
+      .path-step:hover .path-icon {
+        transform: scale(1.2) rotate(10deg);
+        box-shadow: 0 0 20px var(--gold);
+      }
+    }
+    @media (min-width: 768px) {
+        .path-step { padding-left: 60px; padding-bottom: 50px; }
+    }
+  </style>
+</head>
+<body class="selection:bg-yellow-500/30">
+  
+  <div class="magic-cursor"></div>
+  <canvas id="webgl-bg"></canvas>
+
+  <header class="hero-bg min-h-screen flex items-center justify-center p-4">
+    <div class="z-10 relative text-center">
+      <div class="flex justify-center items-end mb-8 gap-4 hero-silhouettes" data-anim="hero-item">
+         <svg class="w-20 h-20 sm:w-24 sm:h-24 text-white opacity-60" style="transform: scaleX(-1);" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A5,5 0 0,0 7,7A5,5 0 0,0 12,12A5,5 0 0,0 17,7A5,5 0 0,0 12,2M12,14C9.67,14 5,15.17 5,17.5V22H19V17.5C19,15.17 14.33,14 12,14Z" /></svg>
+         <svg class="w-28 h-28 sm:w-32 sm:h-32 text-white opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16,14 20,16 20,17V20H4V17C4,16 8,14 12,14Z" /></svg>
+         <svg class="w-20 h-20 sm:w-24 sm:h-24 text-white opacity-60" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A5,5 0 0,0 7,7A5,5 0 0,0 12,12A5,5 0 0,0 17,7A5,5 0 0,0 12,2M12,14C9.67,14 5,15.17 5,17.5V22H19V17.5C19,15.17 14.33,14 12,14Z" /></svg>
+      </div>
+      <h1 class="font-display section-title mb-6" style="font-size: var(--font-size-hero);" data-anim="gsap-chars">Школа фокусов «Абракадабра»</h1>
+      <p class="text-lg md:text-xl text-text mb-10" data-anim="gsap-lines">Место, где дети становятся волшебниками</p>
+      <div data-anim="gsap-lines">
+        <a href="#cta" class="btn-gold inline-block magnetic-link">Записаться на бесплатное пробное занятие</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="py-20 md:py-28 px-4">
+      <div class="centered-container">
+          <h2 class="font-display section-title mb-12" style="font-size: var(--font-size-h2);" data-anim="gsap-chars">Почему фокусы, а не очередной кружок?</h2>
+          <div class="grid md:grid-cols-2 gap-6 md:gap-8 text-left mb-12 md:mb-16">
+            <div class="p-6 md:p-8 border border-red-500/20 rounded-2xl" data-anim="gsap-lines">
+              <h3 class="font-display font-bold mb-4" style="font-size: var(--font-size-h3);">Привычный сценарий <span class="text-red-400">❌</span></h3>
+              <p class="text-text-muted">Ребёнок в телефоне, боится выступать у доски. Новая игрушка забыта через неделю. Это путь в никуда.</p>
+            </div>
+            <div class="p-6 md:p-8 border border-green-500/20 rounded-2xl" data-anim="gsap-lines">
+              <h3 class="font-display font-bold mb-4" style="font-size: var(--font-size-h3);">Новый результат! <span class="text-green-400">✅</span></h3>
+              <p class="text-text-muted">Ребёнок на сцене, под аплодисменты. Он — звезда. Это не просто трюки, это инвестиция в личность.</p>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-6" data-anim="gsap-lines">
+            <div class="card p-6 text-center"><p><strong>Игрушки</strong> ломаются. <br/><strong>Фокусы</strong> остаются навсегда.</p></div>
+            <div class="card p-6 text-center"><p><strong>Кружки</strong> — это процесс. <br/><strong>Мы</strong> — это результат.</p></div>
+            <div class="card p-6 text-center"><p><strong>Танцы</strong> — для всех. <br/><strong>Иллюзионисты</strong> — единицы.</p></div>
+            <div class="card p-6 text-center"><p><strong>Телефон</strong> — пассивность. <br/><strong>Фокусы</strong> — лидерство.</p></div>
+          </div>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-28 px-4 bg-bg-light">
+      <div class="centered-container">
+        <h2 class="font-display section-title mb-16" style="font-size: var(--font-size-h2);" data-anim="gsap-chars">Как мы превращаем детей в волшебников</h2>
+        <div class="space-y-8 text-left">
+          <div class="card flex items-start gap-4 md:gap-6 p-6 md:p-8" data-anim="gsap-lines">
+            <span class="text-4xl md:text-5xl">🗓️</span>
+            <div><h3 class="font-bold text-xl md:text-2xl">1 урок в неделю</h3><p class="text-text-muted">Два часа полного погружения в магию без усталости.</p></div>
+          </div>
+          <div class="card flex items-start gap-4 md:gap-6 p-6 md:p-8" data-anim="gsap-lines">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAI+SURBVHhe7dxNihRRGMfxN0/gDYgX8Qo8gBfwCrzB69i4cOEKwjY229lIBBfGxlwYFxY3ERFEPAAv4M0jK4lJOpqu6i6n/D/4mBqqrqv+dI+ZgiiKoiiKoiiKYs0Czs0Mv4e3+B/f4if+Tpw0/o2f0Y7zD1cO3G3BvE/wYxzzh3D6J3g7qLh23bFmARfn/zH8Gv/G67iGfyL1H5gHl+Yv8B/eQ3s/L+D1/BqX/wPfwRtxO1/f2/A1X+D1XMEj/A1XcGj3l2fHk7g3X8Yj/IEf8QVe4rI83DtxF//Ew3gPH+D9vIIv8Bpe4qJcnm7fA+A5b+CN/B4P4Qz/gpfQ8j6+5bIEs28BL6f9z+GVHMGzeA1fM7f393QFr+Fd/AqX8Q++gT/gU7pYl+/jLgAX/o7/4yP8B1+hS/pYlm/jTQN+wF8uO1+wA14iS/r4W8A7f4RvoH3/gW9wH11S/T1fQYfgB/gYv+K9vIIH6GZalstbAD8/5J8I/o0H8BoeoZlreSxg8t2k/A1/wv9zBN/DF1jM9XoWoPn8P98h+DkH8CG6r5ar+2wBc35WcMM1/A1j/A3fwxss5Ho9i8C8H428hhfwEcb4H/yaZ7Car+6zBMy5pWCDa/g3buM3/IM3sJDreSxg8r2w9N28iP/jCfyCb/EcFrC2z2MAb+A7/IX/40t8hP+jpb1+b7+JABRFURRFURTFf/8B/wE4gI3aJc4BvQAAAABJRU5ErkJggg==" alt="Secret Envelope" class="w-12 h-12 md:w-14 md:h-14 custom-icon">
+            <div><h3 class="font-bold text-xl md:text-2xl">Секретный конверт</h3><p class="text-text-muted">Каждый месяц — новый реквизит и новая тайна, которую нужно освоить.</p></div>
+          </div>
+          <div class="card flex items-start gap-4 md:gap-6 p-6 md:p-8" data-anim="gsap-lines">
+             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPiSURBVHhe7ZtLiBxVFMf/d9XMDG8E8QY8qYdBEC9mZlFEEAm4C11IrChd6EIIuhBfIDbGJmEjbix2IXWhC0UEvBi86EHwYjDzw8xEH0xHdfd0p6enZ3Z3f9Bh6jG19/vVX1OnTt0bFSpUqFChQoUK/2gW4F9U/FvE/10j/r8sF33J+i/o1q/fG5gHl9r438l4L0T8dyQJ/2yv5d/w6KzP3yvifVb8u1H8dy3it1/R6+xXlP0qij/o6A4L8e9uET9v/n/X2L+TjK+R8U9tGv/R1e3/9/Q3RfwvE/Gv8/9fj/grGf/0e/o1m/0+jYxPifh/3yPjU+wR/xSReC3irx3x//6k/8/u8S+J/J+hK+wT/b2a/lP/gP/bQfxuE/Gv2yL+9S/iv+rXlP27n1yG2/y/PifjfXo1X+A1T/A3W/hPgv0jEf1fE/7+m/09f+l4d32L/v2f/mH9KxL9v6xW/0sFfL0vEf5Ocv0L4r/sWf+Xb/FzEf6+If8G+tV7F/5OMl8/Fv/U4iP8v41/9+rL/XlP/h/F/9+gWf0L4T8b/r4j/L0nEPz/iv8h4L/6/d+Svyf11E+vX2yL+T1Nf1vWbZPw3fU3/X9a/+20R//tF/Fsl/fH/3VLEv/73/W8R/+K/k/G/KxG/J+t/9d818T9E/C+S+V8l/dOJf8t4X8b/PCPifWJ+hL06Lp/i3+0Wf9tE+C9a/99E+y/6iX6RjN8m43cZ++e1fvsW+t9Kxu8p43/8XvH/NTP+Dcv4L23jf31dF/+XJf03lPHd8v6mZfwLrf9v6P8d/12a8N818T8X8T8+4b8rEf/T4v4lH/H/W7dF/H/eFPF/3Sfi/9uO//sR/2tU/Nf981u/3b8L/sV2Ef+5If7v81/kRfwL7X+n59/S4n+o+F+X8f+6qf1/7H+Pivj//R1y/S/jf32l7P+h/zUxfj/P/sF/Xcb/U9X+e8T/r/H/fD6O+F+x+t9W8Z8+R/+i5f1N8T/J+p+k1L/729f1/zbk+7f31n/P6L+9Jv6XbfwVq/h/r4v+13XfRfwfr1/F//vU3/x/3cK/vS7jP2jrf7Gz/r86Y+K/LRP/tUjEf1PF//Ksv5vkvj/K+/U/1/E//p8GflbRPxrEv4v2/hvJf1rVPzX/Xk9//83Iv7Dov5/8T9R8b8+pP8fLfvXIf7XJf13j/n/HBP/r+e/R8Z/n/T/X1X8T/Iirfjfkv/rEv63FvFPk/C3lPHvlvFvlfRfkv//1H8l/p//J/4fWvwPiv/L4r9R/P9D/P8GjYp/EfG/RfwPiv/L8zP//8X/o+J/Vfw//0P/A+J/UfwPCv/fEP9HRfxfxP+I8J+o+J+o/6H+3yF+/wn5P9R/if+n/xf9fyv+n4j/D+z/m+H/u/5H0f9h/X+j/t9S/U/K/1f9j/W//v81/7+q/6/+fwH+f9H/K9l/r/ivWfxvlvFvl/Jvlv/bxf+2/F+W/xtl/1v+L+u/Ff8v9X/D/g8KFCj8Z/gHk06Jg9r+32kAAAAASUVORK5CYII=" alt="Achievement Medal" class="w-12 h-12 md:w-14 md:h-14 custom-icon">
+             <div><h3 class="font-bold text-xl md:text-2xl">Система ачивок</h3><p class="text-text-muted">Мотивация через награды за смелость, креативность и помощь друзьям.</p></div>
+          </div>
+          <div class="card flex items-start gap-4 md:gap-6 p-6 md:p-8" data-anim="gsap-lines">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIaSURBVHhe7dsxSgNBFADgnYsoaiGC2lgIiigY2VsbWy/gC/gKgo2wsxZBBCvtFJUgFu8lGImEh8yL3WTZXe6X/YH58Itddm92N7u4Xq/X6/X6l4aH+D6P8L8Lwn4g/I9k2o/wRZwW5sI8h9c4LeqA9w2O8EAcFvVf+C32/e/wM0aEbfF/HBX93+A/OBe1x/V6/0l4A3uF/zW5+N/h+4T3v8N/cFTVf4b/fL7P8H6c5m0Mv+Mv+YqL+yLh948T/pzwPpyD89n82sS/cWzK/wA/4dM8nSfwiY6q+Bv+4X15Ea/hj/g5j/N0HuNLuqyE/+Nn3EAc5mE9/4D/E6/gNZyC/+t4oQbwM36C82EezrZ4OQ/wI/6B/+McnMvz2fL75/A+3p4D+DH+j7PgHPyKLeWwHj6C/+u4oQbwI/yR/+McnK3xf/yDk3A5D/BjfIIX8A5W8+U8xov4N36Gv+M3/IZv8Hw+/5zwFz6B7wme/wZ+xov4Ff6Cv+PfuJaX8E8d1fAX/IZfcFrEf/Al/k5/sXz2AzyC/xMOc9AeT2P5f3/771+v1+v1/gWf4x/4D877+t84Cg8L2094/0834B/A3SgWk8B1+AAAAABJRU5ErkJggg==" alt="AR Diary" class="w-12 h-12 md:w-14 md:h-14 custom-icon">
+            <div><h3 class="font-bold text-xl md:text-2xl">Оживающий AR-Дневник</h3><p class="text-text-muted">Наведите телефон — и смотрите эксклюзивный видеоурок от Мастера.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-28 px-4">
+        <div class="centered-container">
+            <h2 class="font-display section-title mb-20" style="font-size: var(--font-size-h2);" data-anim="gsap-chars">Путь от Новичка до Мастера</h2>
+            <div class="relative text-left" id="path-section">
+                <div class="path-step" data-anim="gsap-lines">
+                    <div class="path-line"></div>
+                    <div class="path-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPjSURBVHhe7ZtLiBxVFMf/d9Wz2ZlJRBIPHoTgxSAixIsXHy51wYUgXUhXughCiIuAi4igixc3LgQXuiAuePEgHjyYyUz2Q1R1p6enJzM7e1/oYepy6nrvP3VV1alTdyIqKioqKioqKloQG/8vxf9YxP/XCvG/w4J+SfYfoVu/fjdg7l9q438r4z8i4n86Tfhnm83/8Eiz/v8tEf+Cif/XiP9XRPzyC3qdfUn2p4j+oKP7JMT/rSP+1fzzd4791zK+ScY/tWv8l1d3//f0t0T8LzL+Ff7/+xH/JeM/fZe/SbN/t5ExiYj//3tExieZE/5ZJvHaQF+z4/8D8Z9s498W+b+hK2yJ/1+a/Vv+b3/Sv20Q8a+ZEv5bV8R/1a8l+3c9uYz3+X99TsS/5dX8hZ/xCk/xN9v4r8T+LIn/VUT8/9f8/3yN/9WhK+yJ/+ea/Wv+RUT8t2V9xa90+OuVifxn2fUrEf9L3uJf+Q3/RsT/joh/zfprtf67JPOrIf7XJvyTzH91/Ev8Wyb8k8x/k8S/VUT8KyL+lYz/65f4n+34V8n4t2T82yb9e8z+E2T8fU/8/x7zvyfjvyPiv0X8r0j8+8z+f0n9e8z+7+z3/4l/3hL5PyH+v2n2v+1/u+R/T+p/k/Hf5Z9k/u8z/01T/p+I//0S/3sy/t2e/H+k/u8x+3sy/r3m/0sy/rVif29i/l8R8V+S+N9M/P+D+L+h//dZ/5eM/21T/n+k/m9S/5v8L5P+vWb/e83+L5r9Syb+l2T+J5n/Jv9LE/+sWf+WDH/eZvwlGf+2jH+R8Zdk/CuZ/yqZ/yb/q5L+Syr+P/B/m/j3K/79Wb9e8u9J/XvN+v9E/IeJ+E8S/n1R/zvyX1T9v/F/Q/l3Tf53Zf67mP++Kf9e8u9Z/9eI/+sifk9jPifiPxPxT5XyT278R0T8H+H+l/zvy/wnGf+ujP+2Kf+W+K9F/fvyv0v6d/IeQfwfkP8f5H+k/h3lf5D6t2b/K/I/JP3v5f6r8j9F+X+Z/I+S8e/kvy/zb0X9V+V/i/wvz/6r8r8l/W/J/lvyH2X+H8j/Vflvkvlvy/7L/P+q+S+W/1vy30D/O8h/YfwHmv8e5X+k/vvyvyvyPyb97+T+V/yHiP8Q8R/8/lnyP0n778r8l8j/8P8f5f8X//8A/78p/l+W/Fflv5L6d/L/Q/+X+f8P+3/g/+kK+x8l/9+U/5vkvyP9+8h/ifh/If7D4v6vy/+k/P/C/W/Z/+P5723+L8v8L5L/tVz/Q/8f8v9K/n+S8V+k8R8U/qOk/EP9X0l/hvoPyH+U+Q8l/pPkPyT94f+XyP/g/5fkPyb+Q/8Pyv+k/J/kf5L0h/xflf9L/B8Q/uH/F8n/F//D/x/yv3j+/wb/K/8X5H+h+A8U/lHiHy/+H/x+J/uH/F+V/yUqKioqKioq/iT/Ad+iR7Q9h5jZAAAAAElFTkSuQmCC" alt="Graduate" class="w-10 h-10 custom-icon">
+                    </div>
+                    <h3 class="font-display font-bold text-gold mb-2" style="font-size: var(--font-size-h3);">Ученик (6 мес)</h3>
+                    <p class="text-text-muted">6 трюков, шоу для родителей. 🎁 Профессиональная колода карт.</p>
+                </div>
+                <div class="path-step" data-anim="gsap-lines">
+                    <div class="path-line"></div>
+                    <div class="path-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQCSURBVHhe7ZtLiBxVFMf/d9XMDM9kPCkG8WJEPAgHY9Dizd7MikEQCbiLuJGuRBe6kC4EFy4kbnQgXAi4iAjugxdDEAmCeDByJpP8kKi609PTMzM7u190Yepy6nrvd6q6derUqamqqqqqqqqq/k8I/i/Ff1jE/1YK8b/Dgn5J9h+hW79+z2DuX2rjfzniLyLifz5N+Ge7zf/wSLP+/y0R/4KJ/9eI/1di/OUD/TrrPif7U0R/0NF9EuJ/1xF/af75B4791zK+ScY/tWv8l1f3/3/SvyXiX2T8i/z/txH/peI/fZ+/SdN/t5ExiYj//3tExieZE/5ZJvHaQF+z4/8j8Z9s498W+b+hK2yJ/1+a/Vv+73/Sv20Q8a+ZEv5bV8R/1a8l+3c9uYz3+f8lTsT/8mo+wif+iKd4hL/Zxr8S+7Mk/lci/v9r/n++x//q0BXYEv/PjP1r/kcE/LdlfcWvdPjrlYn8J1n9KhH/S97iL/kN/0bE/46If836a7X+u0TmVUP8r034J5n/6viX+LdM+CeZ/yaJf6uI+FdE/Cthf36J/7Ef/ypZ35L17zH7T5D17zH7v2f2f+H+9zL/z7f+PyL+92T8u/34/0j932P278n495r9L8n415r9vYn5f0XEX5L430z8/4P4v6H/91n/l4x/25T/j9T/Tep/k/+lS/17zf73mv1fNPuXTv2XTv0nS/2nS/2ny/ylT/6zT/6wT/yUT/yXjv0rmv8r4L8r4V8n4r0r9VzL+VTL/Tf5XS/1Lmf8++b+J+Pcr/v1Z/66S/1XSvy/17zXrv2virxHxT5Lw74v635H/oup/4/8G8u+a/O/K/HeZ/W/L/HvJv2f9XxP/qxPxeoz9kYj/mYj/VEr/5MY/IuI/CPe/5P9+J/8l41+V8W9L+bfEv1n1vy//W9K/k/cI4v+A/P8g/yP17yj/A9W/NfuvyP+Q9L+X+6/K/xTlv8v8jxLx7+S/L/Nvyf4r8r9E+V+e/Vflf0v635L9t+Q/yvw3lf9W5b9J5r9J5r+W+S+S/7Xkv4H+d5D/wvAfaP57lP+R+u/K/K/I/5D0v5P7r/gPEf8h4g/8/lnyP0n778r8l8h/eP//UP6/8P+vKf5flvxX5b+S+ney/0P/l/n/D/t/4P/pCv/Hifh/U/4vkf8P9e8j/xHx/4X4D4v7vyr/k/L/C/e/Zf+P57+3+b8s879I/tdy/Q/9f8j/K/n/JWN/KcZ/KPxDkX4I9T+S/iD1HyD/UeY/lPgPkv6Q/18i/8H/L8n/RPI/9f8g/SdJ/yT/k6Q/5P9V+V/i/4DwD/+/SPr74n//9l/+H+//JflfeP4f4//y/5H8DzT+AeE/lfhHi/+H3++k/hP3vyr/SqKqqqqqqqr6X+EftI1l71w3n+UAAAAASUVORK5CYII=" alt="Diary" class="w-10 h-10 custom-icon">
+                    </div>
+                    <h3 class="font-display font-bold text-gold mb-2" style="font-size: var(--font-size-h3);">Подмастерье (12 мес)</h3>
+                    <p class="text-text-muted">Своя программа, большой концерт. 🎁 Фирменный реквизит.</p>
+                </div>
+                <div class="path-step" data-anim="gsap-lines">
+                    <div class="path-line"></div>
+                    <div class="path-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMjSURBVHhe7dxPiBxHFMfxb2bnPTtREIOI4EXAizcJHgRBMHjgwb/7sIehF1EkHhyLQ0F6EBd2IWkRBC/iQQ8ePIgXg+RkJjMT2V3d6WlpZmZ394Y+2KO7p3p/X1dXdVVbDAQCgUAgEAgEwmr+gZPwB/xSxu9xR5h/0pS/gYfwO/bJ4d38UoZ/iL3yfz6DX+AP/INf6R9G+Afe0vP5ErbR+v8b7BfH5l+xL6w+w3N4gC/x/L6D76gZ/z+L/3uNf8h1eInL8Hq/wS98hO/gY5zH5Xg3/8/X8Qf+h/Pwv7bBP1hO+6pCj/6eL2L7L1b8U4Vf6e+R/u17/HkR/2L541MZH2Zf6n0S3/cZPKRn9+9r+fJd3H2L9R/fL7N/zP4x+0t/1vP59zH7x+xft1/bN/p/b9mX6p+27y/7Z3fX7t+z/73mPyZ/3L6/N9V/v93n/7u8R/t36v/dZ3uV/7/d5f/P+C9v3H+B+/R/uP//X5v8j/P8e8n/Wn/9/75/+b/9T+v/b/3vK/7X/l/U/yv2v+X/X/M/9v/e8r/Vf+/yv+v+V/X/L/1/2f+Xyv/l/V/yv6v+X9b/6/p/2X+X/X/v/7/1P+f+f/3/l/T/8v+f5X/a/t/yv+1/a/8X9v+t/7/tf2/8v9v/l+2/5frv+X6b/l+m/6frf/X9P9m/1/T/9P0/7L/r+3/r/+/tf2/Zf/flv1v2f63fL+V/yu7v2X7V7Z/ZeO/K+Pfyvh3lfFvlfJvlfNvlfNvVv23av7bVf9tVv23Wv9drf9u1v+3ev9dvX+A+g9Q/wfof4D+D6j/ger/N/0/a/r/mu7/bY7/bY7/bY7/7X9v9f5bvf+W77+l+2/5/luy/yu7v2X7l3Z/Svcn7f6U7Z/5+J/8e5/8e58s/ye7/0P3/5r+n/X/Z/v/0v3fsv3f7v6XbX9S9i/Z/pXdn7L9K9u/svaXdn9a9q9t/aXVX1L9pVWfWvWpVV9a/ak1n1v1qVWfXv2p1R+s/hD1hyj/kOs/5PoPyX/S+g9Q/4Ha/wn1HyT+g9T/IPUfpP5Dlf/I9R+h+g9R/4Ha/yn1H6T+g9S/UPUfpfoXqv7Lrf9y67+k+i+p/kur/nKrv+z6L7v+q6b/qum/auuvmv6rZv+q2b9q+6+a/qua/qum/qrpv7T1V03/1dl/1dl/9fVf3fyrZ/+q2X9V9l+1/Vdl/5XVX1b9lVWfWvWpVR9Z9ZFZn1j1kVlfWv2p1Z9a/an1H1j9IdV/SPUfaP2HqP+Q6z+k/kPVP0j1H6D+g9S/UPVfsPqXrH7J6p+y+iepvqTqT6n6kqqfrPqTqj+r+pOqf23zJ1V/2vRPm/6p1Z+2+lOqf2r1J1d/2vSPmf4B/m2N4R0c/x8AAAAASUVORK5CYII=" alt="Wizard Hat" class="w-10 h-10 custom-icon">
+                    </div>
+                    <h3 class="font-display font-bold text-gold mb-2" style="font-size: var(--font-size-h3);">Маг (18 мес)</h3>
+                    <p class="text-text-muted">Новые педагоги, сценическое мастерство. 🎁 Особый реквизит.</p>
+                </div>
+                <div class="path-step" data-anim="gsap-lines">
+                    <div class="path-line"></div>
+                    <div class="path-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQCSURBVHhe7ZtLiBxVFMf/d9Wz2ZlJRBIPHoTgxSAixIsXHy51wYUgXUhXughCiIuAi4igixc3LgQXuiAuePEgHjyYyUz2Q1R1p6enJzM7e1/oYepy6nrvd6q6derUqamqqqqqqqqq/k8I/i/Ff1jE/1YK8b/Dgn5J9h+hW79+z2DuX2rjfzniLyLifz5N+Ge7zf/wSLP+/y0R/4KJ/9eI/1di/OUD/TrrPif7U0R/0NF9EuJ/1xF/af75B4791zK+ScY/tWv8l1f3/3/SvyXiX2T8i/z/txH/peI/fZ+/SdN/t5ExiYj//3tExieZE/5ZJvHaQF+z4/8j8Z9s498W+b+hK2yJ/1+a/Vv+73/Sv20Q8a+ZEv5bV8R/1a8l+3c9uYz3+f8lTsT/8mo+wif+iKd4hL/Zxr8S+7Mk/lci/v9r/n++x//q0BXYEv/PjP1r/kcE/LdlfcWvdPjrlYn8J1n9KhH/S97iL/kN/0bE/46If836a7X+u0TmVUP8r034J5n/6viX+LdM+CeZ/yaJf6uI+FdE/Cthf36J/7Ef/ypZ35L17zH7T5D17zH7v2f2f+H+9zL/z7f+PyL+92T8u/34/0j932P278n495r9L8n415r9vYn5f0XEX5L430z8/4P4v6H/91n/l4x/25T/j9T/Tep/k/+lS/17zf73mv1fNPuXTv2XTv0nS/2nS/2ny/ylT/6zT/6wT/yUT/yXjv0rmv8r4V8l41+V+q9k/Ktk/pvsr1LqX8r898n/TcS/X/Hvz/p3lfzXJv27S/971v47Iv6EiT9Jwr8v6n9H/ouq/o3/G8i/a/K/K/PfJfbflv17yb5n/V8T/6sT8XqM/ZGI/5mI/1RK/+TGP0XEf5C/d8n/L+nfpH+vGf+uivm3xH8Z9a/z/1vSvy/vKSS/yfgfkv8P8j9S/4/yP1D9W7L/Ffkfkv73cv9V+Z+i/LdM/kci/l3+92X+uwr/qsp/ifIvz/4r8r8l/W/JflvyHyD/HeR/qvy3SP3bJP9ryf+S+C+S/7XkP4D+d5D/wvAPsP57lf/h/z8l//vy/yryP8z638l9V/xHiP8w4g/8/lnyPyz1t2b+S+S/fPg/lP+/8P+vKf5flvxX5b+S+ney/0P/l/n/D/t/4P/pCv/Hifh/U/4vkf8P9e8j/xHx/4X4D4v7vyr/k/L/C/e/Zf+P57+3+b8s879I/tdy/Q/9f8j/K/n/JWN/KcZ/KPxDkX4I9T+S/iD1HyD/UeY/lPgPkv6Q/18i/8H/L8n/RPI/9f8g/SdJ/yT/k6Q/5P9V+V/i/4DwD/+/SPr74n//9l/+H+//JflfeP4f4//y/5H8DzT+AeE/lfhHi/+H3++k/hP3vyr/SqKqqqqqqqr6X+EftI1l71w3n+UAAAAASUVORK5CYII=" alt="Top Hat" class="w-10 h-10 custom-icon">
+                    </div>
+                    <h3 class="font-display font-bold text-gold mb-2" style="font-size: var(--font-size-h3);">Иллюзионист (24 мес)</h3>
+                    <p class="text-text-muted">Личный номер, фестивали. 🎁 Элемент костюма, диплом.</p>
+                </div>
+                 <div class="path-step" style="padding-bottom: 0;" data-anim="gsap-lines">
+                    <div class="path-line"></div>
+                    <div class="path-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPiSURBVHhe7ZtLiBxVFMf/d9XMDG8E8QY8qYdBEC9mZlFEEAm4C11IrChd6EIIuhBfIDbGJmEjbix2IXWhC0UEvBi86EHwYjDzw8xEH0xHdfd0p6enZ3Z3f9Bh6jG19/vVX1OnTt0bFSpUqFChQoUK/2gW4F9U/FvE/10j/r8sF33J+i/o1q/fG5gHl9r438l4L0T8dyQJ/2yv5d/w6KzP3yvifVb8u1H8dy3it1/R6+xXlP0qij/o6A4L8e9uET9v/n/X2L+TjK+R8U9tGv/R1e3/9/Q3RfwvE/Gv8/9fj/grGf/0e/o1m/0+jYxPifh/3yPjU+wR/xSReC3irx3x//6k/8/u8S+J/J+hK+wT/b2a/lP/gP/bQfxuE/Gv2yL+9S/iv+rXlP27n1yG2/y/PifjfXo1X+A1T/A3W/hPgv0jEf1fE/7+m/09f+l4d32L/v2f/mH9KxL9v6xW/0sFfL0vEf5Ocv0L4r/sWf+Xb/FzEf6+If8G+tV7F/5OMl8/Fv/U4iP8v41/9+rL/XlP/h/F/9+gWf0L4T8b/r4j/L0nEPz/iv8h4L/6/d+Svyf11E+vX2yL+T1Nf1vWbZPw3fU3/X9a/+20R//tF/Fsl/fH/3VLEv/73/W8R/+K/k/G/KxG/J+t/9d818T9E/C+S+V8l/dOJf8t4X8b/PCPifWJ+hL06Lp/i3+0Wf9tE+C9a/99E+y/6iX6RjN8m43cZ++e1fvsW+t9Kxu8p43/8XvH/NTP+Dcv4L23jf31dF/+XJf03lPHd8v6mZfwLrf9v6P8d/12a8N818T8X8T8+4b8rEf/T4v4lH/H/W7dF/H/eFPF/3Sfi/9uO//sR/2tU/Nf981u/3b8L/sV2Ef+5If7v81/kRfwL7X+n59/S4n+o+F+X8f+6qf1/7H+Pivj//R1y/S/jf32l7P+h/zUxfj/P/sF/Xcb/U9X+e8T/r/H/fD6O+F+x+t9W8Z8+R/+i5f1N8T/J+p+k1L/729f1/zbk+7f31n/P6L+9Jv6XbfwVq/h/r4v+13XfRfwfr1/F//vU3/x/3cK/vS7jP2jrf7Gz/r86Y+K/LRP/tUjEf1PF//Ksv5vkvj/K+/U/1/E//p8GflbRPxrEv4v2/hvJf1rVPzX/Xk9//83Iv7Dov5/8T9R8b8+pP8fLfvXIf7XJf13j/n/HBP/r+e/R8Z/n/T/X1X8T/Iirfjfkv/rEv63FvFPk/C3lPHvlvFvlfRfkv//1H8l/p//J/4fWvwPiv/L4r9R/P9D/P8GjYp/EfG/RfwPiv/L8zP//8X/o+J/Vfw//0P/A+J/UfwPCv/fEP9HRfxfxP+I8J+o+J+o/6H+3yF+/wn5P9R/if+n/xf9fyv+n4j/D+z/m+H/u/5H0f9h/X+j/t9S/U/K/1f9j/W//v81/7+q/6/+fwH+f9H/K9l/r/ivWfxvlvFvl/Jvlv/bxf+2/F+W/xtl/1v+L+u/Ff8v9X/D/g8KFCj8Z/gHk06Jg9r+32kAAAAASUVORK5CYII=" alt="Medal" class="w-10 h-10 custom-icon">
+                    </div>
+                    <h3 class="font-display font-bold text-gold mb-2" style="font-size: var(--font-size-h3);">Мастер (36 мес)</h3>
+                    <p class="text-text-muted">Ассистентство, участие в проф. шоу. 🎁 Кубок Мастера.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-28 px-4 bg-bg-light">
+      <div class="centered-container">
+        <h2 class="font-display section-title mb-16" style="font-size: var(--font-size-h2);" data-anim="gsap-chars">Результат, который вы увидите</h2>
+        <div class="grid md:grid-cols-2 gap-12 text-left">
+            <div data-anim="gsap-lines">
+                <h3 class="font-display font-bold text-gold mb-6" style="font-size: var(--font-size-h3);">Что получает ребёнок</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD7SURBVHhe7dDBAYAwDMCwY/8nF0AENWzpbmy+3N7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t4XzttbC7BOEj4WigAAAABJRU5ErkJggg==" alt="Checkmark" class="w-5 h-5 mt-1 benefit-icon"> Непоколебимую уверенность в себе.</li>
+                    <li class="flex items-start gap-3"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD7SURBVHhe7dDBAYAwDMCwY/8nF0AENWzpbmy+3N7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t4XzttbC7BOEj4WigAAAABJRU5ErkJggg==" alt="Checkmark" class="w-5 h-5 mt-1 benefit-icon"> Артистизм и навыки фокусника.</li>
+                    <li class="flex items-start gap-3"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD7SURBVHhe7dDBAYAwDMCwY/8nF0AENWzpbmy+3N7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t4XzttbC7BOEj4WigAAAABJRU5ErkJggg==" alt="Checkmark" class="w-5 h-5 mt-1 benefit-icon"> Опыт реальных выступлений на сцене.</li>
+                    <li class="flex items-start gap-3"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD7SURBVHhe7dDBAYAwDMCwY/8nF0AENWzpbmy+3N7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t4XzttbC7BOEj4WigAAAABJRU5ErkJggg==" alt="Checkmark" class="w-5 h-5 mt-1 benefit-icon"> Перспективу стать частью большого шоу.</li>
+                </ul>
+            </div>
+            <div data-anim="gsap-lines">
+                <h3 class="font-display font-bold text-gold mb-6" style="font-size: var(--font-size-h3);">Что получают родители</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD7SURBVHhe7dDBAYAwDMCwY/8nF0AENWzpbmy+3N7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t4XzttbC7BOEj4WigAAAABJRU5ErkJggg==" alt="Checkmark" class="w-5 h-5 mt-1 benefit-icon"> Видимый результат каждый месяц.</li>
+                    <li class="flex items-start gap-3"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD7SURBVHhe7dDBAYAwDMCwY/8nF0AENWzpbmy+3N7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t4XzttbC7BOEj4WigAAAABJRU5ErkJggg==" alt="Checkmark" class="w-5 h-5 mt-1 benefit-icon"> Гордость за ребёнка на концертах.</li>
+                    <li class="flex items-start gap-3"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD7SURBVHhe7dDBAYAwDMCwY/8nF0AENWzpbmy+3N7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t4XzttbC7BOEj4WigAAAABJRU5ErkJggg==" alt="Checkmark" class="w-5 h-5 mt-1 benefit-icon"> Уникальный формат: геймификация + AR.</li>
+                    <li class="flex items-start gap-3"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD7SURBVHhe7dDBAYAwDMCwY/8nF0AENWzpbmy+3N7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t4XzttbC7BOEj4WigAAAABJRU5ErkJggg==" alt="Checkmark" class="w-5 h-5 mt-1 benefit-icon"> Чёткую систему развития на 3 года.</li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="py-20 md:py-28 px-4">
+      <div class="centered-container">
+        <h2 class="font-display section-title mb-12" style="font-size: var(--font-size-h2);" data-anim="gsap-chars">Нам доверяют самое ценное</h2>
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <div class="card p-8" data-anim="gsap-lines">
+            <p class="text-text-muted italic mb-4 text-left">"Сын был очень тихим, а теперь он — душа компании. Спасибо «Абракадабре» за эту трансформацию!"</p>
+            <p class="font-bold text-right text-gold">— Анна, мама Максима (9 лет)</p>
+          </div>
+          <div class="card p-8" data-anim="gsap-lines">
+            <p class="text-text-muted italic mb-4 text-left">"Лучшая инвестиция в развитие ребёнка. Вместо очередной игрушки мы подарили дочке навык на всю жизнь. Концерты — это что-то!"</p>
+            <p class="font-bold text-right text-gold">— Виктор, папа Алисы (11 лет)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" class="py-20 md:py-28 px-4 bg-bg-light">
+      <div class="centered-container">
+        <h2 class="font-display section-title mb-6" style="font-size: var(--font-size-h2);" data-anim="gsap-chars">Сделайте первый шаг в мир магии!</h2>
+        <p class="text-lg text-text-muted mb-10" data-anim="gsap-lines">Запишитесь на бесплатное пробное занятие. Мы познакомимся, покажем пару трюков и определим, подходит ли ребёнку наша система. <br/><strong class="text-gold">Места в группах строго ограничены.</strong></p>
+        
+        <div class="card p-8 max-w-md mx-auto" data-anim="gsap-lines">
+            <form id="applicationForm">
+                <div class="mb-4"><input type="text" placeholder="Имя родителя" required class="w-full p-4 bg-bg border border-yellow-500/30 rounded-lg text-white placeholder-text-muted focus:outline-none focus:border-gold transition-colors"></div>
+                <div class="mb-4"><input type="tel" placeholder="Телефон" required class="w-full p-4 bg-bg border border-yellow-500/30 rounded-lg text-white placeholder-text-muted focus:outline-none focus:border-gold transition-colors"></div>
+                <div class="mb-6"><input type="number" placeholder="Возраст ребёнка" required class="w-full p-4 bg-bg border border-yellow-500/30 rounded-lg text-white placeholder-text-muted focus:outline-none focus:border-gold transition-colors"></div>
+                <button type="submit" class="btn-gold w-full magnetic-link">Отправить заявку</button>
+            </form>
+             <div id="form-success" class="hidden text-center"><h3 class="text-2xl font-bold text-gold mb-4">Спасибо!</h3><p class="text-text-muted">Ваша заявка принята. Мы скоро свяжемся с вами.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="py-20 text-center">
+    <div class="centered-container">
+        <p class="font-display section-title mb-6" style="font-size: var(--font-size-h2);" data-anim="gsap-chars">«Абракадабра»</p>
+        <p class="text-text-muted text-lg max-w-md mx-auto mb-8" data-anim="gsap-lines">Школа, где ребёнок перестаёт быть незаметным и выходит на сцену.</p>
+        <p class="text-sm text-gray-600" data-anim="gsap-lines">© 2025 Школа фокусов Дмитрия Костюка. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // --- Smart logic for device-specific effects ---
+        if (!isTouchDevice) {
+            document.body.classList.add('no-touch', 'js-loaded');
+            
+            const cursor = document.querySelector('.magic-cursor');
+            const trail = document.querySelector('.cursor-trail') || document.createElement('div');
+            if (!trail.classList.contains('cursor-trail')) {
+                trail.className = 'cursor-trail'; document.body.appendChild(trail);
+            }
+            let mouseX = 0, mouseY = 0;
+            gsap.to({}, { duration: 0.016, repeat: -1, onRepeat: () => {
+                gsap.set(cursor, { css: { left: mouseX, top: mouseY } });
+                gsap.to(trail, { duration: 0.4, css: { left: mouseX, top: mouseY } });
+            }});
+            window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+            document.querySelectorAll('a, button, .card, .path-icon').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+
+            if (typeof THREE !== 'undefined') {
+                document.getElementById('webgl-bg').style.display = 'block';
+                try {
+                    const vertexShader = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+                    const fragmentShader = `uniform float u_time; uniform vec2 u_mouse; varying vec2 vUv; float random (in vec2 _st) { return fract(sin(dot(_st.xy, vec2(12.9898,78.233))) * 43758.5453123); } float noise (in vec2 _st) { vec2 i = floor(_st); vec2 f = fract(_st); float a = random(i); float b = random(i + vec2(1.0, 0.0)); float c = random(i + vec2(0.0, 1.0)); float d = random(i + vec2(1.0, 1.0)); vec2 u = f * f * (3.0 - 2.0 * f); return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y; } #define NUM_OCTAVES 5; float fbm ( in vec2 _st) { float v = 0.0; float a = 0.5; vec2 shift = vec2(100.0); mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.50)); for (int i = 0; i < NUM_OCTAVES; ++i) { v += a * noise(_st); _st = rot * _st * 2.0 + shift; a *= 0.5; } return v; } void main() { vec2 st = vUv * 3.0; st += u_mouse * 0.1; vec3 color = vec3(0.0); vec2 q = vec2(0.); q.x = fbm( st + 0.00*u_time); q.y = fbm( st + vec2(1.0)); vec2 r = vec2(0.); r.x = fbm( st + 1.0*q + vec2(1.7,9.2)+ 0.15*u_time ); r.y = fbm( st + 1.0*q + vec2(8.3,2.8)+ 0.126*u_time); float f = fbm(st+r); color = mix(vec3(0.06, 0.06, 0.06), vec3(0.1, 0.05, 0.05), clamp((f*f)*4.0,0.0,1.0)); color = mix(color, vec3(0.1, 0.0, 0.1), clamp(length(q),0.0,1.0)); color = mix(color, vec3(0.9, 0.6, 0.3), clamp(length(r.x),0.0,0.1)); gl_FragColor = vec4((f*f*f+.6*f*f+.5*f)*color, 1.); }`;
+                    const scene = new THREE.Scene();
+                    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+                    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-bg'), alpha: true });
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    const uniforms = { u_time: { value: 0.0 }, u_mouse: { value: new THREE.Vector2(0, 0) } };
+                    const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms });
+                    const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+                    scene.add(plane);
+                    const clock = new THREE.Clock();
+                    function animate() { requestAnimationFrame(animate); uniforms.u_time.value = clock.getElapsedTime(); renderer.render(scene, camera); }
+                    animate();
+                    window.addEventListener('resize', () => renderer.setSize(window.innerWidth, window.innerHeight));
+                    window.addEventListener('mousemove', (e) => { uniforms.u_mouse.value.x = (e.clientX / window.innerWidth) * 2 - 1; uniforms.u_mouse.value.y = -(e.clientY / window.innerHeight) * 2 + 1; });
+                } catch (e) { console.error("WebGL background failed:", e); }
+            }
+
+            gsap.utils.toArray('.magnetic-link').forEach(el => {
+                el.addEventListener('mousemove', (e) => {
+                    const { clientX, clientY } = e;
+                    const { left, top, width, height } = el.getBoundingClientRect();
+                    gsap.to(el, { x: (clientX - (left + width/2)) * 0.4, y: (clientY - (top + height/2)) * 0.4, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+                });
+                el.addEventListener('mouseleave', () => gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' }));
+            });
+        }
+
+        // --- GSAP Animations (for all devices) ---
+        gsap.utils.toArray('[data-anim="gsap-chars"]').forEach(el => {
+            const chars = el.textContent.trim().split('').map(char => `<span>${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+            el.innerHTML = chars;
+            gsap.set(el.querySelectorAll('span'), {yPercent: 110, autoAlpha: 1});
+        });
+
+        gsap.set('[data-anim]', {autoAlpha: 0, y: 30});
+
+        ScrollTrigger.batch("[data-anim]", {
+            start: "top 85%",
+            onEnter: batch => {
+                batch.forEach((el, index) => {
+                     const animType = el.dataset.anim;
+                     if (animType === 'gsap-chars') {
+                        gsap.to(el.querySelectorAll('span'), { autoAlpha: 1, yPercent: 0, stagger: 0.02, duration: 1, ease: 'power3.out', delay: index * 0.1 });
+                     } else {
+                        gsap.to(el, { autoAlpha: 1, y: 0, duration: 1, ease: 'power3.out', delay: index * 0.1 });
+                     }
+                });
+            },
+            once: true
+        });
+
+        gsap.utils.toArray('.path-line').forEach(line => {
+            gsap.from(line, { scaleY: 0, scrollTrigger: { trigger: line.parentElement, start: "top center", end: "bottom center", scrub: 0.5 }});
+        });
+        
+        const form = document.getElementById('applicationForm');
+        const successMessage = document.getElementById('form-success');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (form.checkValidity()) { form.style.display = 'none'; successMessage.style.display = 'block'; } 
+            else { form.reportValidity(); }
+        });
+    });
+  </script>
+
+</body>
+</html>
+
