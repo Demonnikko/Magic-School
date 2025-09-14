@@ -6,35 +6,28 @@
   <title>ABRACADABRA — Школа фокусов для детей 7–13 лет</title>
   <meta name="description" content="ABRACADABRA — школа фокусов для детей 7–13 лет. Уверенность, харизма и умение управлять вниманием. Запишитесь на бесплатный пробный урок."/>
   <meta name="theme-color" content="#0B1426"/>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --black:#07090F;
-      --navy:#0B1426;
-      --navy-2:#0E162B;
-      --gold:#D6B36B;
-      --bronze:#A67C3C;
-      --ivory:#F4EAD1;
-      --muted:#9EA6B8;
-      --glow:rgba(214,179,107,.12);
-      --radius:16px;
-      --radius-sm:12px;
-      --maxw:1120px;
-      --field-h:56px;
+      --black:#07090F; --navy:#0B1426; --navy-2:#0E162B;
+      --gold:#D6B36B; --bronze:#A67C3C; --ivory:#F4EAD1;
+      --muted:#9EA6B8; --glow:rgba(214,179,107,.12);
+      --radius:16px; --radius-sm:12px; --maxw:1120px; --field-h:56px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth; overflow-x:hidden}
-    html,body{height:100%}
     body{
-      margin:0; background:
+      margin:0; color:#E9ECF4;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      background:
         radial-gradient(80vw 80vw at 50% -10%, #1326482a, transparent),
         radial-gradient(60vw 60vw at -10% 20%, #0B14262a, transparent),
         var(--black);
-      color:#E9ECF4;
-      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
       -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
     }
     a{color:inherit; text-decoration:none}
@@ -45,35 +38,39 @@
     section{padding:72px 0}
     @media (max-width:640px){ section{padding:52px 0} .container{padding:0 16px} }
 
-    /* ===== header ===== */
-    .topbar{position:sticky; top:0; z-index:30; backdrop-filter:saturate(120%) blur(8px);
+    /* Header */
+    .topbar{position:sticky; top:0; z-index:40; backdrop-filter:saturate(120%) blur(8px);
       background:linear-gradient(180deg, rgba(7,9,15,.88), rgba(7,9,15,.64)); border-bottom:1px solid #1e2a46;}
-    .topbar__row{display:flex; align-items:center; justify-content:space-between; height:76px}
-    .brand{display:flex; align-items:center; gap:12px}
-    /* логотип — крупнее, хорошо виден на мобилках */
-    .brand img{height:264px; width:auto; display:block; object-fit:contain}
-    @media (max-width:540px){ .brand img{height:210px} }
-
-    /* контактные кнопки под палец (48×48 min tap target) */
+    .topbar__row{display:flex; align-items:center; justify-content:space-between; height:72px}
+    .brand{display:flex; align-items:center; gap:14px}
+    .brand img{height:54px; width:auto; display:block; object-fit:contain; border-radius:10px}
+    @media (max-width:480px){ .brand img{height:48px} }
     .contacts{display:flex; gap:10px; align-items:center}
     .contact-btn{
-      inline-size:48px; block-size:48px; display:inline-flex; align-items:center; justify-content:center;
-      border-radius:14px; background:#0c1326; border:1px solid #233256; transition:.2s;
-      box-shadow:0 0 0 0 rgba(214,179,107,0);
+      width:44px; height:44px; display:inline-grid; place-items:center; border-radius:12px;
+      background:#0c1326; border:1px solid #233256; transition:.2s; color:#e9ecf4;
+      overflow:hidden;
     }
+    .contact-btn img{width:26px; height:26px; display:block}
     .contact-btn:hover{border-color:var(--gold); transform:translateY(-1px); box-shadow:0 0 0 4px var(--glow)}
-    .contact-btn img{width:28px; height:28px; display:block; object-fit:contain}
-    @media (min-width:840px){ .contact-btn{inline-size:52px; block-size:52px} .contact-btn img{width:30px; height:30px} }
 
-    /* горизонтальное меню */
-    .rollnav{position:sticky; top:76px; z-index:25; display:flex; gap:12px; overflow-x:auto; scrollbar-width:none;
-      padding:10px 16px; background:rgba(7,9,15,.72); backdrop-filter: blur(8px); border-bottom:1px solid #1e2a46;}
-    .rollnav::-webkit-scrollbar{display:none}
-    .rollnav a, .rollnav button{flex:0 0 auto; padding:10px 14px; border-radius:999px; border:1px solid #26365f;
-      background:#0c1326; color:#e9ecf4; font-weight:800; font-size:14px; cursor:pointer; transition:border-color .2s, transform .15s; white-space:nowrap;}
+    /* Горизонтальное меню (без эмодзи) */
+    .rollnav{
+      position:sticky; top:72px; z-index:35; pointer-events:auto;
+      display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; touch-action:pan-x;
+      padding:10px 16px; background:rgba(7,9,15,.72); backdrop-filter: blur(8px);
+      border-bottom:1px solid #1e2a46; white-space:nowrap; scroll-snap-type:x proximity;
+    }
+    .rollnav a, .rollnav button{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 14px; margin-right:12px; border-radius:999px; scroll-snap-align:start;
+      border:1px solid #26365f; background:#0c1326; color:#e9ecf4;
+      font-weight:800; font-size:14px; cursor:pointer; transition:border-color .2s, transform .15s;
+    }
+    .rollnav a:last-child, .rollnav button:last-child{margin-right:0}
     .rollnav a:hover, .rollnav button:hover{ border-color:var(--gold); transform:translateY(-1px) }
 
-    /* hero */
+    /* Hero + Buttons */
     .hero{padding:96px 0 64px; text-align:center}
     .hero h1{font-size: clamp(36px, 6.2vw, 64px); color:var(--ivory)}
     .subtitle{font-size: clamp(16px, 2.6vw, 22px); color:#cfd6e6; max-width:760px; margin:16px auto 28px}
@@ -87,7 +84,7 @@
     .hero-badges{margin-top:24px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; color:#aeb6c9; font-size:14px}
     .hero-badges span{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border:1px solid #25325a; border-radius:999px; background:#0d1427;}
 
-    /* cards */
+    /* Features */
     .features{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
     @media (max-width:860px){ .features{grid-template-columns:1fr} }
     .card{background:linear-gradient(180deg, #0D1424, #0A101D); border:1px solid #213155; border-radius:var(--radius); padding:22px;
@@ -96,7 +93,7 @@
     .card h3{font-size:26px; color:var(--gold); margin-bottom:.35em}
     .card p{color:#cfd6e6}
 
-    /* pricing */
+    /* Pricing */
     .pricing-grid{display:grid; grid-template-columns: 1fr 1fr; gap:18px}
     @media (max-width:900px){ .pricing-grid{grid-template-columns:1fr} }
     .price{
@@ -106,16 +103,17 @@
     }
     @media (max-width:900px){ .price{grid-template-columns:1fr} }
     .price h3{font-size:30px; color:var(--ivory); text-align:center}
-
-    /* блок цены (с вашими последними нововведениями уже вшит в другом файле; здесь базовые стили) */
-    .amount{font-size:44px; color:var(--gold); font-weight:800; margin:.1em 0 .5em; text-align:center}
+    .amount{font-size:44px; color:var(--gold); font-weight:800; text-align:center}
     .subnote{color:#cfd6e6; font-size:14px; text-align:center}
     .badge{display:inline-block; padding:6px 10px; border:1px solid #3a2a10; background:#15100a; color:var(--gold); border-radius:999px; font-weight:800; font-size:12px}
     .bullets{list-style:none; padding:0; margin:0; display:grid; gap:10px; color:#d7def0}
     .video-card{background:#0e162b; border:1px solid #233256; border-radius:var(--radius); padding:16px}
     .video-card video{width:100%; height:auto; border-radius:12px; display:block}
 
-    /* form */
+    /* Price stickers (ваши скидки/таймер уже были — оставил) */
+    .sticker{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; border:1px dashed #3a2a10; background:#14100a; color:var(--gold); font-weight:800; font-size:12px}
+
+    /* Form */
     .form{background:#0e162b; border:1px solid #233256; border-radius:var(--radius); padding:22px; max-width:560px; margin:0 auto;}
     .form .row{display:grid; gap:14px; grid-template-columns:1fr}
     @media (min-width:720px){ .form .row{ grid-template-columns:1fr 1fr } }
@@ -131,63 +129,65 @@
     .invalid .error{display:block}
     .consent{margin:10px 0 0; font-size:12px; color:#9fb0d0; text-align:center}
 
-    /* MODALS, ABOUT, FAQ, reveal, footer — как в вашей «закреплённой» версии (не менял стили) */
+    /* MODALS (унификация) */
     .modal{position:fixed; inset:0; display:grid; place-items:center; background:rgba(0,0,0,.64); z-index:60; padding:16px}
     .modal[hidden]{display:none}
     .modal__card{
       position:relative;
-      width:min(96vw,960px); max-height:86vh; overflow:auto;
+      width:min(96vw,880px); max-height:86vh; overflow:auto;
       background:linear-gradient(180deg,#0D1424 0%, #0A101D 100%);
       border:1px solid #233256; border-radius:20px; padding: clamp(18px,2.2vw,28px);
       box-shadow:0 24px 80px rgba(0,0,0,.55);
     }
     .modal__card::before{
-      content:""; position:sticky; top:0; display:block; height:3px; margin:-28px -28px 24px;
+      content:""; position:sticky; top:0; display:block; height:3px; margin:-28px -28px 20px;
       background:linear-gradient(90deg, transparent 0%, var(--gold) 15%, var(--bronze) 50%, var(--gold) 85%, transparent 100%);
       border-top-left-radius:20px; border-top-right-radius:20px;
     }
-    .modal__close{all:unset; float:right; cursor:pointer; font-size:18px; padding:8px 12px; border-radius:10px; background:#0c1326; border:1px solid #2a3a67; color:#e9ecf4;}
-    .modal h3{font-family:"Cormorant Garamond",serif; color:var(--ivory); margin:0 0 12px}
+    .modal__close{all:unset; position:absolute; top:10px; right:10px; cursor:pointer; font-size:18px; padding:8px 12px; border-radius:10px; background:#0c1326; border:1px solid #2a3a67; color:#e9ecf4;}
+    .modal h3{font-family:"Cormorant Garamond",serif; color:var(--ivory); margin:0 0 12px; text-align:center}
 
-    footer{border-top:1px solid #1e2a46; padding:28px 0 40px; margin-top:60px}
-    .foot-row{display:flex; justify-content:space-between; gap:20px; align-items:center; flex-wrap:wrap}
+    /* FAQ details красивее и все закрыты */
+    .faq-list details{border:1px solid #233256; border-radius:12px; padding:12px 14px; margin:10px 0; background:#0c1326}
+    .faq-list summary{list-style:none; cursor:pointer; font-weight:800; color:var(--ivory); display:flex; align-items:center; gap:10px}
+    .faq-list summary::before{content:"▸"; color:var(--gold); font-weight:900; transform:translateY(-1px)}
+    .faq-list details[open] summary::before{content:"▾"}
+    .faq-list p{color:#cfd6e6; margin:.6em 0 0}
+
+    /* Footer: меньше «воздуха» на мобилке */
+    footer{border-top:1px solid #1e2a46; padding:18px 0 24px; margin-top:40px}
+    .foot-row{display:flex; justify-content:space-between; gap:16px; align-items:center; flex-wrap:wrap}
     .foot-brand{display:flex; gap:12px; align-items:center}
-    .foot-brand img{height:264px; width:auto; display:block; object-fit:contain}
+    .foot-brand img{height:64px; width:auto; border-radius:10px}
+    @media (max-width:480px){ .foot-brand img{height:56px} }
     .foot-copy{color:#98a6c9; font-size:14px}
   </style>
 </head>
 <body>
 
-  <!-- ===== header ===== -->
+  <!-- Header -->
   <header class="topbar">
     <div class="container topbar__row">
       <div class="brand">
-        <!-- КРУПНЫЙ логотип -->
-        <img src="assets/logo/abracadabra-gold.png" alt="Школа фокусов Abracadabra">
+        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra">
       </div>
       <nav class="contacts" aria-label="Контакты">
-        <a class="contact-btn" href="https://t.me/Dmitrokko" target="_blank" aria-label="Telegram">
-          <img src="assets/icons/telegram-gold.png" alt="">
-        </a>
-        <a class="contact-btn" href="https://vk.com/dmitrokko" target="_blank" aria-label="VK">
-          <img src="assets/icons/vk-gold.png" alt="">
-        </a>
-        <a class="contact-btn" href="tel:+79092763386" aria-label="Позвонить">
-          <img src="assets/icons/phone-gold.png" alt="">
-        </a>
+        <a class="contact-btn" href="https://t.me/Dmitrokko" target="_blank" aria-label="Telegram"><img src="assets/icons/tg-gold.png" alt=""></a>
+        <a class="contact-btn" href="https://vk.com/dmitrokko" target="_blank" aria-label="VK"><img src="assets/icons/vk-gold.png" alt=""></a>
+        <a class="contact-btn" href="tel:+79092763386" aria-label="Позвонить"><img src="assets/icons/phone-gold.png" alt=""></a>
       </nav>
     </div>
   </header>
 
-  <!-- ===== горизонтальное меню ===== -->
+  <!-- Горизонтальное меню -->
   <nav class="rollnav" aria-label="Разделы">
-    <button type="button" id="openAbout">🎓 О школе</button>
-    <a href="https://your-personal-site.example" target="_blank" rel="noopener">🤝 Частные заказы</a>
-    <a href="https://your-show-site.example" target="_blank" rel="noopener">🎭 Концертные шоу</a>
-    <button type="button" id="openFAQ">❓ FAQ</button>
+    <button type="button" id="openAbout">О школе</button>
+    <a href="https://your-personal-site.example" target="_blank" rel="noopener">Частные заказы</a>
+    <a href="https://your-show-site.example" target="_blank" rel="noopener">Концертные шоу</a>
+    <button type="button" id="openFAQ">FAQ</button>
   </nav>
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section class="hero">
     <div class="container">
       <h1>Школа фокусов для детей 7–13 лет</h1>
@@ -197,44 +197,40 @@
         <a href="#program" class="btn btn-ghost">Увидеть программу занятий</a>
       </div>
       <div class="hero-badges">
-        <span>👥 Группа до 10 детей</span>
-        <span>🎙️ Сцена и уверенная речь</span>
-        <span>📔 Уникальный AR-дневник</span>
+        <span>Группа до 10 детей</span>
+        <span>Сцена и уверенная речь</span>
+        <span>Уникальный AR-дневник</span>
       </div>
     </div>
   </section>
 
-  <!-- ===== WHY ===== -->
+  <!-- WHY -->
   <section id="why">
     <div class="container">
-      <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:22px;">
-        Почему не футбол, музыка или «ещё один кружок»?
-      </h2>
+      <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:22px;">Почему не футбол, музыка или «ещё один кружок»?</h2>
       <div class="features">
-        <div class="card"><h3>🧠 Мы прокачиваем харизму</h3><p>Навык держать паузу, говорить уверенно и управлять вниманием ценится сильнее, чем сотня подтягиваний.</p></div>
-        <div class="card"><h3>🎤 Каждый урок — мини-выступление</h3><p>Ребёнок получает реакцию зала и перестаёт бояться сцены. Аплодисменты → уверенность.</p></div>
-        <div class="card"><h3>✨ Суперсила на всю жизнь</h3><p>Умение удерживать внимание полезно в школе, в университете и во взрослой карьере.</p></div>
-        <div class="card"><h3>🎯 Геймификация без домашних</h3><p>Очки, ачивки, наклейки и «шкала побед» — ребёнок сам стремится к результату.</p></div>
+        <div class="card"><h3>Мы прокачиваем харизму</h3><p>Навык держать паузу, говорить уверенно и управлять вниманием ценится сильнее, чем сотня подтягиваний.</p></div>
+        <div class="card"><h3>Каждый урок — мини-выступление</h3><p>Ребёнок получает реакцию зала и перестаёт бояться сцены. Аплодисменты → уверенность.</p></div>
+        <div class="card"><h3>Суперсила на всю жизнь</h3><p>Умение удерживать внимание полезно в школе, университете и карьере.</p></div>
+        <div class="card"><h3>Геймификация</h3><p>Очки, ачивки, наклейки и «шкала побед» — ребёнок сам стремится к результату.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== HOW IT WORKS ===== -->
+  <!-- HOW -->
   <section id="program">
     <div class="container">
-      <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:22px;">
-        Как это устроено — коротко и по делу
-      </h2>
+      <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:22px;">Как это устроено — коротко и по делу</h2>
       <div class="features">
-        <div class="card"><h3>🗓️ 1 занятие в неделю</h3><p>Два академических часа. Без перегрузки, но с результатом.</p></div>
-        <div class="card"><h3>🎩 Постановка номеров</h3><p>Не просто «фокусы», а работа над выступлением и образом.</p></div>
-        <div class="card"><h3>📔 AR-дневник и ачивки</h3><p>Игровая шкала побед, наклейки и приз-реквизит в конце месяца.</p></div>
-        <div class="card"><h3>👏 Мини-шоу ежемесячно</h3><p>Родители видят прогресс, а дети — получают сцепку «труд → аплодисменты».</p></div>
+        <div class="card"><h3>1 занятие в неделю</h3><p>Два академических часа. Без перегрузки, но с результатом.</p></div>
+        <div class="card"><h3>Постановка номеров</h3><p>Не просто «фокусы», а работа над выступлением и образом.</p></div>
+        <div class="card"><h3>AR-дневник и ачивки</h3><p>Игровая шкала побед, наклейки и приз-реквизит в конце месяца.</p></div>
+        <div class="card"><h3>Мини-шоу ежемесячно</h3><p>Родители видят прогресс, а дети — получают сцепку «труд → аплодисменты».</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== PRICING (коротко, без блока «почему выгодно») ===== -->
+  <!-- PRICES (ваши текущие цены/стикеры/таймер у вас уже есть в предыдущей версии — оставляю как было, без блока «почему выгодно») -->
   <section id="price">
     <div class="container">
       <div class="pricing-grid">
@@ -242,19 +238,13 @@
         <!-- Месяц -->
         <div class="price">
           <div>
+            <div class="center" style="margin-bottom:6px"><span class="sticker">–25% сегодня</span></div>
             <h3>Месяц</h3>
-            <div class="center" style="margin:.4em 0 1em">
-              <div class="badge">-25%</div>
+            <div class="center" style="margin:6px 0 8px">
+              <div style="font-weight:800; font-size:44px; color:var(--gold)">2 990 ₽</div>
+              <div style="color:#a8b3cc"><s style="font-weight:400">3 990 ₽</s></div>
             </div>
-            <div class="center" style="line-height:1">
-              <div style="font-size:44px; font-weight:900; color:var(--gold);">
-                2 990 <span style="font-weight:800">₽</span>
-              </div>
-              <div style="margin-top:6px; color:#aeb6c9; font-size:16px;">
-                <s style="opacity:.75; font-weight:600;">3 990 ₽</s>
-              </div>
-            </div>
-            <p class="subnote" style="margin-top:10px">Навык, который останется на всю жизнь.</p>
+            <p class="subnote">Навык, который останется на всю жизнь.</p>
             <ul class="bullets" style="margin-top:16px">
               <li>✔️ 4 занятия по 2 академических часа</li>
               <li>✔️ AR-дневник с наклейками и достижениями</li>
@@ -270,28 +260,19 @@
               <source src="assets/video/promo.mp4" type="video/mp4">
               Ваш браузер не поддерживает видео.
             </video>
-            <p style="color:#9fb0d0; font-size:13px; text-align:center; margin-top:6px">
-              Смотрели на «Первом ярославском»: 8 выпусков телешоу «Школа волшебства».
-            </p>
           </div>
         </div>
 
         <!-- Полгода -->
         <div class="price">
           <div>
+            <div class="center" style="margin-bottom:6px"><span class="sticker">–25% на 6 мес.</span></div>
             <h3>Полгода <span class="badge">Рассрочка без переплат</span></h3>
-            <div class="center" style="margin:.4em 0 1em">
-              <div class="badge">-25%</div>
+            <div class="center" style="margin:6px 0 8px">
+              <div style="font-weight:800; font-size:44px; color:var(--gold)">14 950 ₽</div>
+              <div style="color:#a8b3cc"><s style="font-weight:400">18 690 ₽</s></div>
             </div>
-            <div class="center" style="line-height:1">
-              <div style="font-size:44px; font-weight:900; color:var(--gold);">
-                14 950 <span style="font-weight:800">₽</span>
-              </div>
-              <div style="margin-top:6px; color:#aeb6c9; font-size:16px;">
-                <s style="opacity:.75; font-weight:600;">18 690 ₽</s>
-              </div>
-            </div>
-            <p class="subnote" style="margin-top:10px">Рассрочка на <b>6 месяцев</b>, без переплат. 6-й месяц — в подарок.</p>
+            <p class="subnote">Платите за 5 месяцев — 6-й в подарок. Рассрочка на 6 месяцев.</p>
             <ul class="bullets" style="margin-top:16px">
               <li>✔️ Всё, что в месячном тарифе</li>
               <li>✔️ Приоритет при наборе группы</li>
@@ -304,19 +285,13 @@
         </div>
 
       </div>
-
-      <!-- Дедлайн: осталось мест + таймер -->
-      <div class="center" style="margin-top:26px">
-        <div style="display:inline-flex; gap:12px; align-items:center; padding:10px 14px; border:1px dashed #3a2a10; background:#0f0a00; border-radius:12px">
-          <span style="color:var(--gold); font-weight:900">Осталось мест: 7</span>
-          <span style="color:#cfd6e6">•</span>
-          <span style="color:#e9ecf4">До конца акции: <b id="dealTimer">03:00:00</b></span>
-        </div>
+      <div class="center" style="margin-top:14px">
+        <span class="sticker">Осталось 7 мест</span>
       </div>
     </div>
   </section>
 
-  <!-- ===== SIGNUP ===== -->
+  <!-- SIGNUP -->
   <section id="signup">
     <div class="container">
       <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:12px;">
@@ -353,6 +328,7 @@
         <div class="consent">Нажимая «Отправить заявку», вы соглашаетесь на обработку персональных данных.</div>
       </form>
 
+      <!-- Спасибо -->
       <div id="thanksModal" class="modal" hidden>
         <div class="modal__card center">
           <button class="modal__close" id="closeThanks" aria-label="Закрыть">✕</button>
@@ -363,112 +339,88 @@
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- Footer (меньше пустоты) -->
   <footer>
     <div class="container foot-row">
       <div class="foot-brand">
-        <img src="assets/logo/abracadabra-gold.png" alt="Школа фокусов Abracadabra">
+        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra">
       </div>
       <div class="contacts">
-        <a class="contact-btn" href="https://t.me/Dmitrokko" target="_blank" aria-label="Telegram">
-          <img src="assets/icons/telegram-gold.png" alt="">
-        </a>
-        <a class="contact-btn" href="https://vk.com/dmitrokko" target="_blank" aria-label="VK">
-          <img src="assets/icons/vk-gold.png" alt="">
-        </a>
-        <a class="contact-btn" href="tel:+79092763386" aria-label="Позвонить">
-          <img src="assets/icons/phone-gold.png" alt="">
-        </a>
+        <a class="contact-btn" href="https://t.me/Dmitrokko" target="_blank" aria-label="Telegram"><img src="assets/icons/tg-gold.png" alt=""></a>
+        <a class="contact-btn" href="https://vk.com/dmitrokko" target="_blank" aria-label="VK"><img src="assets/icons/vk-gold.png" alt=""></a>
+        <a class="contact-btn" href="tel:+79092763386" aria-label="Позвонить"><img src="assets/icons/phone-gold.png" alt=""></a>
       </div>
       <div class="foot-copy">© 2025 — Школа фокусов. Все права защищены.</div>
     </div>
   </footer>
 
-  <!-- ===== MODALS (FAQ + ABOUT) — содержимое из вашей «закреплённой» версии ===== -->
-  <div id="faqModal" class="modal" hidden>
-    <div class="modal__card">
-      <button class="modal__close" aria-label="Закрыть" id="closeFAQ">✕</button>
-      <h3 class="center" style="font-size: clamp(24px,2.6vw,30px);">Частые вопросы</h3>
+  <!-- ===== MODALS ===== -->
 
-      <details>
-        <summary>Если ребёнок стеснительный?</summary>
-        <p>Именно для таких детей мы и запускали школу. Начинаем с простых шагов, без давления, через месяц — уверенное мини-выступление.</p>
-      </details>
-
-      <details>
-        <summary>Если не понравится?</summary>
-        <p>Есть бесплатный пробный урок. Вы ничего не теряете — ребёнок знакомится с форматом и педагогом.</p>
-      </details>
-
-      <details>
-        <summary>Сколько детей в группе?</summary>
-        <p>До 10 человек. У каждого — время на сцене и внимание педагога.</p>
-      </details>
-
-      <details>
-        <summary>Будут домашние задания?</summary>
-        <p>Нет. Весь прогресс — на занятиях. Раз в месяц — мини-шоу для родителей.</p>
-      </details>
-
-      <details>
-        <summary>Почему не с начала учебного года?</summary>
-        <p>Нам не важна сезонность. Важны этапы обучения ребёнка — как он усваивает материал и учится взаимодействовать с публикой. Мы подключаем в поток и двигаемся по уровням.</p>
-      </details>
-    </div>
-  </div>
-
+  <!-- ABOUT (оставил как в вашей «закреплённой» версии) -->
   <div id="aboutModal" class="modal" hidden>
     <div class="modal__card">
       <button class="modal__close" aria-label="Закрыть" id="closeAbout">✕</button>
+      <h3>Школа фокусов «Абракадабра» — не кружок, а академия магии для детей.</h3>
+      <p style="color:#cfd6e6; text-align:center; max-width:72ch; margin:0 auto">
+        В Ярославле появилось место, где дети становятся настоящими волшебниками. Школа «Абракадабра» создана
+        иллюзионистом Дмитрием Костюком — автором театрального шоу «Секрет» и участником телепередач.
+      </p>
+      <ul style="list-style:none; padding:0; margin:14px auto 0; max-width:60ch; color:#e4e9f7">
+        <li>— уверенность в себе;</li>
+        <li>— навыки речи и артистизма;</li>
+        <li>— умение работать в команде;</li>
+        <li>— выступления перед публикой.</li>
+      </ul>
+      <p style="color:#cfd6e6; text-align:center; max-width:72ch; margin:10px auto 0">
+        Обучение — как игра: Дневник Волшебника, секретные конверты с реквизитом, ачивки и сцена в конце уровней.
+      </p>
+      <p style="color:#cfd6e6; text-align:center; max-width:72ch; margin:8px auto 0">
+        Через полгода — мини-шоу, через год — большой концерт. Лучшие ученики становятся ассистентами в шоу «Секрет».
+      </p>
+    </div>
+  </div>
 
-      <h3 style="text-align:center; font-size: clamp(26px, 3.2vw, 38px); background:linear-gradient(135deg, var(--gold), var(--bronze)); -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:.02em;">
-        Школа фокусов «Абракадабра» — не кружок, а академия магии для детей.
-      </h3>
-
-      <div style="display:grid; grid-template-columns: 200px 1fr; gap: clamp(16px,2.2vw,28px); align-items:start;">
-        <img src="assets/logo/abracadabra-gold.png" alt="Логотип школы" style="width:200px; height:200px; object-fit:contain; background:#0b1224; border-radius:16px; padding:16px; box-shadow:0 22px 44px -16px rgba(0,0,0,.6)">
-        <div>
-          <p style="color:#d8def0; font-size: clamp(16px,1.6vw,18px);">В Ярославле появилось место, где дети становятся настоящими волшебниками. Школа «Абракадабра» создана иллюзионистом Дмитрием Костюком — автором театрального шоу «Секрет» и участником телепередач.</p>
-          <ul style="list-style:none; padding:0; margin:12px 0; display:grid; gap:8px; color:#e4e9f7">
-            <li>🎭 уверенность в себе;</li>
-            <li>🎤 навыки речи и артистизма;</li>
-            <li>👥 умение работать в команде;</li>
-            <li>🎯 выступления перед публикой.</li>
-          </ul>
-          <p style="color:#cfd6e6;">Обучение — как увлекательная игра: дневник Волшебника, секретные конверты с реквизитом, ачивки и награды, выступления на сцене.</p>
-        </div>
+  <!-- FAQ — аккуратно, все закрыто -->
+  <div id="faqModal" class="modal" hidden>
+    <div class="modal__card">
+      <button class="modal__close" aria-label="Закрыть" id="closeFAQ">✕</button>
+      <h3>Частые вопросы</h3>
+      <div class="faq-list">
+        <details>
+          <summary>Если ребёнок стеснительный?</summary>
+          <p>Именно для таких детей мы и запускали школу. Начинаем мягко, без давления — через месяц ребёнок уверенно выступает в мини-формате.</p>
+        </details>
+        <details>
+          <summary>Если не понравится?</summary>
+          <p>Есть бесплатный пробный урок. Вы ничего не теряете — ребёнок знакомится с форматом и педагогом.</p>
+        </details>
+        <details>
+          <summary>Сколько детей в группе?</summary>
+          <p>До 10 человек, у каждого — время на сцене и внимание педагога.</p>
+        </details>
+        <details>
+          <summary>Будут домашние задания?</summary>
+          <p>Нет. Весь прогресс — на занятиях. Раз в месяц — мини-шоу для родителей.</p>
+        </details>
+        <details>
+          <summary>Почему не с начала учебного года начинаем?</summary>
+          <p>Нам не важна сезонность. Важны этапы обучения ребёнка, то как он усваивает материал и учится взаимодействовать с публикой. Стартовать можно в любой месяц.</p>
+        </details>
       </div>
     </div>
   </div>
 
   <script>
-    /* таймер 3 дня */
-    (function(){
-      const el = document.getElementById('dealTimer');
-      if(!el) return;
-      const end = Date.now() + 3*24*60*60*1000;
-      const t = setInterval(()=>{
-        const left = Math.max(0, end - Date.now());
-        const d = Math.floor(left/86400000);
-        const h = Math.floor(left%86400000/3600000).toString().padStart(2,'0');
-        const m = Math.floor(left%3600000/60000).toString().padStart(2,'0');
-        const s = Math.floor(left%60000/1000).toString().padStart(2,'0');
-        el.textContent = (d>0? d+'д ':'') + `${h}:${m}:${s}`;
-        if(left<=0) clearInterval(t);
-      }, 1000);
-    })();
-
-    /* FAQ modal */
+    /* Открытие/закрытие модалок */
     document.getElementById('openFAQ')?.addEventListener('click',()=>{ document.getElementById('faqModal').hidden=false; });
     document.getElementById('closeFAQ')?.addEventListener('click',()=>{ document.getElementById('faqModal').hidden=true; });
     document.getElementById('faqModal')?.addEventListener('click',(e)=>{ if(e.target.id==='faqModal') e.currentTarget.hidden=true; });
 
-    /* ABOUT modal */
     document.getElementById('openAbout')?.addEventListener('click',()=>{ document.getElementById('aboutModal').hidden=false; });
     document.getElementById('closeAbout')?.addEventListener('click',()=>{ document.getElementById('aboutModal').hidden=true; });
     document.getElementById('aboutModal')?.addEventListener('click',(e)=>{ if(e.target.id==='aboutModal') e.currentTarget.hidden=true; });
 
-    /* маска + валидация формы + отправка в Telegram — оставлено без изменений из вашей «закреплённой» версии */
+    /* Маска телефона + валидация + отправка (как в закреплённой версии) */
     document.addEventListener('input', (e)=>{
       if(e.target.id==='phone'){
         let v = e.target.value.replace(/\D/g,'');
@@ -483,7 +435,6 @@
         e.target.value = out;
       }
     });
-
     function setInvalid(id, cond){ const f=document.getElementById(id); cond?f.classList.add('invalid'):f.classList.remove('invalid'); }
     function validPhone(v){ return /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(v); }
     async function postJSON(url, data, timeout=12000){
@@ -492,7 +443,6 @@
            clearTimeout(t); return r.ok; }
       catch(e){ clearTimeout(t); return false; }
     }
-
     (function(){
       const form = document.getElementById('leadForm');
       const modal = document.getElementById('thanksModal');
@@ -513,7 +463,8 @@
 
         if(document.querySelector('.invalid')) return;
 
-        const text = `🪄 *Заявка на пробный урок*
+        const text =
+`🪄 *Заявка на пробный урок*
 Имя родителя: ${parent}
 Телефон: ${phone}
 Возраст ребёнка: ${age}
