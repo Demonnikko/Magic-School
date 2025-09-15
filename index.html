@@ -489,7 +489,7 @@
         const age    = document.getElementById('age').value.trim();
         const email  = document.getElementById('email').value.trim();
         const text = `🪄 *Заявка на пробный урок*\nИмя родителя: ${parent}\nТелефон: ${phone}\nВозраст ребёнка: ${age}\nEmail: ${email||'-'}`;
-        const ok = await postJSON('https://api.telegram.org/bot7838972787:AAHaLNVe6xqEnzE5qy5Uh2TwSb66LWYIUhI/sendMessage',
+        const ok = await postJSON('https://api.telegram.org/bot7838972787:AAFlfSL6PpenWcBr2qA8gYCy3lRhIfYDZN8/sendMessage',
           {chat_id:269357522, text, parse_mode:'Markdown'});
         alert(ok?'Заявка отправлена!':'Не удалось отправить. Попробуйте ещё раз.');
         if(ok) form.reset();
