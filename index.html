@@ -50,7 +50,8 @@
     .contacts{display:flex; gap:12px; align-items:center}
     .contact-btn{
       width:48px; height:48px; display:inline-grid; place-items:center; border-radius:50%;
-      background:#0c1326; border:1px solid #233256; transition:.2s;
+      background:#000; /* ← ЧЁРНЫЙ ФОН ВОКРУГ ИКОНОК */
+      border:1px solid #233256; transition:.2s;
     }
     .contact-btn:hover{border-color:var(--gold); transform:translateY(-1px); box-shadow:0 0 0 4px var(--glow)}
     .contact-btn img{width:28px; height:28px; display:block}
@@ -58,16 +59,24 @@
     /* Только телефон в шапке */
     .contact-btn--phone{display:inline-grid}
 
-    /* BURGER */
+    /* BURGER — изящный значок */
     .burger{
       width:48px; height:48px; border-radius:12px; border:1px solid #233256;
-      background:#0c1326; display:inline-grid; place-items:center; cursor:pointer; transition:.2s;
+      background:#0c1326; position:relative; cursor:pointer; transition:.2s;
     }
     .burger:hover{border-color:var(--gold); box-shadow:0 0 0 4px var(--glow); transform:translateY(-1px)}
-    .burger span, .burger::before, .burger::after{
-      content:""; display:block; width:24px; height:2px; background:#e9ecf4; border-radius:2px;
+    .burger .line,
+    .burger::before,
+    .burger::after{
+      content:""; position:absolute; left:50%; transform:translateX(-50%);
+      width:22px; height:2px; background:#e9ecf4; border-radius:999px; opacity:.95;
+      transition:width .2s ease, transform .2s ease, background .2s ease;
     }
-    .burger span{margin:5px 0}
+    .burger .line{ top:50%; transform:translate(-50%, -50%); }
+    .burger::before{ top:15px; }
+    .burger::after{ bottom:15px; }
+    .burger:hover .line{ width:24px }
+    .burger:hover::before, .burger:hover::after{ width:24px }
 
     /* Скрываем прежнюю горизонтальную навигацию */
     .rollnav{display:none !important}
@@ -151,7 +160,6 @@
       border:1px solid #233256; border-radius:20px; padding: clamp(18px,2.2vw,28px);
       box-shadow:0 24px 80px rgba(0,0,0,.55);
     }
-    /* больше «воздуха» от золотой полосы */
     .modal__card::before{
       content:""; position:sticky; top:0; display:block; height:3px;
       margin:-28px -28px 20px;
@@ -201,7 +209,7 @@
     }
     .menu-list a:hover, .menu-list button:hover{border-color:var(--gold)}
 
-    /* ====== КРАСИВЫЕ КНОПКИ FAQ ====== */
+    /* FAQ стили (как в предыдущей версии с красивыми кнопками) */
     #faqModal .faq-list{display:grid; gap:10px; margin-top:10px}
     #faqModal .faq-item{
       border:1px solid #26365f; border-radius:14px; background:#0c1326;
@@ -228,11 +236,6 @@
       color:#cfd6e6; padding:0 16px 16px 38px; margin-top:-2px;
       border-top:1px solid #233256;
     }
-    /* плавность высоты для современных браузеров */
-    @supports (transition-timing-function: linear){
-      #faqModal .faq-item{ transition: border-color .2s, box-shadow .25s, transform .18s, content-visibility .2s }
-    }
-    /* ====== /FAQ ====== */
 
     /* reveal эффект */
     @media (prefers-reduced-motion: no-preference){
@@ -257,7 +260,7 @@
         </a>
         <!-- БУРГЕР -->
         <button class="burger" id="openMenu" aria-label="Открыть меню">
-          <span></span>
+          <span class="line" aria-hidden="true"></span>
         </button>
       </nav>
     </div>
@@ -472,7 +475,7 @@
     </div>
   </footer>
 
-  <!-- FAQ MODAL (красивые кнопки-аккордеоны) -->
+  <!-- FAQ MODAL -->
   <div id="faqModal" class="modal" hidden>
     <div class="modal__card">
       <div class="modal__spacer"></div>
@@ -688,7 +691,7 @@ Email: ${email || '-'}`;
       modal?.addEventListener('click', (e)=>{ if(e.target===modal) modal.hidden = true; });
     })();
 
-    /* БУРГЕР — логика (каждая модалка отдельно) */
+    /* БУРГЕР — логика */
     const menuModal = document.getElementById('menuModal');
     document.getElementById('openMenu')?.addEventListener('click', ()=>{ menuModal.hidden=false; });
     document.getElementById('closeMenu')?.addEventListener('click', ()=>{ menuModal.hidden=true; });
