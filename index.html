@@ -46,6 +46,7 @@
     .topbar__row{display:flex; align-items:center; justify-content:space-between; height:80px}
     .brand{display:flex; align-items:center; gap:12px}
     .brand img{height:200px; width:auto; display:block; object-fit:contain}
+
     .contacts{display:flex; gap:12px; align-items:center}
     .contact-btn{
       width:48px; height:48px; display:inline-grid; place-items:center; border-radius:50%;
@@ -54,13 +55,22 @@
     .contact-btn:hover{border-color:var(--gold); transform:translateY(-1px); box-shadow:0 0 0 4px var(--glow)}
     .contact-btn img{width:28px; height:28px; display:block}
 
-    /* Горизонтальное меню — текст без эмодзи */
-    .rollnav{position:sticky; top:80px; z-index:25; display:flex; gap:12px; overflow-x:auto; scrollbar-width:none;
-      padding:10px 16px; background:rgba(7,9,15,.72); backdrop-filter: blur(8px); border-bottom:1px solid #1e2a46;}
-    .rollnav::-webkit-scrollbar{display:none}
-    .rollnav a, .rollnav button{flex:0 0 auto; padding:10px 14px; border-radius:999px; border:1px solid #26365f;
-      background:#0c1326; color:#e9ecf4; font-weight:800; font-size:14px; cursor:pointer; transition:border-color .2s, transform .15s; white-space:nowrap;}
-    .rollnav a:hover, .rollnav button:hover{ border-color:var(--gold); transform:translateY(-1px) }
+    /* Только телефон в шапке */
+    .contact-btn--phone{display:inline-grid}
+
+    /* BURGER */
+    .burger{
+      width:48px; height:48px; border-radius:12px; border:1px solid #233256;
+      background:#0c1326; display:inline-grid; place-items:center; cursor:pointer; transition:.2s;
+    }
+    .burger:hover{border-color:var(--gold); box-shadow:0 0 0 4px var(--glow); transform:translateY(-1px)}
+    .burger span, .burger::before, .burger::after{
+      content:""; display:block; width:24px; height:2px; background:#e9ecf4; border-radius:2px;
+    }
+    .burger span{margin:5px 0}
+
+    /* Скрываем прежнюю горизонтальную навигацию */
+    .rollnav{display:none !important}
 
     /* HERO */
     .hero{padding:96px 0 48px; text-align:center}
@@ -77,9 +87,7 @@
     .hero-badges span{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border:1px solid #25325a; border-radius:999px; background:#0d1427;}
 
     /* ДЕДЛАЙН/СЧЁТЧИК */
-    .deadline{
-      margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center; align-items:center;
-    }
+    .deadline{margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center; align-items:center;}
     .left-seats{padding:6px 10px; border:1px solid #3a2a10; background:#15100a; color:var(--gold); border-radius:999px; font-weight:800; font-size:13px}
     .timer{display:flex; gap:8px; align-items:center; font-weight:800}
     .timer .tbox{min-width:54px; text-align:center; padding:8px 10px; border-radius:10px; background:#0c1326; border:1px solid #233256}
@@ -133,7 +141,7 @@
     .invalid .error{display:block}
     .consent{margin:10px 0 0; font-size:12px; color:#9fb0d0; text-align:center}
 
-    /* MODALS (унификация + премиум) */
+    /* MODALS — премиум */
     .modal{position:fixed; inset:0; display:grid; place-items:center; background:rgba(0,0,0,.64); z-index:60; padding:16px}
     .modal[hidden]{display:none}
     .modal__card{
@@ -143,12 +151,14 @@
       border:1px solid #233256; border-radius:20px; padding: clamp(18px,2.2vw,28px);
       box-shadow:0 24px 80px rgba(0,0,0,.55);
     }
+    /* больше «воздуха» от золотой полосы */
     .modal__card::before{
-      content:""; position:sticky; top:0; display:block; height:3px; margin:-28px -28px 18px;
+      content:""; position:sticky; top:0; display:block; height:3px;
+      margin:-28px -28px 20px;
       background:linear-gradient(90deg, transparent 0%, var(--gold) 15%, var(--bronze) 50%, var(--gold) 85%, transparent 100%);
       border-top-left-radius:20px; border-top-right-radius:20px;
     }
-    .modal__spacer{height:6px} /* опускаем заголовок чуть ниже золотой линии — по вашей просьбе */
+    .modal__spacer{height:14px}
     .modal__close{all:unset; float:right; cursor:pointer; font-size:18px; padding:8px 12px; border-radius:10px; background:#0c1326; border:1px solid #2a3a67; color:#e9ecf4;}
     .modal h3{font-family:"Cormorant Garamond",serif; color:var(--ivory); margin:0 0 12px}
 
@@ -176,8 +186,53 @@
     /* FOOTER */
     footer{border-top:1px solid #1e2a46; padding:28px 0 40px; margin-top:60px}
     .foot-row{display:flex; justify-content:space-between; gap:20px; align-items:center; flex-wrap:wrap}
+    .foot-brand{display:flex; align-items:center; gap:16px}
     .foot-brand img{height:200px; width:auto; border-radius:8px}
+    .foot-phrase{color:#d7def0; font-weight:800; letter-spacing:.01em}
     .foot-copy{color:#98a6c9; font-size:14px}
+
+    /* MENU MODAL (бургер) */
+    .menu-list{list-style:none; padding:0; margin:0; display:grid; gap:10px}
+    .menu-list a, .menu-list button{
+      display:block; width:100%; text-align:left; padding:14px 16px; border-radius:12px;
+      border:1px solid #26365f; background:#0c1326; color:#e9ecf4;
+      font-weight:800; font-size:16px; letter-spacing:.01em; line-height:1.25;
+      cursor:pointer;
+    }
+    .menu-list a:hover, .menu-list button:hover{border-color:var(--gold)}
+
+    /* ====== КРАСИВЫЕ КНОПКИ FAQ ====== */
+    #faqModal .faq-list{display:grid; gap:10px; margin-top:10px}
+    #faqModal .faq-item{
+      border:1px solid #26365f; border-radius:14px; background:#0c1326;
+      box-shadow:0 8px 24px -16px rgba(0,0,0,.5);
+      overflow:hidden;
+      transition:border-color .2s, box-shadow .25s, transform .18s;
+    }
+    #faqModal .faq-item:hover{border-color:var(--gold); box-shadow:0 14px 34px -16px rgba(214,179,107,.25); transform:translateY(-1px)}
+    #faqModal .faq-item summary{
+      list-style:none; outline:none; cursor:pointer;
+      display:flex; align-items:center; gap:12px;
+      padding:14px 16px;
+      font-weight:800; font-size:16px; color:var(--ivory); letter-spacing:.01em; line-height:1.25;
+    }
+    #faqModal .faq-item summary::-webkit-details-marker{display:none}
+    #faqModal .faq-item summary .qdot{
+      width:10px; height:10px; border-radius:50%; background:var(--gold); flex:0 0 auto; box-shadow:0 0 0 3px rgba(214,179,107,.15);
+    }
+    #faqModal .faq-item summary .chev{
+      margin-left:auto; width:18px; height:18px; flex:0 0 auto; opacity:.9; transition:transform .25s ease;
+    }
+    #faqModal .faq-item[open] summary .chev{ transform:rotate(180deg) }
+    #faqModal .faq-item p{
+      color:#cfd6e6; padding:0 16px 16px 38px; margin-top:-2px;
+      border-top:1px solid #233256;
+    }
+    /* плавность высоты для современных браузеров */
+    @supports (transition-timing-function: linear){
+      #faqModal .faq-item{ transition: border-color .2s, box-shadow .25s, transform .18s, content-visibility .2s }
+    }
+    /* ====== /FAQ ====== */
 
     /* reveal эффект */
     @media (prefers-reduced-motion: no-preference){
@@ -194,27 +249,19 @@
       <div class="brand">
         <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra">
       </div>
+
       <nav class="contacts" aria-label="Контакты">
-        <a class="contact-btn" href="https://t.me/Dmitrokko" target="_blank" rel="noopener" aria-label="Telegram">
-          <img src="assets/icons/telegram.png" alt="Telegram">
-        </a>
-        <a class="contact-btn" href="https://vk.com/dmitrokko" target="_blank" rel="noopener" aria-label="VK">
-          <img src="assets/icons/vk.png" alt="VK">
-        </a>
-        <a class="contact-btn" href="tel:+79092763386" aria-label="Позвонить">
+        <!-- Оставляем только телефон -->
+        <a class="contact-btn contact-btn--phone" href="tel:+79092763386" aria-label="Позвонить">
           <img src="assets/icons/phone.png" alt="Phone">
         </a>
+        <!-- БУРГЕР -->
+        <button class="burger" id="openMenu" aria-label="Открыть меню">
+          <span></span>
+        </button>
       </nav>
     </div>
   </header>
-
-  <!-- Горизонтальное меню (только текст) -->
-  <nav class="rollnav" aria-label="Разделы" data-reveal>
-    <button type="button" id="openAbout">О школе</button>
-    <a href="https://your-personal-site.example" target="_blank" rel="noopener">Частные заказы</a>
-    <a href="https://your-show-site.example" target="_blank" rel="noopener">Концертные шоу</a>
-    <button type="button" id="openFAQ">FAQ</button>
-  </nav>
 
   <!-- HERO -->
   <section class="hero" data-reveal>
@@ -226,7 +273,6 @@
         <a href="#program" class="btn btn-ghost">Увидеть программу занятий</a>
       </div>
 
-      <!-- дедлайн -->
       <div class="deadline">
         <span class="left-seats">Осталось 7 мест</span>
         <div class="timer" id="timer">
@@ -407,7 +453,9 @@
     <div class="container foot-row">
       <div class="foot-brand">
         <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra">
+        <div class="foot-phrase">Пусть ваш ребёнок поверит в чудо</div>
       </div>
+
       <div class="contacts">
         <a class="contact-btn" href="https://t.me/Dmitrokko" target="_blank" rel="noopener" aria-label="Telegram">
           <img src="assets/icons/telegram.png" alt="Telegram">
@@ -419,41 +467,64 @@
           <img src="assets/icons/phone.png" alt="Phone">
         </a>
       </div>
+
       <div class="foot-copy">© 2025 Abracadabra — Школа фокусов. Все права защищены.</div>
     </div>
   </footer>
 
-  <!-- FAQ MODAL (все вопросы закрыты по умолчанию; вопрос про цену удалён) -->
+  <!-- FAQ MODAL (красивые кнопки-аккордеоны) -->
   <div id="faqModal" class="modal" hidden>
     <div class="modal__card">
       <div class="modal__spacer"></div>
       <button class="modal__close" aria-label="Закрыть" id="closeFAQ">✕</button>
       <h3 class="center" style="font-size: clamp(24px,2.6vw,30px);">Частые вопросы</h3>
 
-      <details>
-        <summary>Если ребёнок стеснительный?</summary>
-        <p>Именно для таких детей мы и запускали школу. Начинаем с простых шагов, без давления, через месяц — уверенное мини-выступление.</p>
-      </details>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>
+            <span class="qdot" aria-hidden="true"></span>
+            Если ребёнок стеснительный?
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <p>Именно для таких детей мы и запускали школу. Начинаем с простых шагов, без давления, через месяц — уверенное мини-выступление.</p>
+        </details>
 
-      <details>
-        <summary>Если не понравится?</summary>
-        <p>Есть бесплатный пробный урок. Вы ничего не теряете — ребёнок знакомится с форматом и педагогом.</p>
-      </details>
+        <details class="faq-item">
+          <summary>
+            <span class="qdot" aria-hidden="true"></span>
+            Если не понравится?
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <p>Есть бесплатный пробный урок. Вы ничего не теряете — ребёнок знакомится с форматом и педагогом.</p>
+        </details>
 
-      <details>
-        <summary>Сколько детей в группе?</summary>
-        <p>До 10 человек. У каждого — время на сцене и внимание педагога.</p>
-      </details>
+        <details class="faq-item">
+          <summary>
+            <span class="qdot" aria-hidden="true"></span>
+            Сколько детей в группе?
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <p>До 10 человек. У каждого — время на сцене и внимание педагога.</p>
+        </details>
 
-      <details>
-        <summary>Будут домашние задания?</summary>
-        <p>Нет. Весь прогресс — на занятиях. Раз в месяц — мини-шоу для родителей.</p>
-      </details>
+        <details class="faq-item">
+          <summary>
+            <span class="qdot" aria-hidden="true"></span>
+            Будут домашние задания?
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <p>Нет. Весь прогресс — на занятиях. Раз в месяц — мини-шоу для родителей.</p>
+        </details>
 
-      <details>
-        <summary>Почему не с начала учебного года?</summary>
-        <p>Нам не важна сезонность. Важны этапы обучения ребёнка, как он усваивает материал и учится взаимодействовать с публикой.</p>
-      </details>
+        <details class="faq-item">
+          <summary>
+            <span class="qdot" aria-hidden="true"></span>
+            Почему не с начала учебного года?
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <p>Нам не важна сезонность. Важны этапы обучения ребёнка, как он усваивает материал и учится взаимодействовать с публикой.</p>
+        </details>
+      </div>
     </div>
   </div>
 
@@ -466,7 +537,6 @@
       <h3 class="about-title">Школа фокусов «Абракадабра» — не кружок, а академия магии для детей.</h3>
 
       <div class="about-wrap">
-        <!-- Положите фото по пути: assets/photos/dmitry.jpg -->
         <img class="about-photo" src="assets/photos/dmitry.jpg" alt="Дмитрий Костюк">
         <div class="about-text">
           <p class="about-lead">
@@ -500,6 +570,22 @@
     </div>
   </div>
 
+  <!-- МОДАЛЬНОЕ МЕНЮ (бургер) -->
+  <div id="menuModal" class="modal" hidden>
+    <div class="modal__card">
+      <div class="modal__spacer"></div>
+      <button class="modal__close" id="closeMenu" aria-label="Закрыть меню">✕</button>
+      <h3 class="center" style="font-size: clamp(24px,2.6vw,30px);">Меню</h3>
+
+      <ul class="menu-list" style="margin-top:10px">
+        <li><button type="button" id="menuAbout">О школе</button></li>
+        <li><a href="https://your-personal-site.example" target="_blank" rel="noopener">Частные заказы</a></li>
+        <li><a href="https://your-show-site.example" target="_blank" rel="noopener">Концертные шоу</a></li>
+        <li><button type="button" id="menuFAQ">FAQ</button></li>
+      </ul>
+    </div>
+  </div>
+
   <script>
     /* reveal */
     (function(){
@@ -530,13 +616,10 @@
       tick();
     })();
 
-    /* FAQ modal */
-    document.getElementById('openFAQ')?.addEventListener('click',()=>{ document.getElementById('faqModal').hidden=false; });
+    /* Модалки About/FAQ — отдельные окна */
     document.getElementById('closeFAQ')?.addEventListener('click',()=>{ document.getElementById('faqModal').hidden=true; });
     document.getElementById('faqModal')?.addEventListener('click',(e)=>{ if(e.target.id==='faqModal') e.currentTarget.hidden=true; });
 
-    /* ABOUT modal */
-    document.getElementById('openAbout')?.addEventListener('click',()=>{ document.getElementById('aboutModal').hidden=false; });
     document.getElementById('closeAbout')?.addEventListener('click',()=>{ document.getElementById('aboutModal').hidden=true; });
     document.getElementById('aboutModal')?.addEventListener('click',(e)=>{ if(e.target.id==='aboutModal') e.currentTarget.hidden=true; });
 
@@ -604,6 +687,21 @@ Email: ${email || '-'}`;
       closeBtn?.addEventListener('click', ()=> modal.hidden = true);
       modal?.addEventListener('click', (e)=>{ if(e.target===modal) modal.hidden = true; });
     })();
+
+    /* БУРГЕР — логика (каждая модалка отдельно) */
+    const menuModal = document.getElementById('menuModal');
+    document.getElementById('openMenu')?.addEventListener('click', ()=>{ menuModal.hidden=false; });
+    document.getElementById('closeMenu')?.addEventListener('click', ()=>{ menuModal.hidden=true; });
+    menuModal?.addEventListener('click', (e)=>{ if(e.target===menuModal) menuModal.hidden=true; });
+
+    document.getElementById('menuAbout')?.addEventListener('click', ()=>{
+      menuModal.hidden = true;
+      document.getElementById('aboutModal').hidden = false;
+    });
+    document.getElementById('menuFAQ')?.addEventListener('click', ()=>{
+      menuModal.hidden = true;
+      document.getElementById('faqModal').hidden = false;
+    });
   </script>
 </body>
 </html>
