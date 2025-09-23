@@ -642,54 +642,67 @@
       }
     });
 
-    /* Валидация + отправка в Telegram */
-    function setInvalid(id, cond){ const f=document.getElementById(id); cond?f.classList.add('invalid'):f.classList.remove('invalid'); }
-    function validPhone(v){ return /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(v); }
-    async function postJSON(url, data, timeout=12000){
-      const ctrl = new AbortController(); const t = setTimeout(()=>ctrl.abort(), timeout);
-      try{ const r = await fetch(url,{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data), signal:ctrl.signal});
-           clearTimeout(t); return r.ok; }
-      catch(e){ clearTimeout(t); return false; }
+   /* Валидация + отправка формы */
+function setInvalid(id, cond){ 
+  const f=document.getElementById(id); 
+  cond ? f.classList.add('invalid') : f.classList.remove('invalid'); 
+}
+function validPhone(v){ 
+  return /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(v); 
+}
+async function postJSON(url, data, timeout=12000){
+  const ctrl = new AbortController(); 
+  const t = setTimeout(()=>ctrl.abort(), timeout);
+  try{ 
+    const r = await fetch(url,{
+      method:'POST', 
+      headers:{'Content-Type':'application/json'}, 
+      body:JSON.stringify(data), 
+      signal:ctrl.signal
+    });
+    clearTimeout(t); 
+    return r.ok; 
+  }
+  catch(e){ 
+    clearTimeout(t); 
+    return false; 
+  }
+}
+
+(function(){
+  const form = document.getElementById('leadForm');
+  const modal = document.getElementById('thanksModal');
+  const closeBtn = document.getElementById('closeThanks');
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const parent = document.getElementById('parentName').value.trim();
+    const phone  = document.getElementById('phone').value.trim();
+    const age    = document.getElementById('age').value.trim();
+    const email  = document.getElementById('email').value.trim();
+
+    setInvalid('f-parent', parent.length<2);
+    setInvalid('f-phone', !validPhone(phone));
+    const ageNum = Number(age);
+    setInvalid('f-age', !(ageNum>=7 && ageNum<=13));
+    setInvalid('f-email', (email && !/^\S+@\S+\.\S+$/.test(email)));
+
+    if(document.querySelector('.invalid')) return;
+
+    // ✅ Отправляем только на свой серверный роут, без токена
+    const ok = await postJSON('/api/lead', { parent, phone, age, email });
+
+    if(ok){ 
+      modal.hidden = false; 
+      form.reset(); 
+    } else { 
+      alert('Не удалось отправить. Проверьте интернет и попробуйте ещё раз.'); 
     }
+  });
 
-    (function(){
-      const form = document.getElementById('leadForm');
-      const modal = document.getElementById('thanksModal');
-      const closeBtn = document.getElementById('closeThanks');
-
-      form.addEventListener('submit', async (e)=>{
-        e.preventDefault();
-        const parent = document.getElementById('parentName').value.trim();
-        const phone  = document.getElementById('phone').value.trim();
-        const age    = document.getElementById('age').value.trim();
-        const email  = document.getElementById('email').value.trim();
-
-        setInvalid('f-parent', parent.length<2);
-        setInvalid('f-phone', !validPhone(phone));
-        const ageNum = Number(age);
-        setInvalid('f-age', !(ageNum>=7 && ageNum<=13));
-        setInvalid('f-email', (email && !/^\S+@\S+\.\S+$/.test(email)));
-
-        if(document.querySelector('.invalid')) return;
-
-        const text =
-`🪄 *Заявка на пробный урок*
-Имя родителя: ${parent}
-Телефон: ${phone}
-Возраст ребёнка: ${age}
-Email: ${email || '-'}`;
-
-        const ok = await postJSON(
-          'https://api.telegram.org/bot8395959368:AAFlfSL6PpenWcBr2qA8gYCy3lRhIfYDZN8/sendMessage',
-          {chat_id:269357522, text, parse_mode:'Markdown'}
-        );
-        if(ok){ modal.hidden = false; form.reset(); }
-        else{ alert('Не удалось отправить. Проверьте интернет и попробуйте ещё раз.'); }
-      });
-
-      closeBtn?.addEventListener('click', ()=> modal.hidden = true);
-      modal?.addEventListener('click', (e)=>{ if(e.target===modal) modal.hidden = true; });
-    })();
+  closeBtn?.addEventListener('click', ()=> modal.hidden = true);
+  modal?.addEventListener('click', (e)=>{ if(e.target===modal) modal.hidden = true; });
+})();
 
     /* БУРГЕР — логика */
     const menuModal = document.getElementById('menuModal');
