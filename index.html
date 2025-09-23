@@ -7,18 +7,16 @@
   <meta name="description" content="ABRACADABRA — школа фокусов для детей 7–13 лет. Уверенность, харизма и умение управлять вниманием. Запишитесь на бесплатный пробный урок."/>
   <meta name="theme-color" content="#0B1426"/>
 
-  <!-- Безопасность -->
-  <meta http-equiv="Referrer-Policy" content="no-referrer"/>
-  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
-  <meta http-equiv="X-Frame-Options" content="DENY"/>
-  <!-- CSP: разрешаем свои ресурсы, google fonts, медиа с текущего домена -->
+  <!-- Security (бережно, чтобы ничего не сломать) -->
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    script-src 'self';
-    style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
-    font-src https://fonts.gstatic.com data:;
-    img-src 'self' data:;
-    media-src 'self' blob:;
+    script-src 'self' 'unsafe-inline';
+    style-src  'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src   https://fonts.gstatic.com data:;
+    img-src    'self' data:;
     connect-src 'self';
     frame-ancestors 'none';
     base-uri 'self';
@@ -67,13 +65,12 @@
     .contacts{display:flex; gap:12px; align-items:center}
     .contact-btn{
       width:48px; height:48px; display:inline-grid; place-items:center; border-radius:50%;
-      background:#000; /* чёрный фон вокруг иконок */
+      background:#000;
       border:1px solid #233256; transition:.2s;
     }
     .contact-btn:hover{border-color:var(--gold); transform:translateY(-1px); box-shadow:0 0 0 4px var(--glow)}
     .contact-btn img{width:28px; height:28px; display:block}
 
-    /* Только телефон в шапке */
     .contact-btn--phone{display:inline-grid}
 
     /* BURGER */
@@ -111,7 +108,7 @@
     .hero-badges{margin-top:20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; color:#aeb6c9; font-size:14px}
     .hero-badges span{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border:1px solid #25325a; border-radius:999px; background:#0d1427;}
 
-    /* ДЕДЛАЙН/СЧЁТЧИК */
+    /* DEADLINE */
     .deadline{margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center; align-items:center;}
     .left-seats{padding:6px 10px; border:1px solid #3a2a10; background:#15100a; color:var(--gold); border-radius:999px; font-weight:800; font-size:13px}
     .timer{display:flex; gap:8px; align-items:center; font-weight:800}
@@ -179,7 +176,7 @@
     .modal__card::before{
       content:""; position:sticky; top:0; display:block; height:3px;
       margin:-28px -28px 20px;
-      background:linear-gradient(90deg, transparent, var(--gold), var(--bronze), var(--gold), transparent);
+      background:linear-gradient(90deg, transparent 0%, var(--gold) 15%, var(--bronze) 50%, var(--gold) 85%, transparent 100%);
       border-top-left-radius:20px; border-top-right-radius:20px;
     }
     .modal__spacer{height:14px}
@@ -202,7 +199,6 @@
     .about-lead{color:#d8def0; font-size: clamp(16px,1.6vw,18px); margin:0 auto; max-width:72ch; text-align:center}
     .about-list{list-style:none; padding:0; margin:10px auto 0; display:grid; gap:8px; color:#e4e9f7; font-size: clamp(15px,1.5vw,17px); max-width:62ch; text-align:left}
     .about-list li{display:flex; gap:10px; align-items:flex-start}
-    .about-list li span{flex:0 0 auto}
     .about-par{color:#cfd6e6; margin:10px auto 0; max-width:72ch; text-align:center}
     .about-sep{height:1px; background:linear-gradient(90deg, transparent, #2a3a67, transparent); margin:16px 0}
     .about-slogan{font-family:"Cormorant Garamond",serif; font-size: clamp(20px,2.2vw,26px); text-align:center; margin-top:10px; letter-spacing:.01em; color:var(--ivory)}
@@ -253,7 +249,6 @@
       border-top:1px solid #233256;
     }
 
-    /* reveal */
     @media (prefers-reduced-motion: no-preference){
       [data-reveal]{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
       [data-reveal].in{opacity:1; transform:none}
@@ -425,6 +420,7 @@
       <p class="center" style="color:#cfd6e6; margin-bottom:22px">Пробный урок бесплатный. Забронируйте место прямо сейчас.</p>
 
       <form class="form" id="leadForm" novalidate>
+        <input type="text" id="hp" name="hp" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-5000px;opacity:0;height:0;width:0;">
         <div class="row">
           <div class="field" id="f-parent">
             <label class="label" for="parentName">Имя родителя</label>
@@ -447,10 +443,6 @@
             <div class="error">Неверный email.</div>
           </div>
         </div>
-
-        <!-- honeypot (должно оставаться пустым) -->
-        <input type="text" id="hp" name="hp" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0">
-
         <div class="center" style="margin-top:10px">
           <button class="btn btn-primary" type="submit">Отправить заявку</button>
         </div>
@@ -458,7 +450,7 @@
       </form>
 
       <!-- Спасибо -->
-      <div id="thanksModal" class="modal" hidden aria-modal="true" role="dialog">
+      <div id="thanksModal" class="modal" hidden>
         <div class="modal__card center">
           <div class="modal__spacer"></div>
           <button class="modal__close" id="closeThanks" aria-label="Закрыть">✕</button>
@@ -510,7 +502,7 @@
           <p>Именно для таких детей мы и запускали школу. Начинаем с простых шагов, без давления, через месяц — уверенное мини-выступление.</p>
         </details>
 
-        <details class="faq-item>
+        <details class="faq-item">
           <summary>
             <span class="qdot" aria-hidden="true"></span>
             Если не понравится?
@@ -591,7 +583,7 @@
     </div>
   </div>
 
-  <!-- МЕНЮ -->
+  <!-- МОДАЛЬНОЕ МЕНЮ -->
   <div id="menuModal" class="modal" hidden>
     <div class="modal__card">
       <div class="modal__spacer"></div>
@@ -618,7 +610,7 @@
       }
     })();
 
-    /* дедлайн (3 дня с момента захода) */
+    /* дедлайн (3 дня) */
     (function(){
       const d = document.getElementById('d'), h=document.getElementById('h'),
             m=document.getElementById('m'), s=document.getElementById('s');
@@ -637,6 +629,12 @@
       tick();
     })();
 
+    /* Модалки About/FAQ */
+    document.getElementById('closeFAQ')?.addEventListener('click',()=>{ document.getElementById('faqModal').hidden=true; });
+    document.getElementById('faqModal')?.addEventListener('click',(e)=>{ if(e.target.id==='faqModal') e.currentTarget.hidden=true; });
+    document.getElementById('closeAbout')?.addEventListener('click',()=>{ document.getElementById('aboutModal').hidden=true; });
+    document.getElementById('aboutModal')?.addEventListener('click',(e)=>{ if(e.target.id==='aboutModal') e.currentTarget.hidden=true; });
+
     /* Маска телефона */
     document.addEventListener('input', (e)=>{
       if(e.target.id==='phone'){
@@ -653,15 +651,14 @@
       }
     });
 
-    /* Валидация + отправка формы */
+    /* Валидация + отправка */
     function setInvalid(id, cond){ const f=document.getElementById(id); cond?f.classList.add('invalid'):f.classList.remove('invalid'); }
     function validPhone(v){ return /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(v); }
     async function postJSON(url, data, timeout=12000){
       const ctrl = new AbortController(); const t = setTimeout(()=>ctrl.abort(), timeout);
       try{
         const r = await fetch(url,{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data), signal:ctrl.signal});
-        clearTimeout(t);
-        return r;
+        clearTimeout(t); return r;
       }catch(e){ clearTimeout(t); throw e; }
     }
 
@@ -669,7 +666,6 @@
       const form = document.getElementById('leadForm');
       const modal = document.getElementById('thanksModal');
       const closeBtn = document.getElementById('closeThanks');
-      const startTs = Date.now();
 
       form.addEventListener('submit', async (e)=>{
         e.preventDefault();
@@ -684,21 +680,16 @@
         const ageNum = Number(age);
         setInvalid('f-age', !(ageNum>=7 && ageNum<=13));
         setInvalid('f-email', (email && !/^\S+@\S+\.\S+$/.test(email)));
-
         if(document.querySelector('.invalid')) return;
 
         try{
-          const resp = await postJSON('/api/lead', {
-            parent, phone, age, email,
-            hp, ts: Date.now() - startTs + Date.now() // сервер сверит абсолютное время
-          });
-          if(resp.ok){
-            modal.hidden = false; form.reset();
-          }else{
+          const resp = await postJSON('/api/lead', { parent, phone, age, email, hp, ts: Date.now() });
+          if(resp.ok){ modal.hidden = false; form.reset(); }
+          else{
             const data = await resp.json().catch(()=>({}));
             alert(data?.error || 'Не удалось отправить. Попробуйте ещё раз.');
           }
-        }catch(_){
+        }catch{
           alert('Не удалось отправить. Проверьте интернет и попробуйте ещё раз.');
         }
       });
@@ -707,20 +698,13 @@
       modal?.addEventListener('click', (e)=>{ if(e.target===modal) modal.hidden = true; });
     })();
 
-    /* БУРГЕР — логика */
+    /* БУРГЕР */
     const menuModal = document.getElementById('menuModal');
     document.getElementById('openMenu')?.addEventListener('click', ()=>{ menuModal.hidden=false; });
     document.getElementById('closeMenu')?.addEventListener('click', ()=>{ menuModal.hidden=true; });
     menuModal?.addEventListener('click', (e)=>{ if(e.target===menuModal) menuModal.hidden=true; });
-
-    document.getElementById('menuAbout')?.addEventListener('click', ()=>{
-      menuModal.hidden = true;
-      document.getElementById('aboutModal').hidden = false;
-    });
-    document.getElementById('menuFAQ')?.addEventListener('click', ()=>{
-      menuModal.hidden = true;
-      document.getElementById('faqModal').hidden = false;
-    });
+    document.getElementById('menuAbout')?.addEventListener('click', ()=>{ menuModal.hidden = true; document.getElementById('aboutModal').hidden = false; });
+    document.getElementById('menuFAQ')?.addEventListener('click', ()=>{ menuModal.hidden = true; document.getElementById('faqModal').hidden = false; });
   </script>
 </body>
 </html>
