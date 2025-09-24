@@ -7,9 +7,9 @@
   <meta name="description" content="ABRACADABRA — школа фокусов для детей 7–13 лет. Уверенность, харизма и умение управлять вниманием. Запишитесь на бесплатный пробный урок.">
   <meta name="theme-color" content="#0B1426"/>
 
-  <!-- CSP: добавлен rutube в frame-src -->
+  <!-- CSP: безопасные источники -->
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' https://magic-school-eight.vercel.app; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; frame-src 'self' https://rutube.ru; frame-ancestors 'self'; base-uri 'self'">
+        content="default-src 'self' https://magic-school-eight.vercel.app; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; frame-ancestors 'self'; base-uri 'self'">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,7 +87,7 @@
     .hero h1{font-size: clamp(36px, 6.2vw, 64px); color:var(--ivory)}
     .subtitle{font-size: clamp(16px, 2.6vw, 22px); color:#cfd6e6; max-width:760px; margin:16px auto 28px}
     .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
-    .btn{appearance:none; border:none; cursor:pointer; font-weight:900; letter-spacing:.01em; text-align:center;
+    .btn{appearance:none; border:none; cursor:pointer; font-weight:900; letter-spacing:.01ем; text-align:center;
       padding:18px 28px; border-radius:999px; transition:transform .2s, box-shadow .25s, background .25s, color .25s; user-select:none; outline:none; display:inline-block}
     .btn-primary{background:linear-gradient(135deg, var(--gold), var(--bronze)); color:#1a1205; font-size: clamp(18px, 2.6vw, 20px); box-shadow:0 12px 34px -10px rgba(214,179,107,.25);}
     .btn-primary:hover{ transform:translateY(-1px) scale(1.01) }
@@ -187,7 +187,7 @@
     .about-list{list-style:none; padding:0; margin:10px auto 0; display:grid; gap:8px; color:#e4e9f7; font-size: clamp(15px,1.5vw,17px); max-width:62ch; text-align:left}
     .about-list li{display:flex; gap:10px; align-items:flex-start}
     .about-list li span{flex:0 0 auto}
-    .about-par{color:#cfd6e6; margin:10px авто 0; max-width:72ch; text-align:center}
+    .about-par{color:#cfd6e6; margin:10px auto 0; max-width:72ch; text-align:center}
     .about-sep{height:1px; background:linear-gradient(90deg, transparent, #2a3a67, transparent); margin:16px 0}
     .about-slogan{font-family:"Cormorant Garamond",serif; font-size: clamp(20px,2.2vw,26px); text-align:center; margin-top:10px; letter-spacing:.01em; color:var(--ivory)}
 
@@ -232,12 +232,14 @@
   <header class="topbar">
     <div class="container topbar__row">
       <div class="brand">
-        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra" loading="lazy">
+        <!-- ЛОГО грузим сразу -->
+        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra" loading="eager">
       </div>
 
       <nav class="contacts" aria-label="Контакты">
+        <!-- ИКОНКИ контактов грузим сразу -->
         <a class="contact-btn contact-btn--phone" href="tel:+79092763386" aria-label="Позвонить">
-          <img src="assets/icons/phone.png" alt="Телефон" loading="lazy">
+          <img src="assets/icons/phone.png" alt="Телефон" loading="eager">
         </a>
         <button class="burger" id="openMenu" aria-label="Открыть меню">
           <span class="line" aria-hidden="true"></span>
@@ -321,7 +323,6 @@
     <div class="container">
       <div class="pricing-grid">
 
-        <!-- Месяц -->
         <div class="price">
           <div>
             <h3>Месяц</h3>
@@ -341,25 +342,17 @@
               <a href="#signup" class="btn btn-primary">Записать ребёнка на пробный урок бесплатно</a>
             </div>
           </div>
-
-          <!-- ✅ RuTube вместо <video> -->
           <div class="video-card">
-            <div style="position:relative;width:100%;aspect-ratio:16/9">
-              <iframe
-                src="https://rutube.ru/play/embed/7e1cca8db3e95b27867c0e0f0c99626b/"
-                allow="autoplay; fullscreen"
-                referrerpolicy="strict-origin-when-cross-origin"
-                loading="lazy"
-                style="position:absolute;inset:0;border:0;width:100%;height:100%;border-radius:12px">
-              </iframe>
-            </div>
+            <video controls preload="metadata" poster="assets/images/promo-poster.jpg">
+              <source src="assets/video/promo.mp4" type="video/mp4">
+              Ваш браузер не поддерживает видео.
+            </video>
             <p style="color:#9fb0d0; font-size:13px; text-align:center; margin-top:6px">
               Смотрели на «Первом ярославском»: 8 выпусков телешоу «Школа волшебства».
             </p>
           </div>
         </div>
 
-        <!-- Полгода -->
         <div class="price">
           <div>
             <h3>Полгода</h3>
@@ -446,19 +439,21 @@
   <footer>
     <div class="container foot-row">
       <div class="foot-brand">
-        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra" loading="lazy">
+        <!-- ЛОГО в подвале тоже сразу -->
+        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra" loading="eager">
         <div class="foot-phrase">Пусть ваш ребёнок поверит в чудо</div>
       </div>
 
       <div class="contacts">
+        <!-- ИКОНКИ контактов в подвале — сразу -->
         <a class="contact-btn" href="https://t.me/Dmitrokko" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
-          <img src="assets/icons/telegram.png" alt="Telegram" loading="lazy">
+          <img src="assets/icons/telegram.png" alt="Telegram" loading="eager">
         </a>
         <a class="contact-btn" href="https://vk.com/dmitrokko" target="_blank" rel="noopener noreferrer" aria-label="VK">
-          <img src="assets/icons/vk.png" alt="VK" loading="lazy">
+          <img src="assets/icons/vk.png" alt="VK" loading="eager">
         </a>
         <a class="contact-btn" href="tel:+79092763386" aria-label="Позвонить">
-          <img src="assets/icons/phone.png" alt="Phone" loading="lazy">
+          <img src="assets/icons/phone.png" alt="Phone" loading="eager">
         </a>
       </div>
 
@@ -675,8 +670,39 @@
         submitBtn.disabled = false;
       });
 
+      // закрытие "спасибо"
       closeBtn?.addEventListener('click', ()=> modal.hidden = true);
       modal?.addEventListener('click', (e)=>{ if(e.target===modal) modal.hidden = true; });
+    })();
+
+    /* МОДАЛКИ: общий обработчик для всех (крестик, фон, Esc) */
+    (function(){
+      const map = [
+        { modal: 'faqModal',   closeBtn: 'closeFAQ'   },
+        { modal: 'aboutModal', closeBtn: 'closeAbout' },
+        { modal: 'menuModal',  closeBtn: 'closeMenu'  },
+        { modal: 'thanksModal',closeBtn: 'closeThanks'}
+      ];
+
+      function closeById(id){
+        const el = document.getElementById(id);
+        if(el && !el.hidden) el.hidden = true;
+      }
+
+      // крестики + клик по фону
+      map.forEach(({modal, closeBtn})=>{
+        const m = document.getElementById(modal);
+        const c = document.getElementById(closeBtn);
+        c?.addEventListener('click', ()=>{ m.hidden = true; });
+        m?.addEventListener('click', (e)=>{ if(e.target === m) m.hidden = true; });
+      });
+
+      // Esc закрывает любой открытый
+      window.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape'){
+          map.forEach(({modal})=> closeById(modal));
+        }
+      });
     })();
 
     /* БУРГЕР — логика */
