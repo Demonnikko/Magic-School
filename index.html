@@ -4,23 +4,12 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>ABRACADABRA — Школа фокусов для детей 7–13 лет</title>
-  <meta name="description" content="ABRACADABRA — школа фокусов для детей 7–13 лет. Уверенность, харизма и умение управлять вниманием. Запишитесь на бесплатный пробный урок."/>
+  <meta name="description" content="ABRACADABRA — школа фокусов для детей 7–13 лет. Уверенность, харизма и умение управлять вниманием. Запишитесь на бесплатный пробный урок.">
   <meta name="theme-color" content="#0B1426"/>
 
-  <!-- Security (бережно, чтобы ничего не сломать) -->
-  <meta http-equiv="Referrer-Policy" content="no-referrer">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    style-src  'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src   https://fonts.gstatic.com data:;
-    img-src    'self' data:;
-    connect-src 'self';
-    frame-ancestors 'none';
-    base-uri 'self';
-  ">
+  <!-- CSP: безопасные источники -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https://magic-school-eight.vercel.app; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; frame-ancestors 'self'; base-uri 'self'">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,8 +54,7 @@
     .contacts{display:flex; gap:12px; align-items:center}
     .contact-btn{
       width:48px; height:48px; display:inline-grid; place-items:center; border-radius:50%;
-      background:#000;
-      border:1px solid #233256; transition:.2s;
+      background:#000; border:1px solid #233256; transition:.2s;
     }
     .contact-btn:hover{border-color:var(--gold); transform:translateY(-1px); box-shadow:0 0 0 4px var(--glow)}
     .contact-btn img{width:28px; height:28px; display:block}
@@ -137,7 +125,7 @@
 
     .discount{display:flex; justify-content:center; margin-bottom:6px}
     .discount .badge{display:inline-block; padding:6px 10px; border:1px solid #3a2a10; background:#15100a; color:var(--gold); border-radius:999px; font-weight:800; font-size:12px}
-    .amount{display:flex; flex-direction:column; align-items:center; gap:6px; margin:.3em 0 .6ем}
+    .amount{display:flex; flex-direction:column; align-items:center; gap:6px; margin:.3em 0 .6em}
     .amount .new{font-size:44px; color:var(--gold); font-weight:800}
     .amount .old{font-size:18px; color:#9fb0d0; font-weight:400; text-decoration:line-through}
     .currency{margin-left:4px; font-weight:600}
@@ -191,7 +179,6 @@
       box-shadow:0 0 0 2px #3a2a10, 0 0 0 6px rgba(214,179,107,.15), inset 0 6px 18px rgba(255,255,255,.04), inset 0 -8px 18px rgba(0,0,0,.4), 0 22px 44px -16px rgba(0,0,0,.6);
       position:relative;
     }
-    .about-photo::after{content:""; position:absolute; inset:-10px; border-radius:50%; background:conic-gradient(from 0deg, #6b5124, #d6b36b, #a67c3c, #e2c88a, #6b5124); z-index:-1; filter:blur(8px); opacity:.35;}
     .about-title{
       font-size: clamp(26px, 3.2vw, 38px); line-height:1.15; margin:2px 0 6px; text-align:center;
       background:linear-gradient(135deg, var(--gold), var(--bronze)); -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:.02em;
@@ -199,6 +186,7 @@
     .about-lead{color:#d8def0; font-size: clamp(16px,1.6vw,18px); margin:0 auto; max-width:72ch; text-align:center}
     .about-list{list-style:none; padding:0; margin:10px auto 0; display:grid; gap:8px; color:#e4e9f7; font-size: clamp(15px,1.5vw,17px); max-width:62ch; text-align:left}
     .about-list li{display:flex; gap:10px; align-items:flex-start}
+    .about-list li span{flex:0 0 auto}
     .about-par{color:#cfd6e6; margin:10px auto 0; max-width:72ch; text-align:center}
     .about-sep{height:1px; background:linear-gradient(90deg, transparent, #2a3a67, transparent); margin:16px 0}
     .about-slogan{font-family:"Cormorant Garamond",serif; font-size: clamp(20px,2.2vw,26px); text-align:center; margin-top:10px; letter-spacing:.01em; color:var(--ivory)}
@@ -216,39 +204,22 @@
     .menu-list a, .menu-list button{
       display:block; width:100%; text-align:left; padding:14px 16px; border-radius:12px;
       border:1px solid #26365f; background:#0c1326; color:#e9ecf4;
-      font-weight:800; font-size:16px; letter-spacing:.01em; line-height:1.25;
-      cursor:pointer;
+      font-weight:800; font-size:16px; letter-spacing:.01em; line-height:1.25; cursor:pointer;
     }
     .menu-list a:hover, .menu-list button:hover{border-color:var(--gold)}
 
     /* FAQ */
     #faqModal .faq-list{display:grid; gap:10px; margin-top:10px}
-    #faqModal .faq-item{
-      border:1px solid #26365f; border-radius:14px; background:#0c1326;
-      box-shadow:0 8px 24px -16px rgba(0,0,0,.5);
-      overflow:hidden;
-      transition:border-color .2s, box-shadow .25s, transform .18s;
-    }
+    #faqModal .faq-item{border:1px solid #26365f; border-radius:14px; background:#0c1326; box-shadow:0 8px 24px -16px rgba(0,0,0,.5); overflow:hidden; transition:border-color .2s, box-shadow .25s, transform .18s;}
     #faqModal .faq-item:hover{border-color:var(--gold); box-shadow:0 14px 34px -16px rgba(214,179,107,.25); transform:translateY(-1px)}
-    #faqModal .faq-item summary{
-      list-style:none; outline:none; cursor:pointer;
-      display:flex; align-items:center; gap:12px;
-      padding:14px 16px;
-      font-weight:800; font-size:16px; color:var(--ivory); letter-spacing:.01em; line-height:1.25;
-    }
+    #faqModal .faq-item summary{list-style:none; outline:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 16px; font-weight:800; font-size:16px; color:var(--ivory); letter-spacing:.01em; line-height:1.25;}
     #faqModal .faq-item summary::-webkit-details-marker{display:none}
-    #faqModal .faq-item summary .qdot{
-      width:10px; height:10px; border-radius:50%; background:var(--gold); flex:0 0 auto; box-shadow:0 0 0 3px rgba(214,179,107,.15);
-    }
-    #faqModal .faq-item summary .chev{
-      margin-left:auto; width:18px; height:18px; flex:0 0 auto; opacity:.9; transition:transform .25s ease;
-    }
+    #faqModal .faq-item summary .qdot{width:10px; height:10px; border-radius:50%; background:var(--gold); flex:0 0 auto; box-shadow:0 0 0 3px rgba(214,179,107,.15)}
+    #faqModal .faq-item summary .chev{margin-left:auto; width:18px; height:18px; flex:0 0 auto; opacity:.9; transition:transform .25s ease}
     #faqModal .faq-item[open] summary .chev{ transform:rotate(180deg) }
-    #faqModal .faq-item p{
-      color:#cfd6e6; padding:0 16px 16px 38px; margin-top:-2px;
-      border-top:1px solid #233256;
-    }
+    #faqModal .faq-item p{color:#cfd6e6; padding:0 16px 16px 38px; margin-top:-2px; border-top:1px solid #233256}
 
+    /* reveal эффект */
     @media (prefers-reduced-motion: no-preference){
       [data-reveal]{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
       [data-reveal].in{opacity:1; transform:none}
@@ -261,12 +232,12 @@
   <header class="topbar">
     <div class="container topbar__row">
       <div class="brand">
-        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra">
+        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra" loading="lazy">
       </div>
 
       <nav class="contacts" aria-label="Контакты">
         <a class="contact-btn contact-btn--phone" href="tel:+79092763386" aria-label="Позвонить">
-          <img src="assets/icons/phone.png" alt="Phone">
+          <img src="assets/icons/phone.png" alt="Телефон" loading="lazy">
         </a>
         <button class="burger" id="openMenu" aria-label="Открыть меню">
           <span class="line" aria-hidden="true"></span>
@@ -350,7 +321,6 @@
     <div class="container">
       <div class="pricing-grid">
 
-        <!-- Месяц -->
         <div class="price">
           <div>
             <h3>Месяц</h3>
@@ -381,7 +351,6 @@
           </div>
         </div>
 
-        <!-- Полгода -->
         <div class="price">
           <div>
             <h3>Полгода</h3>
@@ -419,17 +388,16 @@
       </h2>
       <p class="center" style="color:#cfd6e6; margin-bottom:22px">Пробный урок бесплатный. Забронируйте место прямо сейчас.</p>
 
-      <form class="form" id="leadForm" novalidate>
-        <input type="text" id="hp" name="hp" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-5000px;opacity:0;height:0;width:0;">
+      <form class="form" id="leadForm" novalidate autocomplete="on">
         <div class="row">
           <div class="field" id="f-parent">
             <label class="label" for="parentName">Имя родителя</label>
-            <input class="input" id="parentName" name="parentName" required placeholder="Ваше имя" autocomplete="name">
+            <input class="input" id="parentName" name="parentName" required placeholder="Ваше имя" autocomplete="name" maxlength="60">
             <div class="error">Укажите имя.</div>
           </div>
           <div class="field" id="f-phone">
             <label class="label" for="phone">Телефон</label>
-            <input class="input" id="phone" name="phone" type="tel" required placeholder="+7 (___) ___-__-__" inputmode="tel" autocomplete="tel">
+            <input class="input" id="phone" name="phone" type="tel" required placeholder="+7 (___) ___-__-__" inputmode="tel">
             <div class="error">Введите телефон в формате +7 (XXX) XXX-XX-XX.</div>
           </div>
           <div class="field" id="f-age">
@@ -439,12 +407,16 @@
           </div>
           <div class="field" id="f-email">
             <label class="label" for="email">Email (по желанию)</label>
-            <input class="input" id="email" name="email" type="email" placeholder="name@mail.ru" autocomplete="email">
+            <input class="input" id="email" name="email" type="email" placeholder="name@mail.ru" autocomplete="email" maxlength="100">
             <div class="error">Неверный email.</div>
           </div>
         </div>
+
+        <!-- honeypot от ботов -->
+        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0;opacity:0" aria-hidden="true">
+
         <div class="center" style="margin-top:10px">
-          <button class="btn btn-primary" type="submit">Отправить заявку</button>
+          <button class="btn btn-primary" type="submit" id="submitBtn">Отправить заявку</button>
         </div>
         <div class="consent">Нажимая «Отправить заявку», вы соглашаетесь на обработку персональных данных.</div>
       </form>
@@ -465,19 +437,19 @@
   <footer>
     <div class="container foot-row">
       <div class="foot-brand">
-        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra">
+        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra" loading="lazy">
         <div class="foot-phrase">Пусть ваш ребёнок поверит в чудо</div>
       </div>
 
       <div class="contacts">
-        <a class="contact-btn" href="https://t.me/Dmitrokko" target="_blank" rel="noopener" aria-label="Telegram">
-          <img src="assets/icons/telegram.png" alt="Telegram">
+        <a class="contact-btn" href="https://t.me/Dmitrokko" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+          <img src="assets/icons/telegram.png" alt="Telegram" loading="lazy">
         </a>
-        <a class="contact-btn" href="https://vk.com/dmitrokko" target="_blank" rel="noopener" aria-label="VK">
-          <img src="assets/icons/vk.png" alt="VK">
+        <a class="contact-btn" href="https://vk.com/dmitrokko" target="_blank" rel="noopener noreferrer" aria-label="VK">
+          <img src="assets/icons/vk.png" alt="VK" loading="lazy">
         </a>
         <a class="contact-btn" href="tel:+79092763386" aria-label="Позвонить">
-          <img src="assets/icons/phone.png" alt="Phone">
+          <img src="assets/icons/phone.png" alt="Phone" loading="lazy">
         </a>
       </div>
 
@@ -533,7 +505,7 @@
           <summary>
             <span class="qdot" aria-hidden="true"></span>
             Почему не с начала учебного года?
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="cheв" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
           <p>Нам не важна сезонность. Важны этапы обучения ребёнка, как он усваивает материал и учится взаимодействовать с публикой.</p>
         </details>
@@ -550,7 +522,7 @@
       <h3 class="about-title">Школа фокусов «Абракадабра» — не кружок, а академия магии для детей.</h3>
 
       <div class="about-wrap">
-        <img class="about-photo" src="assets/photos/dmitry.jpg" alt="Дмитрий Костюк">
+        <img class="about-photo" src="assets/photos/dmitry.jpg" alt="Дмитрий Костюк" loading="lazy">
         <div class="about-text">
           <p class="about-lead">
             В Ярославле появилось место, где дети становятся настоящими волшебниками.
@@ -592,8 +564,8 @@
 
       <ul class="menu-list" style="margin-top:10px">
         <li><button type="button" id="menuAbout">О школе</button></li>
-        <li><a href="https://your-personal-site.example" target="_blank" rel="noopener">Частные заказы</a></li>
-        <li><a href="https://your-show-site.example" target="_blank" rel="noopener">Концертные шоу</a></li>
+        <li><a href="https://your-personal-site.example" target="_blank" rel="noopener noreferrer">Частные заказы</a></li>
+        <li><a href="https://your-show-site.example" target="_blank" rel="noopener noreferrer">Концертные шоу</a></li>
         <li><button type="button" id="menuFAQ">FAQ</button></li>
       </ul>
     </div>
@@ -610,7 +582,7 @@
       }
     })();
 
-    /* дедлайн (3 дня) */
+    /* дедлайн (3 дня с момента захода) */
     (function(){
       const d = document.getElementById('d'), h=document.getElementById('h'),
             m=document.getElementById('m'), s=document.getElementById('s');
@@ -629,12 +601,6 @@
       tick();
     })();
 
-    /* Модалки About/FAQ */
-    document.getElementById('closeFAQ')?.addEventListener('click',()=>{ document.getElementById('faqModal').hidden=true; });
-    document.getElementById('faqModal')?.addEventListener('click',(e)=>{ if(e.target.id==='faqModal') e.currentTarget.hidden=true; });
-    document.getElementById('closeAbout')?.addEventListener('click',()=>{ document.getElementById('aboutModal').hidden=true; });
-    document.getElementById('aboutModal')?.addEventListener('click',(e)=>{ if(e.target.id==='aboutModal') e.currentTarget.hidden=true; });
-
     /* Маска телефона */
     document.addEventListener('input', (e)=>{
       if(e.target.id==='phone'){
@@ -651,60 +617,66 @@
       }
     });
 
-    /* Валидация + отправка */
+    /* Валидация + отправка формы */
     function setInvalid(id, cond){ const f=document.getElementById(id); cond?f.classList.add('invalid'):f.classList.remove('invalid'); }
     function validPhone(v){ return /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(v); }
+
     async function postJSON(url, data, timeout=12000){
       const ctrl = new AbortController(); const t = setTimeout(()=>ctrl.abort(), timeout);
       try{
-        const r = await fetch(url,{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data), signal:ctrl.signal});
-        clearTimeout(t); return r;
-      }catch(e){ clearTimeout(t); throw e; }
+        const r = await fetch(url,{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data), signal:ctrl.signal, credentials:'omit'});
+        clearTimeout(t); return r.ok;
+      }catch(e){ clearTimeout(t); return false; }
     }
 
     (function(){
       const form = document.getElementById('leadForm');
       const modal = document.getElementById('thanksModal');
       const closeBtn = document.getElementById('closeThanks');
+      const submitBtn = document.getElementById('submitBtn');
+
+      // если страница открыта не на Vercel — бьём в абсолютный URL
+      const API_BASE = (location.hostname.endsWith('vercel.app') || location.hostname === 'localhost')
+        ? ''
+        : 'https://magic-school-eight.vercel.app';
 
       form.addEventListener('submit', async (e)=>{
         e.preventDefault();
+        if(submitBtn.disabled) return;
+
         const parent = document.getElementById('parentName').value.trim();
         const phone  = document.getElementById('phone').value.trim();
         const age    = document.getElementById('age').value.trim();
         const email  = document.getElementById('email').value.trim();
-        const hp     = document.getElementById('hp').value;
+        const website= document.getElementById('website').value.trim(); // honeypot
 
         setInvalid('f-parent', parent.length<2);
         setInvalid('f-phone', !validPhone(phone));
         const ageNum = Number(age);
         setInvalid('f-age', !(ageNum>=7 && ageNum<=13));
-        setInvalid('f-email', (email && !/^\S+@\S+\.\S+$/.test(email)));
+        setInvalid('f-email', (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)));
+
         if(document.querySelector('.invalid')) return;
 
-        try{
-          const resp = await postJSON('/api/lead', { parent, phone, age, email, hp, ts: Date.now() });
-          if(resp.ok){ modal.hidden = false; form.reset(); }
-          else{
-            const data = await resp.json().catch(()=>({}));
-            alert(data?.error || 'Не удалось отправить. Попробуйте ещё раз.');
-          }
-        }catch{
-          alert('Не удалось отправить. Проверьте интернет и попробуйте ещё раз.');
-        }
+        submitBtn.disabled = true;
+        const ok = await postJSON(`${API_BASE}/api/lead`, { parent, phone, age, email, website });
+
+        if(ok){ modal.hidden = false; form.reset(); }
+        else{ alert('Не удалось отправить. Попробуйте ещё раз.'); }
+        submitBtn.disabled = false;
       });
 
       closeBtn?.addEventListener('click', ()=> modal.hidden = true);
       modal?.addEventListener('click', (e)=>{ if(e.target===modal) modal.hidden = true; });
     })();
 
-    /* БУРГЕР */
+    /* БУРГЕР — логика */
     const menuModal = document.getElementById('menuModal');
     document.getElementById('openMenu')?.addEventListener('click', ()=>{ menuModal.hidden=false; });
     document.getElementById('closeMenu')?.addEventListener('click', ()=>{ menuModal.hidden=true; });
     menuModal?.addEventListener('click', (e)=>{ if(e.target===menuModal) menuModal.hidden=true; });
     document.getElementById('menuAbout')?.addEventListener('click', ()=>{ menuModal.hidden = true; document.getElementById('aboutModal').hidden = false; });
-    document.getElementById('menuFAQ')?.addEventListener('click', ()=>{ menuModal.hidden = true; document.getElementById('faqModal').hidden = false; });
+    document.getElementById('menuFAQ')?.addEventListener('click',  ()=>{ menuModal.hidden = true; document.getElementById('faqModal').hidden = false; });
   </script>
 </body>
 </html>
