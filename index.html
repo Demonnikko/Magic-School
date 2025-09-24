@@ -125,7 +125,7 @@
 
     .discount{display:flex; justify-content:center; margin-bottom:6px}
     .discount .badge{display:inline-block; padding:6px 10px; border:1px solid #3a2a10; background:#15100a; color:var(--gold); border-radius:999px; font-weight:800; font-size:12px}
-    .amount{display:flex; flex-direction:column; align-items:center; gap:6px; margin:.3em 0 .6em}
+    .amount{display:flex; flex-direction:column; align-items:center; gap:6px; margin:.3em 0 .6ем}
     .amount .new{font-size:44px; color:var(--gold); font-weight:800}
     .amount .old{font-size:18px; color:#9fb0d0; font-weight:400; text-decoration:line-through}
     .currency{margin-left:4px; font-weight:600}
@@ -281,7 +281,7 @@
         Почему не футбол, музыка или «ещё один кружок»?
       </h2>
       <div class="features">
-        <div class="card"><h3>🧠 Мы прокачиваем харизму</h3><p>Навык держать паузу, говорить уверенно и управлять вниманием ценится сильнее, чем сотня подтягиваний.</p></div>
+        <div class="card><h3>🧠 Мы прокачиваем харизму</h3><p>Навык держать паузу, говорить уверенно и управлять вниманием ценится сильнее, чем сотня подтягиваний.</p></div>
         <div class="card"><h3>🎤 Каждый урок — мини-выступление</h3><p>Ребёнок получает реакцию зала и перестаёт бояться сцены. Аплодисменты → уверенность.</p></div>
         <div class="card"><h3>✨ Суперсила на всю жизнь</h3><p>Умение удерживать внимание полезно в школе, в университете и во взрослой карьере.</p></div>
         <div class="card"><h3>🎯 Геймификация без домашних</h3><p>Очки, ачивки, наклейки и «шкала побед» — ребёнок сам стремится к результату.</p></div>
@@ -321,6 +321,7 @@
     <div class="container">
       <div class="pricing-grid">
 
+        <!-- Месяц -->
         <div class="price">
           <div>
             <h3>Месяц</h3>
@@ -340,8 +341,18 @@
               <a href="#signup" class="btn btn-primary">Записать ребёнка на пробный урок бесплатно</a>
             </div>
           </div>
+
+          <!-- ===== ПРОМО-ВИДЕО (обновлено) ===== -->
           <div class="video-card">
-            <video controls preload="metadata" poster="assets/images/promo-poster.jpg">
+            <video
+              id="promoVideo"
+              playsinline
+              muted
+              autoplay
+              loop
+              controls
+              preload="metadata"
+              poster="assets/images/promo-poster.jpg">
               <source src="assets/video/promo.mp4" type="video/mp4">
               Ваш браузер не поддерживает видео.
             </video>
@@ -349,8 +360,10 @@
               Смотрели на «Первом ярославском»: 8 выпусков телешоу «Школа волшебства».
             </p>
           </div>
+          <!-- ===== конец блока видео ===== -->
         </div>
 
+        <!-- Полгода -->
         <div class="price">
           <div>
             <h3>Полгода</h3>
@@ -505,7 +518,7 @@
           <summary>
             <span class="qdot" aria-hidden="true"></span>
             Почему не с начала учебного года?
-            <svg class="cheв" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
           <p>Нам не важна сезонность. Важны этапы обучения ребёнка, как он усваивает материал и учится взаимодействовать с публикой.</p>
         </details>
@@ -677,6 +690,18 @@
     menuModal?.addEventListener('click', (e)=>{ if(e.target===menuModal) menuModal.hidden=true; });
     document.getElementById('menuAbout')?.addEventListener('click', ()=>{ menuModal.hidden = true; document.getElementById('aboutModal').hidden = false; });
     document.getElementById('menuFAQ')?.addEventListener('click',  ()=>{ menuModal.hidden = true; document.getElementById('faqModal').hidden = false; });
+
+    /* ===== Автопауза промо-видео (только для видео) ===== */
+    (function(){
+      const v = document.getElementById('promoVideo');
+      if (!v || !('IntersectionObserver' in window)) return;
+      const io = new IntersectionObserver(([e])=>{
+        if (e.isIntersecting) { v.play().catch(()=>{}); }
+        else { v.pause(); }
+      }, {threshold: 0.25});
+      io.observe(v);
+    })();
+    /* ===== конец блока для видео ===== */
   </script>
 </body>
 </html>
