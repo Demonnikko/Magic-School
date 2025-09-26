@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ру">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -9,12 +9,26 @@
 
   <!-- CSP: безопасные источники (добавлены mc.yandex.ru для Метрики) -->
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' https://magic-school-eight.vercel.app; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; connect-src 'self' https://magic-school-eight.vercel.app https://mc.yandex.ru; frame-ancestors 'self'; base-uri 'self'">
+        content="default-src 'self' https://magic-school-eight.vercel.app; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; connect-src 'self' https://mc.yandex.ru; frame-ancestors 'self'; base-uri 'self'">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104299107', 'ym');
+
+    ym(104299107, 'init', { ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/104299107" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 
   <style>
     :root{
@@ -125,7 +139,7 @@
 
     .discount{display:flex; justify-content:center; margin-bottom:6px}
     .discount .badge{display:inline-block; padding:6px 10px; border:1px solid #3a2a10; background:#15100a; color:var(--gold); border-radius:999px; font-weight:800; font-size:12px}
-    .amount{display:flex; flex-direction:column; align-items:center; gap:6px; margin:.3em 0 .6ем}
+    .amount{display:flex; flex-direction:column; align-items:center; gap:6px; margin:.3em 0 .6em}
     .amount .new{font-size:44px; color:var(--gold); font-weight:800}
     .amount .old{font-size:18px; color:#9fb0d0; font-weight:400; text-decoration:line-through}
     .currency{margin-left:4px; font-weight:600}
@@ -184,7 +198,7 @@
       background:linear-gradient(135deg, var(--gold), var(--bronze)); -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:.02em;
     }
     .about-lead{color:#d8def0; font-size: clamp(16px,1.6vw,18px); margin:0 auto; max-width:72ch; text-align:center}
-    .about-list{list-style:none; padding:0; margin:10px auto 0; display:grid; gap:8px; color:#e4e9f7; font-size: clamp(15px,1.5vw,17px); max-width:62ch; text-align:left}
+    .about-list{list-style:none; padding:0; margin:10px авто 0; display:grid; gap:8px; color:#e4e9f7; font-size: clamp(15px,1.5vw,17px); max-width:62ch; text-align:left}
     .about-list li{display:flex; gap:10px; align-items:flex-start}
     .about-list li span{flex:0 0 auto}
     .about-par{color:#cfd6e6; margin:10px auto 0; max-width:72ch; text-align:center}
@@ -212,7 +226,7 @@
     #faqModal .faq-list{display:grid; gap:10px; margin-top:10px}
     #faqModal .faq-item{border:1px solid #26365f; border-radius:14px; background:#0c1326; box-shadow:0 8px 24px -16px rgba(0,0,0,.5); overflow:hidden; transition:border-color .2s, box-shadow .25s, transform .18s;}
     #faqModal .faq-item:hover{border-color:var(--gold); box-shadow:0 14px 34px -16px rgba(214,179,107,.25); transform:translateY(-1px)}
-    #faqModal .faq-item summary{list-style:none; outline:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 16px; font-weight:800; font-size:16px; color:var(--ivory); letter-spacing:.01ем; line-height:1.25;}
+    #faqModal .faq-item summary{list-style:none; outline:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 16px; font-weight:800; font-size:16px; color:var(--ivory); letter-spacing:.01em; line-height:1.25;}
     #faqModal .faq-item summary::-webkit-details-marker{display:none}
     #faqModal .faq-item summary .qdot{width:10px; height:10px; border-radius:50%; background:var(--gold); flex:0 0 auto; box-shadow:0 0 0 3px rgba(214,179,107,.15)}
     #faqModal .faq-item summary .chev{margin-left:auto; width:18px; height:18px; flex:0 0 auto; opacity:.9; transition:transform .25s ease}
@@ -266,7 +280,6 @@
           <div class="tbox"><span id="m">00</span><span class="label">мин</span></div>
           <div class="tbox"><span id="s">00</span><span class="label">сек</span></div>
         </div>
-
       </div>
 
       <div class="hero-badges" style="margin-top:18px">
@@ -714,26 +727,5 @@
     document.getElementById('menuAbout')?.addEventListener('click', ()=>{ menuModal.hidden = true; document.getElementById('aboutModal').hidden = false; });
     document.getElementById('menuFAQ')?.addEventListener('click',  ()=>{ menuModal.hidden = true; document.getElementById('faqModal').hidden = false; });
   </script>
-
-  <!-- Yandex.Metrika counter (ID: 104299107) -->
-  <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104299107', 'ym');
-
-    ym(104299107, 'init', {
-      ssr:true,
-      webvisor:true,
-      clickmap:true,
-      ecommerce:"dataLayer",
-      accurateTrackBounce:true,
-      trackLinks:true
-    });
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/104299107" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-  <!-- /Yandex.Metrika counter -->
 </body>
 </html>
