@@ -7,9 +7,9 @@
   <meta name="description" content="ABRACADABRA — школа фокусов для детей 7–13 лет. Уверенность, харизма и умение управлять вниманием. Запишитесь на бесплатный пробный урок.">
   <meta name="theme-color" content="#0B1426"/>
 
-  <!-- CSP: безопасные источники -->
+  <!-- CSP: безопасные источники (добавлены mc.yandex.ru для Метрики) -->
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' https://magic-school-eight.vercel.app; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; frame-ancestors 'self'; base-uri 'self'">
+        content="default-src 'self' https://magic-school-eight.vercel.app; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; connect-src 'self' https://magic-school-eight.vercel.app https://mc.yandex.ru; frame-ancestors 'self'; base-uri 'self'">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -212,7 +212,7 @@
     #faqModal .faq-list{display:grid; gap:10px; margin-top:10px}
     #faqModal .faq-item{border:1px solid #26365f; border-radius:14px; background:#0c1326; box-shadow:0 8px 24px -16px rgba(0,0,0,.5); overflow:hidden; transition:border-color .2s, box-shadow .25s, transform .18s;}
     #faqModal .faq-item:hover{border-color:var(--gold); box-shadow:0 14px 34px -16px rgba(214,179,107,.25); transform:translateY(-1px)}
-    #faqModal .faq-item summary{list-style:none; outline:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 16px; font-weight:800; font-size:16px; color:var(--ivory); letter-spacing:.01em; line-height:1.25;}
+    #faqModal .faq-item summary{list-style:none; outline:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:14px 16px; font-weight:800; font-size:16px; color:var(--ivory); letter-spacing:.01ем; line-height:1.25;}
     #faqModal .faq-item summary::-webkit-details-marker{display:none}
     #faqModal .faq-item summary .qdot{width:10px; height:10px; border-radius:50%; background:var(--gold); flex:0 0 auto; box-shadow:0 0 0 3px rgba(214,179,107,.15)}
     #faqModal .faq-item summary .chev{margin-left:auto; width:18px; height:18px; flex:0 0 auto; opacity:.9; transition:transform .25s ease}
@@ -266,6 +266,7 @@
           <div class="tbox"><span id="m">00</span><span class="label">мин</span></div>
           <div class="tbox"><span id="s">00</span><span class="label">сек</span></div>
         </div>
+
       </div>
 
       <div class="hero-badges" style="margin-top:18px">
@@ -713,5 +714,26 @@
     document.getElementById('menuAbout')?.addEventListener('click', ()=>{ menuModal.hidden = true; document.getElementById('aboutModal').hidden = false; });
     document.getElementById('menuFAQ')?.addEventListener('click',  ()=>{ menuModal.hidden = true; document.getElementById('faqModal').hidden = false; });
   </script>
+
+  <!-- Yandex.Metrika counter (ID: 104299107) -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104299107', 'ym');
+
+    ym(104299107, 'init', {
+      ssr:true,
+      webvisor:true,
+      clickmap:true,
+      ecommerce:"dataLayer",
+      accurateTrackBounce:true,
+      trackLinks:true
+    });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/104299107" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </body>
 </html>
