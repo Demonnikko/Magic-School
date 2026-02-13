@@ -1665,25 +1665,25 @@
         // Telegram WebApp Data Sending
         const tg = window.Telegram.WebApp;
         const data = {
-            action: 'booking_school',
-            data: {
-                name: parent,
-                phone: phone,
-                course: `Возраст: ${age} лет` + (email ? `, Email: ${email}` : '')
-            }
+          action: 'booking_school',
+          data: {
+            name: parent,
+            phone: phone,
+            course: `Возраст: ${age} лет` + (email ? `, Email: ${email}` : '')
+          }
         };
 
         if (tg.initDataUnsafe && tg.sendData) {
-            tg.sendData(JSON.stringify(data));
-             // Telegram will close the webview after sendData, so we don't strictly need to show modal, 
-             // but if it doesn't close immediately or for UX:
-             // Actually sendData closes it. 
-             // But for local testing without TG:
+          tg.sendData(JSON.stringify(data));
+          // Telegram will close the webview after sendData, so we don't strictly need to show modal, 
+          // but if it doesn't close immediately or for UX:
+          // Actually sendData closes it. 
+          // But for local testing without TG:
         } else {
-             console.log("Mock Send:", data);
-             modal.hidden = false; form.reset();
+          console.log("Mock Send:", data);
+          modal.hidden = false; form.reset();
         }
-        
+
         submitBtn.disabled = false;
       });
 
@@ -1713,6 +1713,22 @@
       Школа
     </div>
   </nav>
+
+  <script>
+    // Smart Router: Adjusts tab-bar links for GitHub Pages vs Localhost
+    (function () {
+      const isGithub = window.location.hostname.includes('github.io');
+      if (isGithub) {
+        const links = document.querySelectorAll('.tab-bar a');
+        links.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === '/') link.href = 'https://demonnikko.github.io/botosconcert/';
+          if (href === '/private') link.href = 'https://demonnikko.github.io/Site76/';
+          if (href === '/school') link.href = 'https://demonnikko.github.io/Magic-School/';
+        });
+      }
+    })();
+  </script>
 
   <style>
     /* FAQ IMPROVEMENTS */
