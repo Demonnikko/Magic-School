@@ -7,7 +7,7 @@
   <title>ABRACADABRA — Школа фокусов для детей 7–13 лет</title>
   <meta name="description"
     content="ABRACADABRA — школа фокусов для детей 7–13 лет. Уверенность, харизма и умение управлять вниманием. Запишитесь на бесплатный пробный урок.">
-  <meta name="theme-color" content="#0B1426" />
+  <meta name="theme-color" content="#000000" />
 
   <!-- CSP: безопасные источники (добавлены mc.yandex.ru для Метрики) -->
   <meta http-equiv="Content-Security-Policy"
@@ -47,10 +47,12 @@
       --panel: rgba(12, 12, 18, .75);
       --card: rgba(18, 19, 26, .92);
 
-      /* Mapping old vars to new scheme */
-      --black: var(--bg);
-      --navy: var(--panel);
-      --navy-2: var(--card);
+      /* Mapping old vars to new scheme (Black & Gold Re-skin) */
+      --black: #000000;
+      --navy: #12131a;
+      /* Deep Black/Gray */
+      --navy-2: #15161e;
+      /* Slightly lighter black */
       --ivory: var(--text);
       --bronze: var(--gold3);
       --muted: #9EA6B8;
@@ -151,9 +153,10 @@
       position: sticky;
       top: 0;
       z-index: 30;
-      backdrop-filter: saturate(120%) blur(8px);
-      background: linear-gradient(180deg, rgba(7, 9, 15, .88), rgba(7, 9, 15, .64));
-      border-bottom: 1px solid #1e2a46;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(12, 12, 18, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .topbar__row {
@@ -191,14 +194,20 @@
       place-items: center;
       border-radius: 50%;
       background: #000;
-      border: 1px solid #233256;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      /* Gold/Neutral border */
       transition: .2s;
     }
 
     .contact-btn:hover {
-      border-color: var(--gold);
+      background: #ffffff;
+      border-color: #ffffff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
       transform: translateY(-1px);
-      box-shadow: 0 0 0 4px var(--glow)
+    }
+
+    .contact-btn:hover img {
+      filter: brightness(0) !important;
     }
 
     .contact-btn img {
@@ -211,69 +220,42 @@
       display: inline-grid
     }
 
-    /* BURGER */
+    /* BURGER REMOVED */
     .burger {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      border: 1px solid #233256;
-      background: #0c1326;
-      position: relative;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .burger:hover {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 4px var(--glow);
-      transform: translateY(-1px)
-    }
-
-    .burger .line,
-    .burger::before,
-    .burger::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 22px;
-      height: 2px;
-      background: #e9ecf4;
-      border-radius: 999px;
-      opacity: .95;
-      transition: width .2s ease, transform .2s ease, background .2s ease;
-    }
-
-    .burger .line {
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .burger::before {
-      top: 15px;
-    }
-
-    .burger::after {
-      bottom: 15px;
-    }
-
-    .burger:hover .line {
-      width: 24px
-    }
-
-    .burger:hover::before,
-    .burger:hover::after {
-      width: 24px
-    }
-
-    .rollnav {
-      display: none !important
+      display: none !important;
     }
 
     /* HERO */
     .hero {
+      position: relative;
       padding: 96px 0 48px;
-      text-align: center
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.6;
+      /* Adjust visibility */
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), #000);
+      z-index: 1;
     }
 
     .hero h1 {
@@ -324,9 +306,9 @@
     }
 
     .btn-ghost {
-      background: #0f162b;
+      background: #12131a;
       color: #d7def0;
-      border: 1px solid #243258;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       font-weight: 800;
       padding: 14px 20px;
     }
@@ -334,6 +316,26 @@
     .btn-ghost:hover {
       border-color: var(--gold);
       box-shadow: 0 8px 24px -10px rgba(214, 179, 107, .18)
+    }
+
+    /* GLOBAL GHOST HOVER EFFECT (Monochrome White) */
+    .btn:hover,
+    a.btn:hover,
+    button:hover,
+    .pack:hover,
+    .mcard:hover {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      border-color: #ffffff !important;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) !important;
+      filter: none;
+      transform: translateY(-2px);
+    }
+
+    .btn:active,
+    a.btn:active,
+    button:active {
+      transform: scale(0.98);
     }
 
     .hero-badges {
@@ -351,9 +353,9 @@
       gap: 8px;
       align-items: center;
       padding: 8px 12px;
-      border: 1px solid #25325a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 999px;
-      background: #0d1427;
+      background: #050505;
     }
 
     /* DEADLINE */
@@ -388,8 +390,8 @@
       text-align: center;
       padding: 8px 10px;
       border-radius: 10px;
-      background: #0c1326;
-      border: 1px solid #233256
+      background: #12131a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .timer .label {
@@ -413,8 +415,8 @@
     }
 
     .card {
-      background: linear-gradient(180deg, #0D1424, #0A101D);
-      border: 1px solid #213155;
+      background: linear-gradient(180deg, #12131a 0%, #050505 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius);
       padding: 22px;
       box-shadow: 0 10px 30px -14px rgba(0, 0, 0, .6);
@@ -423,8 +425,22 @@
 
     .card:hover {
       transform: translateY(-3px);
-      border-color: #2a406f;
-      box-shadow: 0 18px 44px -12px rgba(0, 0, 0, .7)
+      border-color: #ffffff;
+      background: #ffffff;
+      box-shadow: 0 10px 40px -10px rgba(255, 255, 255, 0.3);
+    }
+
+    .card:hover h3,
+    .card:hover p,
+    .card:hover div,
+    .card:hover span {
+      color: #000000 !important;
+      text-shadow: none !important;
+    }
+
+    .card:hover img {
+      filter: invert(0) !important;
+      opacity: 1 !important;
     }
 
     .card h3 {
@@ -451,13 +467,41 @@
     }
 
     .price {
-      background: linear-gradient(180deg, #0b1426, #0a0f1f);
-      border: 1px solid #233256;
+      background: #12131a;
+      /* Site76 card bg */
+      border: 1px solid rgba(255, 255, 255, 0.07);
       border-radius: var(--radius);
       padding: 24px;
       display: grid;
       grid-template-columns: 1.1fr 1fr;
       gap: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .price:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+      box-shadow: 0 10px 40px -10px rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .price:hover h3,
+    .price:hover .old,
+    .price:hover .subnote,
+    .price:hover li {
+      color: #000000 !important;
+      text-shadow: none !important;
+    }
+
+    .price:hover .new {
+      color: #000000 !important;
+      /* Keep value visible */
+    }
+
+    .price:hover .badge {
+      background: #000;
+      color: #fff;
+      border-color: #000;
     }
 
     @media (max-width:900px) {
@@ -531,8 +575,10 @@
     }
 
     .video-card {
-      background: #0e162b;
-      border: 1px solid #233256;
+      background: #12131a;
+      /* Site76 card bg */
+      border: 1px solid rgba(255, 255, 255, 0.07);
+
       border-radius: var(--radius);
       padding: 16px
     }
@@ -546,8 +592,10 @@
 
     /* FORM */
     .form {
-      background: #0e162b;
-      border: 1px solid #233256;
+      background: #12131a;
+      /* Site76 card bg */
+      border: 1px solid rgba(255, 255, 255, 0.07);
+
       border-radius: var(--radius);
       padding: 22px;
       max-width: 560px;
@@ -585,14 +633,119 @@
       height: var(--field-h);
       padding: 14px;
       border-radius: 14px;
-      border: 1px solid #2a3a67;
-      background: #0a1122;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #050505;
       color: #e9ecf4;
       outline: none;
       transition: border-color .2s, box-shadow .2s, transform .12s;
       font-size: 16px;
       line-height: 1;
+      width: 100%;
+      /* Ensure width is explicitly 100% */
     }
+
+    /* === ICON STYLES (Moved to Head per User Request) === */
+    .icon-svg,
+    .icon-svg-inline,
+    .icon-nav {
+      object-fit: contain;
+      filter: invert(1) grayscale(1) brightness(2) contrast(1.2);
+      opacity: 0.9;
+      mix-blend-mode: screen;
+    }
+
+    .icon-svg {
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .icon-svg-inline {
+      width: 28px;
+      height: 28px;
+      vertical-align: middle;
+      margin-right: 8px;
+      display: inline-block;
+      transform: translateY(-2px);
+    }
+
+    .icon-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-badges .icon-wrap img {
+      width: 18px;
+      height: 18px;
+      filter: invert(1) grayscale(1);
+      opacity: 0.7;
+      mix-blend-mode: normal;
+    }
+
+    /* Specific fix for hero badges */
+
+    /* TAB BAR */
+    .tab-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(12, 12, 18, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      /* Gold/Neutral border */
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .tab-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #6e7688;
+      font-size: 10px;
+      flex: 1;
+      transition: color .3s;
+    }
+
+    .tab-item span {
+      margin-bottom: 2px;
+      display: block;
+      transition: transform .2s;
+    }
+
+    .tab-item.active {
+      color: var(--gold);
+    }
+
+    .tab-item.active span {
+      transform: translateY(-2px);
+      text-shadow: 0 0 12px rgba(214, 180, 107, 0.3);
+    }
+
+    .icon-nav {
+      width: 24px;
+      height: 24px;
+      filter: invert(0.5) grayscale(1);
+      opacity: 0.6;
+      mix-blend-mode: normal;
+    }
+
+    .tab-item.active .icon-nav {
+      filter: invert(1) grayscale(1) brightness(2) contrast(1.2);
+      opacity: 1;
+      mix-blend-mode: screen;
+    }
+
 
     .textarea {
       min-height: 128px;
@@ -652,8 +805,8 @@
       width: min(96vw, 960px);
       max-height: 86vh;
       overflow: auto;
-      background: linear-gradient(180deg, #0D1424 0%, #0A101D 100%);
-      border: 1px solid #233256;
+      background: #12131a;
+      border: 1px solid rgba(255, 255, 255, 0.07);
       border-radius: 20px;
       padding: clamp(18px, 2.2vw, 28px);
       box-shadow: 0 24px 80px rgba(0, 0, 0, .55);
@@ -683,7 +836,7 @@
       padding: 8px 12px;
       border-radius: 10px;
       background: #0c1326;
-      border: 1px solid #2a3a67;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       color: #e9ecf4;
     }
 
@@ -718,7 +871,7 @@
       border-radius: 50%;
       object-fit: cover;
       object-position: center;
-      background: #0b1224;
+      background: #12131a;
       display: block;
       margin: 0 auto;
       box-shadow: 0 0 0 2px #3a2a10, 0 0 0 6px rgba(214, 179, 107, .15), inset 0 6px 18px rgba(255, 255, 255, .04), inset 0 -8px 18px rgba(0, 0, 0, .4), 0 22px 44px -16px rgba(0, 0, 0, .6);
@@ -791,7 +944,7 @@
 
     /* FOOTER */
     footer {
-      border-top: 1px solid #1e2a46;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding: 28px 0 40px;
       margin-top: 60px
     }
@@ -954,38 +1107,39 @@
         <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra" loading="eager">
       </div>
 
-      <nav class="contacts" aria-label="Контакты">
-        <a class="contact-btn contact-btn--phone" href="tel:+79092763386" aria-label="Позвонить">
-          <img src="assets/icons/phone.png" alt="Телефон" loading="eager">
-        </a>
-        <button class="burger" id="openMenu" aria-label="Открыть меню">
-          <span class="line" aria-hidden="true"></span>
-        </button>
+      <a class="contact-btn contact-btn--phone" href="tel:+79092763386" aria-label="Позвонить">
+        <img src="assets/icons/phone.png" alt="Телефон" loading="eager">
+      </a>
+      <!-- BURGER REMOVED -->
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
+  <!-- HERO SECTOR -->
   <section class="hero" data-reveal>
-    <div class="container">
-      <!-- HERO VIDEO -->
-      <div
-        style="position:relative; max-width:800px; margin:0 auto 32px; border-radius:18px; overflow:hidden; border:1px solid rgba(203,161,53,0.3); box-shadow:0 10px 40px rgba(0,0,0,0.6);">
-        <video controls autoplay muted playsinline style="width:100%; display:block;">
-          <source src="846823768806167717.MP4" type="video/mp4">
-          Ваш браузер не поддерживает видео.
-        </video>
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="846823768806167717.mov" type="video/quicktime">
+      <source src="assets/video/bg.mp4" type="video/mp4">
+      <!-- Fallback or user can rename file -->
+    </video>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <div class="brand center" style="justify-content:center; margin-bottom:24px">
+        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra" loading="eager">
       </div>
-      <h1>Школа фокусов для детей 7–13 лет</h1>
+      <h1>Школа фокусов <br /><span style="color:var(--text)">для детей 7–13 лет</span></h1>
       <p class="subtitle">Мы не просто учим трюкам. Мы превращаем застенчивость в уверенность, а робкие слова — в
         аплодисменты зала.</p>
+
       <div class="cta-row">
         <a href="#signup" class="btn btn-primary">Записать ребёнка на пробный урок бесплатно</a>
         <a href="#program" class="btn btn-ghost">Увидеть программу занятий</a>
       </div>
 
       <div class="deadline">
-        <span class="left-seats">Осталось 7 мест</span>
+        <div class="left-seats">Осталось 7 мест</div>
         <div class="timer" id="timer">
           <div class="tbox"><span id="d">3</span><span class="label">дн</span></div>
           <div class="tbox"><span id="h">00</span><span class="label">час</span></div>
@@ -995,9 +1149,10 @@
       </div>
 
       <div class="hero-badges" style="margin-top:18px">
-        <span>👥 Группа до 10 детей</span>
-        <span>🎙️ Сцена и уверенная речь</span>
-        <span>📔 Уникальный AR-дневник</span>
+        <span><img src="assets/icons/magician.png" class="icon-svg" style="width:16px;"> Группа до 10 детей</span>
+        <span><img src="assets/icons/smoke.png" class="icon-svg" style="width:16px;"> Сцена и уверенная речь</span>
+        <span class="icon-wrap"><img src="assets/icons/book.png" class="icon-svg" style="width:16px;"> Уникальный
+          AR-дневник</span>
       </div>
     </div>
   </section>
@@ -1010,19 +1165,19 @@
       </h2>
       <div class="features">
         <div class="card">
-          <h3>🧠 Мы прокачиваем харизму</h3>
+          <h3><img src="assets/icons/magic-ball.png" class="icon-svg-inline"> Мы прокачиваем харизму</h3>
           <p>Навык держать паузу, говорить уверенно и управлять вниманием ценится сильнее, чем сотня подтягиваний.</p>
         </div>
         <div class="card">
-          <h3>🎤 Каждый урок — мини-выступление</h3>
+          <h3><img src="assets/icons/smoke.png" class="icon-svg-inline"> Каждый урок — мини-выступление</h3>
           <p>Ребёнок получает реакцию зала и перестаёт бояться сцены. Аплодисменты → уверенность.</p>
         </div>
         <div class="card">
-          <h3>✨ Суперсила на всю жизнь</h3>
+          <h3><img src="assets/icons/magic.png" class="icon-svg-inline"> Суперсила на всю жизнь</h3>
           <p>Умение удерживать внимание полезно в школе, в университете и во взрослой карьере.</p>
         </div>
         <div class="card">
-          <h3>🎯 Геймификация без домашних</h3>
+          <h3><img src="assets/icons/dice.png" class="icon-svg-inline"> Геймификация без домашних</h3>
           <p>Очки, ачивки, наклейки и «шкала побед» — ребёнок сам стремится к результату.</p>
         </div>
       </div>
@@ -1050,19 +1205,19 @@
       </h2>
       <div class="features">
         <div class="card">
-          <h3>🗓️ 1 занятие в неделю</h3>
+          <h3><img src="assets/icons/sand-clock.png" class="icon-svg-inline"> 1 занятие в неделю</h3>
           <p>Два академических часа. Без перегрузки, но с результатом.</p>
         </div>
         <div class="card">
-          <h3>🎩 Постановка номеров</h3>
+          <h3><img src="assets/icons/magician.png" class="icon-svg-inline"> Постановка номеров</h3>
           <p>Не просто «фокусы», а работа над выступлением и образом.</p>
         </div>
         <div class="card">
-          <h3>📔 AR-дневник и ачивки</h3>
+          <h3><img src="assets/icons/book.png" class="icon-svg-inline"> AR-дневник и ачивки</h3>
           <p>Игровая шкала побед, наклейки и приз-реквизит в конце месяца.</p>
         </div>
         <div class="card">
-          <h3>👏 Мини-шоу ежемесячно</h3>
+          <h3><img src="assets/icons/wand.png" class="icon-svg-inline"> Мини-шоу ежемесячно</h3>
           <p>Родители видят прогресс, а дети — получают сцепку «труд → аплодисменты».</p>
         </div>
       </div>
@@ -1111,11 +1266,10 @@
             </ul>
             <div class="center" style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
               <a href="#signup" class="btn btn-primary">Выбрать полугодовой абонемент</a>
-              <a id="installmentBtn" href="#" class="btn btn-ghost" title="Рассрочка на 6 месяцев">Оформить
-                рассрочку</a>
+              <!-- Installment button removed -->
             </div>
           </div>
-          <div class="video-card">
+          <div class="video-card" style="display:none"> <!-- Hidden per request (Video at start only) -->
             <h3 class="center" style="margin:0 0 8px; color:var(--gold); font-size:22px">Почему именно сейчас?</h3>
             <p class="center" style="color:#cfd6e6; margin:0">Пока действует скидка −25% и в группе осталось 7 мест.</p>
           </div>
@@ -1186,6 +1340,125 @@
 
   <!-- FOOTER -->
   <footer>
+    </div>
+    </section>
+
+    <!-- NEW ABOUT SECTION (Integrated) -->
+    <section id="about" class="container">
+      <h3 class="about-title">Школа «Абракадабра» — академия магии</h3>
+
+      <div class="about-wrap">
+        <img class="about-photo" src="assets/photos/IMG_0793.JPG" alt="Дмитрий Костюк" loading="lazy">
+        <div class="about-text">
+          <p class="about-lead">
+            В Ярославле появилось место, где дети становятся настоящими волшебниками.
+            Школа создана иллюзионистом Дмитрием Костюком — автором театрального шоу «Секрет».
+          </p>
+
+          <div class="about-sep"></div>
+
+          <ul class="about-list">
+            <li><span style="width:24px"><img src="assets/icons/wand.png" class="icon-svg"></span>
+              <div>уверенность в себе;</div>
+            </li>
+            <li><span style="width:24px"><img src="assets/icons/smoke.png" class="icon-svg"></span>
+              <div>навыки речи и артистизма;</div>
+            </li>
+            <li><span style="width:24px"><img src="assets/icons/magic-ball.png" class="icon-svg"></span>
+              <div>умение работать в команде;</div>
+            </li>
+            <li><span style="width:24px"><img src="assets/icons/magician.png" class="icon-svg"></span>
+              <div>выступления перед публикой.</div>
+            </li>
+          </ul>
+
+          <p class="about-par">
+            Обучение построено как игра: Дневник Волшебника, секретные конверты, ачивки и сцена.
+          </p>
+          <div class="about-sep"></div>
+          <p class="about-slogan">«Абракадабра» — школа, где ребёнок становится артистом.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW FAQ SECTION (Integrated) -->
+    <section id="faq" class="container" style="padding-top:0;">
+      <h3 class="center" style="font-size: clamp(24px,2.6vw,30px); margin-bottom: 24px;">Частые вопросы</h3>
+      <div class="faq-list">
+
+        <!-- 1. Shy Child -->
+        <details class="faq-item">
+          <summary>
+            <span class="qicon"><img src="assets/icons/smoke.png" alt="Icon"></span>
+            <span class="qtext">Если ребёнок стеснительный?</span>
+            <svg class="chev" viewBox="0 0 24 24">
+              <path d="M7 10l5 5 5-5" stroke="currentColor" />
+            </svg>
+          </summary>
+          <div class="faq-content">
+            <p>Начинаем с простых шагов без давления. Через месяц — уверенное выступление.</p>
+          </div>
+        </details>
+
+        <!-- 2. If not liked -->
+        <details class="faq-item">
+          <summary>
+            <span class="qicon"><img src="assets/icons/ticket.png" alt="Icon"></span>
+            <span class="qtext">Если не понравится?</span>
+            <svg class="chev" viewBox="0 0 24 24">
+              <path d="M7 10l5 5 5-5" stroke="currentColor" />
+            </svg>
+          </summary>
+          <div class="faq-content">
+            <p>Есть бесплатный пробный урок. Вы ничего не теряете.</p>
+          </div>
+        </details>
+
+        <!-- 3. How many kids -->
+        <details class="faq-item">
+          <summary>
+            <span class="qicon"><img src="assets/icons/magician.png" alt="Icon"></span>
+            <span class="qtext">Сколько детей в группе?</span>
+            <svg class="chev" viewBox="0 0 24 24">
+              <path d="M7 10l5 5 5-5" stroke="currentColor" />
+            </svg>
+          </summary>
+          <div class="faq-content">
+            <p>До 10 человек. У каждого — время на сцене и внимание педагога.</p>
+          </div>
+        </details>
+
+        <!-- 4. Homework -->
+        <details class="faq-item">
+          <summary>
+            <span class="qicon"><img src="assets/icons/scroll.png" alt="Icon"></span>
+            <span class="qtext">Будут домашние задания?</span>
+            <svg class="chev" viewBox="0 0 24 24">
+              <path d="M7 10l5 5 5-5" stroke="currentColor" />
+            </svg>
+          </summary>
+          <div class="faq-content">
+            <p>Нет. Весь прогресс — на занятиях. Раз в месяц — мини-шоу для родителей.</p>
+          </div>
+        </details>
+
+        <!-- 5. Start of year -->
+        <details class="faq-item">
+          <summary>
+            <span class="qicon"><img src="assets/icons/sand-clock.png" alt="Icon"></span>
+            <span class="qtext">Почему не с начала учебного года?</span>
+            <svg class="chev" viewBox="0 0 24 24">
+              <path d="M7 10l5 5 5-5" stroke="currentColor" />
+            </svg>
+          </summary>
+          <div class="faq-content">
+            <p>Нам не важна сезонность. Важны этапы обучения ребёнка.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
     <div class="container foot-row">
       <div class="foot-brand">
         <!-- ЛОГО в подвале тоже сразу -->
@@ -1203,143 +1476,7 @@
     </div>
   </footer>
 
-  <!-- FAQ MODAL -->
-  <div id="faqModal" class="modal" hidden>
-    <div class="modal__card">
-      <div class="modal__spacer"></div>
-      <button class="modal__close" aria-label="Закрыть" id="closeFAQ">✕</button>
-      <h3 class="center" style="font-size: clamp(24px,2.6vw,30px);">Частые вопросы</h3>
-
-      <div class="faq-list">
-        <details class="faq-item">
-          <summary>
-            <span class="qdot" aria-hidden="true"></span>
-            Если ребёнок стеснительный?
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </summary>
-          <p>Именно для таких детей мы и запускали школу. Начинаем с простых шагов, без давления, через месяц —
-            уверенное мини-выступление.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span class="qdot" aria-hidden="true"></span>
-            Если не понравится?
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </summary>
-          <p>Есть бесплатный пробный урок. Вы ничего не теряете — ребёнок знакомится с форматом и педагогом.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span class="qdot" aria-hidden="true"></span>
-            Сколько детей в группе?
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </summary>
-          <p>До 10 человек. У каждого — время на сцене и внимание педагога.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span class="qdot" aria-hidden="true"></span>
-            Будут домашние задания?
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </summary>
-          <p>Нет. Весь прогресс — на занятиях. Раз в месяц — мини-шоу для родителей.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span class="qdot" aria-hidden="true"></span>
-            Почему не с начала учебного года?
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </summary>
-          <p>Нам не важна сезонность. Важны этапы обучения ребёнка, как он усваивает материал и учится взаимодействовать
-            с публикой.</p>
-        </details>
-      </div>
-    </div>
-  </div>
-
-  <!-- ABOUT MODAL -->
-  <div id="aboutModal" class="modal" hidden>
-    <div class="modal__card">
-      <div class="modal__spacer"></div>
-      <button class="modal__close" aria-label="Закрыть" id="closeAbout">✕</button>
-
-      <h3 class="about-title">Школа фокусов «Абракадабра» — не кружок, а академия магии для детей.</h3>
-
-      <div class="about-wrap">
-        <img class="about-photo" src="assets/photos/dmitry.jpg" alt="Дмитрий Костюк" loading="lazy">
-        <div class="about-text">
-          <p class="about-lead">
-            В Ярославле появилось место, где дети становятся настоящими волшебниками.
-            Школа «Абракадабра» создана иллюзионистом Дмитрием Костюком — автором театрального шоу «Секрет»
-            и участником телепередач.
-          </p>
-
-          <div class="about-sep"></div>
-
-          <ul class="about-list">
-            <li><span>🎭</span>
-              <div>уверенность в себе;</div>
-            </li>
-            <li><span>🎤</span>
-              <div>навыки речи и артистизма;</div>
-            </li>
-            <li><span>👥</span>
-              <div>умение работать в команде;</div>
-            </li>
-            <li><span>🎯</span>
-              <div>выступления перед публикой.</div>
-            </li>
-          </ul>
-
-          <p class="about-par">
-            Обучение построено как увлекательная игра: каждый ученик ведёт Дневник Волшебника, выбирает секретные
-            конверты с реквизитом, получает ачивки и награды, а в конце уровней выходит на сцену.
-          </p>
-          <p class="about-par">
-            Через полгода дети дают мини-шоу, через год — большой концерт. А лучшие ученики становятся ассистентами
-            в настоящем шоу «Секрет».
-          </p>
-
-          <div class="about-sep"></div>
-          <p class="about-slogan">«Абракадабра» — школа, где ребёнок перестаёт быть зрителем и становится артистом.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- МОДАЛЬНОЕ МЕНЮ -->
-  <div id="menuModal" class="modal" hidden>
-    <div class="modal__card">
-      <div class="modal__spacer"></div>
-      <button class="modal__close" id="closeMenu" aria-label="Закрыть меню">✕</button>
-      <h3 class="center" style="font-size: clamp(24px,2.6vw,30px);">Меню</h3>
-
-      <ul class="menu-list" style="margin-top:10px">
-        <li><button type="button" id="menuAbout">О школе</button></li>
-        <!-- Removed external links to keep user focused -->
-        <li><button type="button" id="menuFAQ">FAQ</button></li>
-      </ul>
-    </div>
-  </div>
+  <!-- MODALS REMOVED -->
 
   <!-- STICKY BOTTOM CTA for Mini App -->
   <div class="sticky-cta">
@@ -1524,10 +1661,29 @@
         if (document.querySelector('.invalid')) return;
 
         submitBtn.disabled = true;
-        const ok = await postJSON(`${API_BASE}/api/lead`, { parent, phone, age, email, website });
 
-        if (ok) { modal.hidden = false; form.reset(); }
-        else { alert('Не удалось отправить. Попробуйте ещё раз.'); }
+        // Telegram WebApp Data Sending
+        const tg = window.Telegram.WebApp;
+        const data = {
+            action: 'booking_school',
+            data: {
+                name: parent,
+                phone: phone,
+                course: `Возраст: ${age} лет` + (email ? `, Email: ${email}` : '')
+            }
+        };
+
+        if (tg.initDataUnsafe && tg.sendData) {
+            tg.sendData(JSON.stringify(data));
+             // Telegram will close the webview after sendData, so we don't strictly need to show modal, 
+             // but if it doesn't close immediately or for UX:
+             // Actually sendData closes it. 
+             // But for local testing without TG:
+        } else {
+             console.log("Mock Send:", data);
+             modal.hidden = false; form.reset();
+        }
+        
         submitBtn.disabled = false;
       });
 
@@ -1536,51 +1692,149 @@
       modal?.addEventListener('click', (e) => { if (e.target === modal) modal.hidden = true; });
     })();
 
-    /* МОДАЛКИ: общий обработчик для всех (крестик, фон, Esc) */
+    /* МОДАЛКИ УДАЛЕНЫ */
     (function () {
-      const map = [
-        { modal: 'faqModal', closeBtn: 'closeFAQ' },
-        { modal: 'aboutModal', closeBtn: 'closeAbout' },
-        { modal: 'menuModal', closeBtn: 'closeMenu' },
-        { modal: 'thanksModal', closeBtn: 'closeThanks' }
-      ];
-
-      function closeById(id) {
-        const el = document.getElementById(id);
-        if (el && !el.hidden) el.hidden = true;
-      }
-
-      // крестики + клик по фону
-      map.forEach(({ modal, closeBtn }) => {
-        const m = document.getElementById(modal);
-        const c = document.getElementById(closeBtn);
-        c?.addEventListener('click', () => { m.hidden = true; });
-        m?.addEventListener('click', (e) => { if (e.target === m) m.hidden = true; });
-      });
-
-      // Esc закрывает любой открытый
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          map.forEach(({ modal }) => closeById(modal));
-        }
-      });
-    })();
-
-    /* БУРГЕР — логика */
-    const menuModal = document.getElementById('menuModal');
-    document.getElementById('openMenu')?.addEventListener('click', () => { menuModal.hidden = false; });
-    document.getElementById('closeMenu')?.addEventListener('click', () => { menuModal.hidden = true; });
-    menuModal?.addEventListener('click', (e) => { if (e.target === menuModal) menuModal.hidden = true; });
-    document.getElementById('menuAbout')?.addEventListener('click', () => { menuModal.hidden = true; document.getElementById('aboutModal').hidden = false; });
-    document.getElementById('menuFAQ')?.addEventListener('click', () => { menuModal.hidden = true; document.getElementById('faqModal').hidden = false; });
+      const form = document.getElementById('leadForm');
+    })(); // Closing bracket added to prevent errors
   </script>
 
   <!-- TAB BAR -->
   <nav class="tab-bar">
-    <a href="/" class="tab-item"><span>🎟</span>Афиша</a>
-    <a href="/private" class="tab-item"><span>🎩</span>Частные</a>
-    <div class="tab-item active"><span>✨</span>Школа</div>
+    <a href="/" class="tab-item">
+      <span><img src="assets/icons/ticket.png" class="icon-nav" alt="Афиша"></span>
+      Афиша
+    </a>
+    <a href="/private" class="tab-item">
+      <span><img src="assets/icons/magician.png" class="icon-nav" alt="Частные"></span>
+      Частные
+    </a>
+    <div class="tab-item active">
+      <span><img src="assets/icons/book.png" class="icon-nav" alt="Школа"></span>
+      Школа
+    </div>
   </nav>
+
+  <style>
+    /* FAQ IMPROVEMENTS */
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: #12131a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      /* Site76 Card Border */
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(203, 161, 53, 0.5);
+      /* Gold hover */
+      box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.5);
+    }
+
+    .faq-item[open] {
+      background: #15161e;
+      border-color: rgba(203, 161, 53, 0.3);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      list-style: none;
+      cursor: pointer;
+      font-weight: 600;
+      color: #e9ecf4;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .qicon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+    }
+
+    .qicon img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      filter: invert(1) grayscale(1);
+      opacity: 0.8;
+    }
+
+    .qtext {
+      flex: 1;
+      font-size: 16px;
+    }
+
+    .chev {
+      width: 20px;
+      height: 20px;
+      opacity: 0.5;
+      fill: none;
+      stroke-width: 2.5;
+      transition: transform 0.3s;
+    }
+
+    .faq-item[open] .chev {
+      transform: rotate(180deg);
+      color: var(--gold);
+      opacity: 1;
+    }
+
+    .faq-content {
+      padding: 0 16px 16px 60px;
+      /* Aligned with text */
+      color: #9ea6b8;
+      font-size: 15px;
+      line-height: 1.5;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .faq-content {
+        padding: 0 16px 16px 16px;
+      }
+
+      .qicon {
+        min-width: 28px;
+        width: 28px;
+        height: 28px;
+      }
+
+      .qtext {
+        font-size: 14px;
+      }
+    }
+  </style>
+</body>
 </body>
 
 </html>
