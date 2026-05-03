@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="ру">
+<html lang="ru">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ABRACADABRA — Школа фокусов для детей 7–13 лет</title>
   <meta name="description"
-    content="ABRACADABRA — школа фокусов для детей 7–13 лет. Уверенность, харизма и умение управлять вниманием. Запишитесь на бесплатный пробный урок.">
-  <meta name="theme-color" content="#000000" />
+    content="ABRACADABRA — первая школа фокусов в Ярославле для детей 7–13 лет от иллюзиониста Дмитрия Костюка. Фокусы, сцена, речь и уверенность в себе.">
+  <meta name="theme-color" content="#061421" />
 
   <!-- CSP: безопасные источники (добавлены mc.yandex.ru для Метрики) -->
   <meta http-equiv="Content-Security-Policy"
@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
     rel="stylesheet">
 
   <!-- Yandex.Metrika counter -->
@@ -29,40 +29,35 @@
       k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
     })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=104299107', 'ym');
 
-    ym(104299107, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", accurateTrackBounce: true, trackLinks: true });
+    ym(104299107, 'init', { ssr: true, webvisor: true, clickmap: true, accurateTrackBounce: true, trackLinks: true });
   </script>
-  <noscript>
-    <div><img src="https://mc.yandex.ru/watch/104299107" style="position:absolute; left:-9999px;" alt="" /></div>
-  </noscript>
   <!-- /Yandex.Metrika counter -->
 
   <style>
     :root {
-      --bg: #000;
-      /* Base colors */
-      --text: #eee;
-      --gold: #CBA135;
-      --gold2: #E7C776;
-      --gold3: #f5e6b8;
-      --panel: rgba(12, 12, 18, .75);
-      --card: rgba(18, 19, 26, .92);
-
-      /* Mapping old vars to new scheme (Black & Gold Re-skin) */
-      --black: #000000;
-      --navy: #12131a;
-      /* Deep Black/Gray */
-      --navy-2: #15161e;
-      /* Slightly lighter black */
+      --bg: #061421;
+      --bg-2: #020912;
+      --text: #f7f1e6;
+      --gold: #f0b63f;
+      --gold2: #d89120;
+      --gold3: #ffe6a3;
+      --copper: #b8651d;
+      --red: #c24a2f;
+      --blue: #1778a9;
+      --panel: rgba(5, 16, 28, .82);
+      --card: rgba(8, 23, 38, .92);
+      --black: #020912;
+      --navy: #061421;
+      --navy-2: #0a1d31;
       --ivory: var(--text);
       --bronze: var(--gold3);
-      --muted: #9EA6B8;
-      --glow: rgba(203, 161, 53, .15);
+      --muted: #b7c2d0;
+      --glow: rgba(240, 182, 63, .18);
 
       --r: 14px;
       --radius: var(--r);
       --radius-sm: 12px;
       --maxw: 1120px;
-      --field-h: 56px;
 
       --ff-head: 'Cinzel', serif;
       --ff-text: 'Inter', sans-serif;
@@ -84,14 +79,15 @@
 
     body {
       margin: 0;
-      background: #000;
+      background:
+        radial-gradient(circle at 78% 12%, rgba(240, 182, 63, .10), transparent 32%),
+        radial-gradient(circle at 16% 32%, rgba(23, 120, 169, .16), transparent 34%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
       color: var(--text);
       font-family: var(--ff-text);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
-      padding-bottom: 90px;
-      /* Space for sticky CTA */
     }
 
     body::after {
@@ -155,8 +151,8 @@
       z-index: 30;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      background: rgba(12, 12, 18, 0.85);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(3, 13, 24, 0.88);
+      border-bottom: 1px solid rgba(240, 182, 63, 0.18);
     }
 
     .topbar__row {
@@ -173,12 +169,51 @@
     }
 
     .brand img {
-      height: 60px;
-      width: auto;
+      height: 58px;
+      width: 58px;
       display: block;
-      object-fit: contain;
+      object-fit: cover;
+      border-radius: 14px;
       /* Glow effect for logo */
       filter: drop-shadow(0 0 8px rgba(203, 161, 53, 0.3));
+    }
+
+    .brand-name {
+      display: grid;
+      gap: 2px;
+      line-height: 1.1;
+    }
+
+    .brand-name strong {
+      font-family: var(--ff-head);
+      color: var(--gold3);
+      letter-spacing: .08em;
+      font-size: 16px;
+    }
+
+    .brand-name span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .mark-inline {
+      width: 54px;
+      height: 54px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid rgba(240, 182, 63, .34);
+      box-shadow: 0 0 20px rgba(240, 182, 63, .18);
+    }
+
+    .section-mark {
+      display: block;
+      width: 86px;
+      height: 58px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 0 auto 14px;
+      border: 1px solid rgba(240, 182, 63, .28);
     }
 
     .contacts {
@@ -193,16 +228,15 @@
       display: inline-grid;
       place-items: center;
       border-radius: 50%;
-      background: #000;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      /* Gold/Neutral border */
+      background: rgba(2, 9, 18, .88);
+      border: 1px solid rgba(240, 182, 63, 0.28);
       transition: .2s;
     }
 
     .contact-btn:hover {
-      background: #ffffff;
-      border-color: #ffffff;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      background: var(--gold);
+      border-color: var(--gold3);
+      box-shadow: 0 0 18px rgba(240, 182, 63, 0.38);
       transform: translateY(-1px);
     }
 
@@ -228,12 +262,11 @@
     /* HERO */
     .hero {
       position: relative;
-      padding: 96px 0 48px;
-      text-align: center;
+      padding: 92px 0 68px;
       overflow: hidden;
     }
 
-    .hero-video {
+    .hero-poster {
       position: absolute;
       top: 0;
       left: 0;
@@ -241,27 +274,62 @@
       height: 100%;
       object-fit: cover;
       z-index: 0;
-      opacity: 0.6;
-      /* Adjust visibility */
+      opacity: .18;
+      filter: saturate(1.2) contrast(1.05);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) 360px;
+      gap: 36px;
+      align-items: center;
+    }
+
+    @media (max-width:860px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
     }
 
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), #000);
+      background:
+        linear-gradient(90deg, rgba(2, 9, 18, .96) 0%, rgba(2, 9, 18, .74) 54%, rgba(2, 9, 18, .92) 100%),
+        linear-gradient(to bottom, rgba(2, 9, 18, .2), var(--bg-2));
       z-index: 1;
+    }
+
+    .hero-copy {
+      text-align: left;
+    }
+
+    @media (max-width:860px) {
+      .hero-copy {
+        text-align: center;
+      }
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold3);
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
       font-size: clamp(36px, 6.2vw, 64px);
       color: var(--gold);
-      text-shadow: 0 2px 30px rgba(203, 161, 53, .3)
+      text-shadow: 0 2px 30px rgba(240, 182, 63, .32)
     }
 
     .subtitle {
@@ -269,14 +337,61 @@
       color: var(--text);
       opacity: .9;
       max-width: 760px;
-      margin: 16px auto 28px
+      margin: 16px 0 28px
+    }
+
+    @media (max-width:860px) {
+      .subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
 
     .cta-row {
       display: flex;
       gap: 14px;
-      justify-content: center;
       flex-wrap: wrap
+    }
+
+    @media (max-width:860px) {
+      .cta-row {
+        justify-content: center;
+      }
+    }
+
+    .poster-frame {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(240, 182, 63, .42);
+      background: rgba(2, 9, 18, .72);
+      box-shadow: 0 26px 80px -36px rgba(240, 182, 63, .42);
+    }
+
+    .poster-frame img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .contact-strip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding: 18px;
+      border: 1px solid rgba(240, 182, 63, .22);
+      background: rgba(8, 23, 38, .76);
+      border-radius: var(--radius);
+    }
+
+    .contact-strip strong {
+      color: var(--gold3);
+      font-size: clamp(22px, 4vw, 34px);
+      font-family: var(--ff-head);
     }
 
     .btn {
@@ -284,7 +399,7 @@
       border: none;
       cursor: pointer;
       font-weight: 900;
-      letter-spacing: .01ем;
+      letter-spacing: .01em;
       text-align: center;
       padding: 18px 28px;
       border-radius: 999px;
@@ -306,9 +421,9 @@
     }
 
     .btn-ghost {
-      background: #12131a;
+      background: rgba(8, 23, 38, .82);
       color: #d7def0;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(240, 182, 63, 0.22);
       font-weight: 800;
       padding: 14px 20px;
     }
@@ -318,16 +433,10 @@
       box-shadow: 0 8px 24px -10px rgba(214, 179, 107, .18)
     }
 
-    /* GLOBAL GHOST HOVER EFFECT (Monochrome White) */
     .btn:hover,
     a.btn:hover,
-    button:hover,
-    .pack:hover,
-    .mcard:hover {
-      background-color: #ffffff !important;
-      color: #000000 !important;
-      border-color: #ffffff !important;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) !important;
+    button:hover {
+      box-shadow: 0 0 24px rgba(240, 182, 63, 0.34);
       filter: none;
       transform: translateY(-2px);
     }
@@ -358,47 +467,28 @@
       background: #050505;
     }
 
-    /* DEADLINE */
-    .deadline {
+    .hero-proof {
       margin-top: 18px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      justify-content: center;
       align-items: center;
     }
 
-    .left-seats {
+    @media (max-width:860px) {
+      .hero-proof {
+        justify-content: center;
+      }
+    }
+
+    .proof-pill {
       padding: 6px 10px;
-      border: 1px solid #3a2a10;
-      background: #15100a;
+      border: 1px solid rgba(240, 182, 63, .26);
+      background: rgba(21, 16, 10, .72);
       color: var(--gold);
       border-radius: 999px;
       font-weight: 800;
       font-size: 13px
-    }
-
-    .timer {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      font-weight: 800
-    }
-
-    .timer .tbox {
-      min-width: 54px;
-      text-align: center;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: #12131a;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .timer .label {
-      display: block;
-      color: #9fb0d0;
-      font-size: 10px;
-      margin-top: 4px
     }
 
     /* CARDS */
@@ -415,8 +505,8 @@
     }
 
     .card {
-      background: linear-gradient(180deg, #12131a 0%, #050505 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(10, 29, 49, .96) 0%, rgba(2, 9, 18, .96) 100%);
+      border: 1px solid rgba(240, 182, 63, 0.16);
       border-radius: var(--radius);
       padding: 22px;
       box-shadow: 0 10px 30px -14px rgba(0, 0, 0, .6);
@@ -425,22 +515,8 @@
 
     .card:hover {
       transform: translateY(-3px);
-      border-color: #ffffff;
-      background: #ffffff;
-      box-shadow: 0 10px 40px -10px rgba(255, 255, 255, 0.3);
-    }
-
-    .card:hover h3,
-    .card:hover p,
-    .card:hover div,
-    .card:hover span {
-      color: #000000 !important;
-      text-shadow: none !important;
-    }
-
-    .card:hover img {
-      filter: invert(0) !important;
-      opacity: 1 !important;
+      border-color: rgba(240, 182, 63, .52);
+      box-shadow: 0 18px 44px -24px rgba(240, 182, 63, .46);
     }
 
     .card h3 {
@@ -453,110 +529,58 @@
       color: #cfd6e6
     }
 
-    /* PRICING */
-    .pricing-grid {
+    /* INFO BLOCKS */
+    .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 18px
     }
 
     @media (max-width:900px) {
-      .pricing-grid {
+      .info-grid {
         grid-template-columns: 1fr
       }
     }
 
-    .price {
-      background: #12131a;
-      /* Site76 card bg */
-      border: 1px solid rgba(255, 255, 255, 0.07);
+    .info-panel {
+      background: linear-gradient(180deg, rgba(8, 23, 38, .96), rgba(2, 9, 18, .96));
+      border: 1px solid rgba(240, 182, 63, 0.18);
       border-radius: var(--radius);
       padding: 24px;
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
       gap: 24px;
       transition: all 0.3s ease;
     }
 
-    .price:hover {
-      background: #ffffff;
-      border-color: #ffffff;
-      box-shadow: 0 10px 40px -10px rgba(255, 255, 255, 0.3);
+    .info-panel:hover {
+      border-color: rgba(240, 182, 63, .52);
+      box-shadow: 0 18px 44px -24px rgba(240, 182, 63, .42);
       transform: translateY(-3px);
     }
 
-    .price:hover h3,
-    .price:hover .old,
-    .price:hover .subnote,
-    .price:hover li {
-      color: #000000 !important;
-      text-shadow: none !important;
-    }
-
-    .price:hover .new {
-      color: #000000 !important;
-      /* Keep value visible */
-    }
-
-    .price:hover .badge {
-      background: #000;
-      color: #fff;
-      border-color: #000;
-    }
-
-    @media (max-width:900px) {
-      .price {
-        grid-template-columns: 1fr
-      }
-    }
-
-    .price h3 {
+    .info-panel h3 {
       font-size: 30px;
       color: var(--ivory);
       text-align: center
     }
 
-    .discount {
+    .tag-row {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
       margin-bottom: 6px
     }
 
-    .discount .badge {
+    .tag-row .badge {
       display: inline-block;
       padding: 6px 10px;
-      border: 1px solid #3a2a10;
-      background: #15100a;
+      border: 1px solid rgba(240, 182, 63, .28);
+      background: rgba(21, 16, 10, .74);
       color: var(--gold);
       border-radius: 999px;
       font-weight: 800;
       font-size: 12px
-    }
-
-    .amount {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      margin: .3em 0 .6em
-    }
-
-    .amount .new {
-      font-size: 44px;
-      color: var(--gold);
-      font-weight: 800
-    }
-
-    .amount .old {
-      font-size: 18px;
-      color: #9fb0d0;
-      font-weight: 400;
-      text-decoration: line-through
-    }
-
-    .currency {
-      margin-left: 4px;
-      font-weight: 600
     }
 
     .subnote {
@@ -574,80 +598,9 @@
       color: #d7def0
     }
 
-    .video-card {
-      background: #12131a;
-      /* Site76 card bg */
-      border: 1px solid rgba(255, 255, 255, 0.07);
-
-      border-radius: var(--radius);
-      padding: 16px
-    }
-
-    .video-card video {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      display: block
-    }
-
-    /* FORM */
-    .form {
-      background: #12131a;
-      /* Site76 card bg */
-      border: 1px solid rgba(255, 255, 255, 0.07);
-
-      border-radius: var(--radius);
-      padding: 22px;
-      max-width: 560px;
-      margin: 0 auto;
-    }
-
-    .form .row {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: 1fr
-    }
-
-    @media (min-width:720px) {
-      .form .row {
-        grid-template-columns: 1fr 1fr
-      }
-    }
-
-    .field {
-      display: grid;
-      gap: 8px
-    }
-
-    .label {
-      color: #c9d1e6;
-      font-size: 14px;
-      font-weight: 700
-    }
-
-    .input,
-    .textarea {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: var(--field-h);
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: #050505;
-      color: #e9ecf4;
-      outline: none;
-      transition: border-color .2s, box-shadow .2s, transform .12s;
-      font-size: 16px;
-      line-height: 1;
-      width: 100%;
-      /* Ensure width is explicitly 100% */
-    }
-
     /* === ICON STYLES (Moved to Head per User Request) === */
     .icon-svg,
-    .icon-svg-inline,
-    .icon-nav {
+    .icon-svg-inline {
       object-fit: contain;
       filter: invert(1) grayscale(1) brightness(2) contrast(1.2);
       opacity: 0.9;
@@ -685,166 +638,6 @@
     }
 
     /* Specific fix for hero badges */
-
-    /* TAB BAR */
-    .tab-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background: rgba(12, 12, 18, 0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      /* Gold/Neutral border */
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      z-index: 1000;
-      padding-bottom: env(safe-area-inset-bottom);
-    }
-
-    .tab-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: #6e7688;
-      font-size: 10px;
-      flex: 1;
-      transition: color .3s;
-    }
-
-    .tab-item span {
-      margin-bottom: 2px;
-      display: block;
-      transition: transform .2s;
-    }
-
-    .tab-item.active {
-      color: var(--gold);
-    }
-
-    .tab-item.active span {
-      transform: translateY(-2px);
-      text-shadow: 0 0 12px rgba(214, 180, 107, 0.3);
-    }
-
-    .icon-nav {
-      width: 24px;
-      height: 24px;
-      filter: invert(0.5) grayscale(1);
-      opacity: 0.6;
-      mix-blend-mode: normal;
-    }
-
-    .tab-item.active .icon-nav {
-      filter: invert(1) grayscale(1) brightness(2) contrast(1.2);
-      opacity: 1;
-      mix-blend-mode: screen;
-    }
-
-
-    .textarea {
-      min-height: 128px;
-      height: auto;
-      resize: vertical;
-      line-height: 1.45
-    }
-
-    .input:focus,
-    .textarea:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 4px var(--glow);
-      transform: translateY(-1px)
-    }
-
-    .error {
-      display: none;
-      color: #ffb4b4;
-      font-size: 12px;
-      margin-top: 6px
-    }
-
-    .invalid .input,
-    .invalid .textarea {
-      border-color: #c25;
-      box-shadow: 0 0 0 4px rgba(204, 34, 85, .14)
-    }
-
-    .invalid .error {
-      display: block
-    }
-
-    .consent {
-      margin: 10px 0 0;
-      font-size: 12px;
-      color: #9fb0d0;
-      text-align: center
-    }
-
-    /* MODALS */
-    .modal {
-      position: fixed;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      background: rgba(0, 0, 0, .64);
-      z-index: 60;
-      padding: 16px
-    }
-
-    .modal[hidden] {
-      display: none
-    }
-
-    .modal__card {
-      position: relative;
-      width: min(96vw, 960px);
-      max-height: 86vh;
-      overflow: auto;
-      background: #12131a;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 20px;
-      padding: clamp(18px, 2.2vw, 28px);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, .55);
-    }
-
-    .modal__card::before {
-      content: "";
-      position: sticky;
-      top: 0;
-      display: block;
-      height: 3px;
-      margin: -28px -28px 20px;
-      background: linear-gradient(90deg, transparent 0%, var(--gold) 15%, var(--bronze) 50%, var(--gold) 85%, transparent 100%);
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-    }
-
-    .modal__spacer {
-      height: 14px
-    }
-
-    .modal__close {
-      all: unset;
-      float: right;
-      cursor: pointer;
-      font-size: 18px;
-      padding: 8px 12px;
-      border-radius: 10px;
-      background: #0c1326;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #e9ecf4;
-    }
-
-    .modal h3 {
-      font-family: "Cormorant Garamond", serif;
-      color: var(--ivory);
-      margin: 0 0 12px
-    }
 
     /* ABOUT */
     .about-wrap {
@@ -1104,55 +897,58 @@
     <div class="container topbar__row">
       <div class="brand">
         <!-- ЛОГО грузим сразу -->
-        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra" loading="eager">
+        <img src="assets/logo/abracadabra-a-mark.png" alt="Abracadabra" loading="eager">
+        <div class="brand-name">
+          <strong>ABRACADABRA</strong>
+          <span>первая школа фокусов в Ярославле</span>
+        </div>
       </div>
 
       <a class="contact-btn contact-btn--phone" href="tel:+79092763386" aria-label="Позвонить">
         <img src="assets/icons/phone.png" alt="Телефон" loading="eager">
       </a>
-      <!-- BURGER REMOVED -->
-      </nav>
     </div>
   </header>
 
   <!-- HERO -->
   <!-- HERO SECTOR -->
   <section class="hero" data-reveal>
-    <video autoplay muted loop playsinline class="hero-video">
-      <source src="846823768806167717.mov" type="video/quicktime">
-      <source src="assets/video/bg.mp4" type="video/mp4">
-      <!-- Fallback or user can rename file -->
-    </video>
+    <img class="hero-poster" src="assets/images/abracadabra-poster.png" alt="" aria-hidden="true">
     <div class="hero-overlay"></div>
 
     <div class="container hero-content">
-      <div class="brand center" style="justify-content:center; margin-bottom:24px">
-        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra" loading="eager">
-      </div>
-      <h1>Школа фокусов <br /><span style="color:var(--text)">для детей 7–13 лет</span></h1>
-      <p class="subtitle">Мы не просто учим трюкам. Мы превращаем застенчивость в уверенность, а робкие слова — в
-        аплодисменты зала.</p>
+      <div class="hero-copy">
+        <div class="hero-kicker">Первая в Ярославле</div>
+        <div class="brand" style="margin-bottom:24px">
+          <img src="assets/logo/abracadabra-a-mark.png" alt="Abracadabra" loading="eager">
+          <div class="brand-name">
+            <strong>ABRACADABRA</strong>
+            <span>школа фокусов Дмитрия Костюка</span>
+          </div>
+        </div>
+        <h1>Школа фокусов<br><span style="color:var(--text)">для детей 7–13 лет</span></h1>
+        <p class="subtitle">Информационный сайт о школе, где фокусы становятся инструментом уверенности, речи, внимания и сценической свободы ребёнка.</p>
 
-      <div class="cta-row">
-        <a href="#signup" class="btn btn-primary">Записать ребёнка на пробный урок бесплатно</a>
-        <a href="#program" class="btn btn-ghost">Увидеть программу занятий</a>
-      </div>
+        <div class="cta-row">
+          <a href="tel:+79092763386" class="btn btn-primary">Позвонить: +7 909 276-33-86</a>
+          <a href="#program" class="btn btn-ghost">Увидеть формат занятий</a>
+        </div>
 
-      <div class="deadline">
-        <div class="left-seats">Осталось 7 мест</div>
-        <div class="timer" id="timer">
-          <div class="tbox"><span id="d">3</span><span class="label">дн</span></div>
-          <div class="tbox"><span id="h">00</span><span class="label">час</span></div>
-          <div class="tbox"><span id="m">00</span><span class="label">мин</span></div>
-          <div class="tbox"><span id="s">00</span><span class="label">сек</span></div>
+        <div class="hero-proof">
+          <span class="proof-pill">Группа до 10 детей</span>
+          <span class="proof-pill">1 занятие в неделю</span>
+          <span class="proof-pill">Мини-шоу для родителей</span>
+        </div>
+
+        <div class="hero-badges" style="margin-top:18px">
+          <span><img src="assets/icons/magician.png" class="icon-svg" style="width:16px;"> Артистизм</span>
+          <span><img src="assets/icons/smoke.png" class="icon-svg" style="width:16px;"> Уверенная речь</span>
+          <span class="icon-wrap"><img src="assets/icons/book.png" class="icon-svg" style="width:16px;"> Игровой дневник</span>
         </div>
       </div>
 
-      <div class="hero-badges" style="margin-top:18px">
-        <span><img src="assets/icons/magician.png" class="icon-svg" style="width:16px;"> Группа до 10 детей</span>
-        <span><img src="assets/icons/smoke.png" class="icon-svg" style="width:16px;"> Сцена и уверенная речь</span>
-        <span class="icon-wrap"><img src="assets/icons/book.png" class="icon-svg" style="width:16px;"> Уникальный
-          AR-дневник</span>
+      <div class="poster-frame">
+        <img src="assets/logo/abracadabra-a-mark.png" alt="Логотип школы фокусов Абракадабра" loading="eager">
       </div>
     </div>
   </section>
@@ -1160,6 +956,7 @@
   <!-- WHY -->
   <section id="why" data-reveal>
     <div class="container">
+      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
       <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:22px;">
         Почему не футбол, музыка или «ещё один кружок»?
       </h2>
@@ -1200,6 +997,7 @@
   <!-- PROGRAM -->
   <section id="program" data-reveal>
     <div class="container">
+      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
       <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:22px;">
         Как это устроено — коротко и по делу
       </h2>
@@ -1224,54 +1022,41 @@
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section id="price" data-reveal>
+  <!-- FORMAT -->
+  <section id="format" data-reveal>
     <div class="container">
-      <div class="pricing-grid">
+      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
+      <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:22px;">
+        Что получает ребёнок
+      </h2>
+      <div class="info-grid">
 
-        <div class="price" style="grid-template-columns:1fr; text-align:center;">
+        <div class="info-panel" style="text-align:center;">
           <div>
-            <h3>Месяц</h3>
-            <div class="discount"><span class="badge">−25%</span></div>
-            <div class="amount">
-              <div class="new"><span class="value">2&nbsp;990</span><span class="currency">₽</span></div>
-              <div class="old">3&nbsp;990&nbsp;₽</div>
-            </div>
-            <p class="subnote">Навык, который останется на всю жизнь.</p>
+            <h3>Сценическая уверенность</h3>
+            <div class="tag-row"><span class="badge">речь</span><span class="badge">пауза</span><span class="badge">внимание</span></div>
+            <p class="subnote">Ребёнок учится говорить спокойно, смотреть в зал и не теряться, когда на него смотрят.</p>
             <ul class="bullets" style="margin-top:16px; display:inline-block; text-align:left;">
-              <li>✔️ 4 занятия по 2 академических часа</li>
-              <li>✔️ AR-дневник с наклейками и достижениями</li>
-              <li>✔️ Подарок-реквизит в конце месяца</li>
-              <li>✔️ Мини-шоу для родителей</li>
+              <li>✔️ упражнения на речь и подачу</li>
+              <li>✔️ работа с вниманием зрителей</li>
+              <li>✔️ маленькие выступления на каждом занятии</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-panel" style="text-align:center;">
+          <div>
+            <h3>Магия как игра</h3>
+            <div class="tag-row"><span class="badge">фокусы</span><span class="badge">дневник</span><span class="badge">ачивки</span></div>
+            <p class="subnote">Фокусы становятся понятным инструментом: ребёнок видит прогресс и хочет повторять.</p>
+            <ul class="bullets" style="margin-top:16px; display:inline-block; text-align:left;">
+              <li>✔️ Дневник Волшебника</li>
+              <li>✔️ секретные конверты и задания</li>
+              <li>✔️ мини-шоу для родителей</li>
             </ul>
             <div class="center" style="margin-top:18px">
-              <a href="#signup" class="btn btn-primary">Записать ребёнка на пробный урок бесплатно</a>
+              <a href="#about" class="btn btn-ghost">Узнать о школе</a>
             </div>
-          </div>
-        </div>
-
-        <div class="price">
-          <div>
-            <h3>Полгода</h3>
-            <div class="discount"><span class="badge">−25%</span></div>
-            <div class="amount">
-              <div class="new"><span class="value">14&nbsp;950</span><span class="currency">₽</span></div>
-              <div class="old">18&nbsp;690&nbsp;₽</div>
-            </div>
-            <p class="subnote">Экономия 3&nbsp;740&nbsp;₽. Рассрочка на <b>6 месяцев</b> без переплат.</p>
-            <ul class="bullets" style="margin-top:16px">
-              <li>✔️ Всё, что в месячном тарифе</li>
-              <li>✔️ Приоритет при наборе группы</li>
-              <li>✔️ Фиксация цены и места</li>
-            </ul>
-            <div class="center" style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
-              <a href="#signup" class="btn btn-primary">Выбрать полугодовой абонемент</a>
-              <!-- Installment button removed -->
-            </div>
-          </div>
-          <div class="video-card" style="display:none"> <!-- Hidden per request (Video at start only) -->
-            <h3 class="center" style="margin:0 0 8px; color:var(--gold); font-size:22px">Почему именно сейчас?</h3>
-            <p class="center" style="color:#cfd6e6; margin:0">Пока действует скидка −25% и в группе осталось 7 мест.</p>
           </div>
         </div>
 
@@ -1279,101 +1064,64 @@
     </div>
   </section>
 
-  <!-- SIGNUP -->
-  <section id="signup" data-reveal>
+  <!-- CONTACT -->
+  <section id="contact" data-reveal>
     <div class="container">
+      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
       <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:12px;">
-        Оставьте заявку сегодня — группа ограничена
+        Связь со школой
       </h2>
-      <p class="center" style="color:#cfd6e6; margin-bottom:22px">Пробный урок бесплатный. Забронируйте место прямо
-        сейчас.</p>
+      <p class="center" style="color:#cfd6e6; margin-bottom:22px">Пока сайт работает как визитка. Для вопросов о школе, формате занятий и запуске группы можно связаться напрямую.</p>
 
-      <form class="form" id="leadForm" novalidate autocomplete="on">
-        <div class="row">
-          <div class="field" id="f-parent">
-            <label class="label" for="parentName">Имя родителя</label>
-            <input class="input" id="parentName" name="parentName" required placeholder="Ваше имя" autocomplete="name"
-              maxlength="60">
-            <div class="error">Укажите имя.</div>
-          </div>
-          <div class="field" id="f-phone">
-            <label class="label" for="phone">Телефон</label>
-            <input class="input" id="phone" name="phone" type="tel" required placeholder="+7 (___) ___-__-__"
-              inputmode="tel">
-            <div class="error">Введите телефон в формате +7 (XXX) XXX-XX-XX.</div>
-          </div>
-          <div class="field" id="f-age">
-            <label class="label" for="age">Возраст ребёнка</label>
-            <input class="input" id="age" name="age" type="number" min="7" max="13" required placeholder="7–13"
-              inputmode="numeric">
-            <div class="error">Возраст от 7 до 13.</div>
-          </div>
-          <div class="field" id="f-email">
-            <label class="label" for="email">Email (по желанию)</label>
-            <input class="input" id="email" name="email" type="email" placeholder="name@mail.ru" autocomplete="email"
-              maxlength="100">
-            <div class="error">Неверный email.</div>
-          </div>
-        </div>
-
-        <!-- honeypot от ботов -->
-        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off"
-          style="position:absolute;left:-9999px;height:0;width:0;opacity:0" aria-hidden="true">
-
-        <div class="center" style="margin-top:10px">
-          <button class="btn btn-primary" type="submit" id="submitBtn">Забронировать место</button>
-        </div>
-        <div class="consent">Нажимая «Отправить заявку», вы соглашаетесь на обработку персональных данных.</div>
-      </form>
-
-      <!-- Спасибо -->
-      <div id="thanksModal" class="modal" hidden>
-        <div class="modal__card center">
-          <div class="modal__spacer"></div>
-          <button class="modal__close" id="closeThanks" aria-label="Закрыть">✕</button>
-          <h3 style="color:var(--ivory); font-size:28px; margin:6px 0 4px">Спасибо! Заявка отправлена</h3>
-          <p style="color:#cfd6e6">Мы свяжемся с вами в ближайшее время.</p>
+      <div class="contact-strip">
+        <img class="mark-inline" src="assets/logo/abracadabra-a-mark.png" alt="">
+        <div class="center">
+          <div style="color:var(--muted); font-weight:800; margin-bottom:4px">Телефон для связи</div>
+          <a href="tel:+79092763386"><strong>+7 909 276-33-86</strong></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    </div>
-    </section>
-
-    <!-- NEW ABOUT SECTION (Integrated) -->
-    <section id="about" class="container">
-      <h3 class="about-title">Школа «Абракадабра» — академия магии</h3>
+  <!-- ABOUT -->
+  <section id="about" class="container" data-reveal>
+      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
+      <h3 class="about-title">Создатель школы — Дмитрий Костюк</h3>
 
       <div class="about-wrap">
         <img class="about-photo" src="assets/photos/IMG_0793.JPG" alt="Дмитрий Костюк" loading="lazy">
         <div class="about-text">
           <p class="about-lead">
-            В Ярославле появилось место, где дети становятся настоящими волшебниками.
-            Школа создана иллюзионистом Дмитрием Костюком — автором театрального шоу «Секрет».
+            Дмитрий Костюк — профессиональный иллюзионист с многолетним опытом, автор театрального шоу «Секрет» и
+            открыватель первой школы фокусов в Ярославле.
           </p>
 
           <div class="about-sep"></div>
 
+          <p class="about-par">
+            Дмитрий создаёт иллюзионные шоу, ментализм и микромагию, где зритель становится соучастником волшебства.
+            В школе этот сценический опыт переведён на детский язык: через фокусы ребёнок учится говорить, держать паузу,
+            работать с вниманием и уверенно выходить к людям.
+          </p>
+
           <ul class="about-list">
             <li><span style="width:24px"><img src="assets/icons/wand.png" class="icon-svg"></span>
-              <div>уверенность в себе;</div>
+              <div>опыт выступлений на частных мероприятиях, сцене и корпоративных событиях;</div>
             </li>
             <li><span style="width:24px"><img src="assets/icons/smoke.png" class="icon-svg"></span>
-              <div>навыки речи и артистизма;</div>
+              <div>понимание, как управлять вниманием зала и создавать эмоцию;</div>
             </li>
             <li><span style="width:24px"><img src="assets/icons/magic-ball.png" class="icon-svg"></span>
-              <div>умение работать в команде;</div>
+              <div>авторский подход: фокусы, сцена, речь, харизма и уверенность в одном формате;</div>
             </li>
             <li><span style="width:24px"><img src="assets/icons/magician.png" class="icon-svg"></span>
-              <div>выступления перед публикой.</div>
+              <div>задача школы — не просто научить трюкам, а раскрыть ребёнка как маленького артиста.</div>
             </li>
           </ul>
 
           <p class="about-par">
-            Обучение построено как игра: Дневник Волшебника, секретные конверты, ачивки и сцена.
+            «Абракадабра» — это не кружок ради реквизита. Это школа, где магия становится способом вырасти:
+            в речи, смелости, самоощущении и умении быть в центре внимания.
           </p>
           <div class="about-sep"></div>
           <p class="about-slogan">«Абракадабра» — школа, где ребёнок становится артистом.</p>
@@ -1381,8 +1129,9 @@
       </div>
     </section>
 
-    <!-- NEW FAQ SECTION (Integrated) -->
-    <section id="faq" class="container" style="padding-top:0;">
+    <!-- FAQ -->
+    <section id="faq" class="container" style="padding-top:0;" data-reveal>
+      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
       <h3 class="center" style="font-size: clamp(24px,2.6vw,30px); margin-bottom: 24px;">Частые вопросы</h3>
       <div class="faq-list">
 
@@ -1396,21 +1145,21 @@
             </svg>
           </summary>
           <div class="faq-content">
-            <p>Начинаем с простых шагов без давления. Через месяц — уверенное выступление.</p>
+            <p>Начинаем с простых шагов без давления: сначала внимание, контакт и простые действия, потом сцена и выступление.</p>
           </div>
         </details>
 
-        <!-- 2. If not liked -->
+        <!-- 2. How to understand -->
         <details class="faq-item">
           <summary>
             <span class="qicon"><img src="assets/icons/ticket.png" alt="Icon"></span>
-            <span class="qtext">Если не понравится?</span>
+            <span class="qtext">Кому подходит школа?</span>
             <svg class="chev" viewBox="0 0 24 24">
               <path d="M7 10l5 5 5-5" stroke="currentColor" />
             </svg>
           </summary>
           <div class="faq-content">
-            <p>Есть бесплатный пробный урок. Вы ничего не теряете.</p>
+            <p>Детям 7–13 лет, которым интересны фокусы, сцена, выступления, общение и развитие уверенности.</p>
           </div>
         </details>
 
@@ -1459,11 +1208,13 @@
       </div>
     </section>
 
+  <!-- FOOTER -->
+  <footer>
     <div class="container foot-row">
       <div class="foot-brand">
         <!-- ЛОГО в подвале тоже сразу -->
-        <img src="assets/logo/abracadabra-badge.png" alt="Abracadabra" loading="eager">
-        <div class="foot-phrase">Пусть ваш ребёнок поверит в чудо</div>
+        <img src="assets/logo/abracadabra-a-mark.png" alt="Abracadabra" loading="eager">
+        <div class="foot-phrase">Первая школа фокусов в Ярославле</div>
       </div>
 
       <div class="contacts">
@@ -1476,103 +1227,6 @@
     </div>
   </footer>
 
-  <!-- MODALS REMOVED -->
-
-  <!-- STICKY BOTTOM CTA for Mini App -->
-  <div class="sticky-cta">
-    <a href="#signup" class="btn btn-primary" style="width:100%; box-shadow:0 -4px 20px rgba(0,0,0,0.5);">Записать
-      ребёнка</a>
-  </div>
-
-  <style>
-    .sticky-cta {
-      position: fixed;
-      bottom: 90px;
-      /* Moved up to avoid overlap with Tab Bar */
-      left: 20px;
-      right: 20px;
-      z-index: 90;
-      animation: slideUp 0.8s ease-out 1s both;
-    }
-
-    @keyframes slideUp {
-      from {
-        transform: translateY(150%);
-      }
-
-      to {
-        transform: translateY(0);
-      }
-    }
-
-    /* Pulse animation for primary buttons */
-    .btn-primary {
-      animation: pulse 3s infinite;
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(203, 161, 53, 0.4);
-      }
-
-      70% {
-        box-shadow: 0 0 0 10px rgba(203, 161, 53, 0);
-      }
-
-      100% {
-        box-shadow: 0 0 0 0 rgba(203, 161, 53, 0);
-      }
-    }
-
-    /* TAB BAR */
-    .tab-bar {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 92%;
-      max-width: 400px;
-      background: rgba(10, 10, 15, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      z-index: 999;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .tab-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: #6e7688;
-      font-size: 10px;
-      flex: 1;
-      transition: color .3s;
-    }
-
-    .tab-item span {
-      font-size: 22px;
-      margin-bottom: 2px;
-      display: block;
-      transition: transform .2s;
-    }
-
-    .tab-item.active {
-      color: var(--gold);
-    }
-
-    .tab-item.active span {
-      transform: translateY(-2px);
-      text-shadow: 0 0 12px rgba(214, 180, 107, 0.3);
-    }
-  </style>
-
   <script>
     /* reveal */
     (function () {
@@ -1581,151 +1235,6 @@
           es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } })
         }, { threshold: .18 });
         document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
-      }
-    })();
-
-    /* дедлайн (3 дня с момента захода) */
-    (function () {
-      const d = document.getElementById('d'), h = document.getElementById('h'),
-        m = document.getElementById('m'), s = document.getElementById('s');
-      const deadline = Date.now() + 3 * 24 * 60 * 60 * 1000;
-      function pad(n) { return String(n).padStart(2, '0') }
-      function tick() {
-        const diff = deadline - Date.now();
-        if (diff <= 0) { d.textContent = '0'; h.textContent = '00'; m.textContent = '00'; s.textContent = '00'; return; }
-        const dd = Math.floor(diff / 86400000);
-        const hh = Math.floor((diff % 86400000) / 3600000);
-        const mm = Math.floor((diff % 3600000) / 60000);
-        const ss = Math.floor((diff % 60000) / 1000);
-        d.textContent = dd; h.textContent = pad(hh); m.textContent = pad(mm); s.textContent = pad(ss);
-        requestAnimationFrame(tick);
-      }
-      tick();
-    })();
-
-    /* Маска телефона */
-    document.addEventListener('input', (e) => {
-      if (e.target.id === 'phone') {
-        let v = e.target.value.replace(/\D/g, '');
-        if (v.startsWith('8')) v = '7' + v.slice(1);
-        if (!v.startsWith('7')) v = '7' + v;
-        v = v.slice(0, 11);
-        let out = '+7';
-        if (v.length > 1) { out += ' (' + v.slice(1, 4).padEnd(3, '_') + ')'; }
-        if (v.length > 4) { out += ' ' + v.slice(4, 7).padEnd(3, '_'); }
-        if (v.length > 7) { out += '-' + v.slice(7, 9).padEnd(2, '_'); }
-        if (v.length > 9) { out += '-' + v.slice(9, 11).padEnd(2, '_'); }
-        e.target.value = out;
-      }
-    });
-
-    /* Валидация + отправка формы */
-    function setInvalid(id, cond) { const f = document.getElementById(id); cond ? f.classList.add('invalid') : f.classList.remove('invalid'); }
-    function validPhone(v) { return /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(v); }
-
-    async function postJSON(url, data, timeout = 12000) {
-      const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), timeout);
-      try {
-        const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), signal: ctrl.signal, credentials: 'omit' });
-        clearTimeout(t); return r.ok;
-      } catch (e) { clearTimeout(t); return false; }
-    }
-
-    (function () {
-      const form = document.getElementById('leadForm');
-      const modal = document.getElementById('thanksModal');
-      const closeBtn = document.getElementById('closeThanks');
-      const submitBtn = document.getElementById('submitBtn');
-
-      // если страница открыта не на Vercel — бьём в абсолютный URL
-      const API_BASE = (location.hostname.endsWith('vercel.app') || location.hostname === 'localhost')
-        ? ''
-        : 'https://magic-school-eight.vercel.app';
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (submitBtn.disabled) return;
-
-        const parent = document.getElementById('parentName').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const age = document.getElementById('age').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const website = document.getElementById('website').value.trim(); // honeypot
-
-        setInvalid('f-parent', parent.length < 2);
-        setInvalid('f-phone', !validPhone(phone));
-        const ageNum = Number(age);
-        setInvalid('f-age', !(ageNum >= 7 && ageNum <= 13));
-        setInvalid('f-email', (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)));
-
-        if (document.querySelector('.invalid')) return;
-
-        submitBtn.disabled = true;
-
-        // Telegram WebApp Data Sending
-        const tg = window.Telegram.WebApp;
-        const data = {
-          action: 'booking_school',
-          data: {
-            name: parent,
-            phone: phone,
-            course: `Возраст: ${age} лет` + (email ? `, Email: ${email}` : '')
-          }
-        };
-
-        if (tg.initDataUnsafe && tg.sendData) {
-          tg.sendData(JSON.stringify(data));
-          // Telegram will close the webview after sendData, so we don't strictly need to show modal, 
-          // but if it doesn't close immediately or for UX:
-          // Actually sendData closes it. 
-          // But for local testing without TG:
-        } else {
-          console.log("Mock Send:", data);
-          modal.hidden = false; form.reset();
-        }
-
-        submitBtn.disabled = false;
-      });
-
-      // закрытие "спасибо"
-      closeBtn?.addEventListener('click', () => modal.hidden = true);
-      modal?.addEventListener('click', (e) => { if (e.target === modal) modal.hidden = true; });
-    })();
-
-    /* МОДАЛКИ УДАЛЕНЫ */
-    (function () {
-      const form = document.getElementById('leadForm');
-    })(); // Closing bracket added to prevent errors
-  </script>
-
-  <!-- TAB BAR -->
-  <nav class="tab-bar">
-    <a href="/" class="tab-item">
-      <span><img src="assets/icons/ticket.png" class="icon-nav" alt="Афиша"></span>
-      Афиша
-    </a>
-    <a href="/private" class="tab-item">
-      <span><img src="assets/icons/magician.png" class="icon-nav" alt="Частные"></span>
-      Частные
-    </a>
-    <div class="tab-item active">
-      <span><img src="assets/icons/book.png" class="icon-nav" alt="Школа"></span>
-      Школа
-    </div>
-  </nav>
-
-  <script>
-    // Smart Router: Adjusts tab-bar links for GitHub Pages vs Localhost
-    (function () {
-      const isGithub = window.location.hostname.includes('github.io');
-      if (isGithub) {
-        const links = document.querySelectorAll('.tab-bar a');
-        links.forEach(link => {
-          const href = link.getAttribute('href');
-          if (href === '/') link.href = 'https://demonnikko.github.io/botosconcert/';
-          if (href === '/private') link.href = 'https://demonnikko.github.io/Site76/';
-          if (href === '/school') link.href = 'https://demonnikko.github.io/Magic-School/';
-        });
       }
     })();
   </script>
@@ -1850,7 +1359,6 @@
       }
     }
   </style>
-</body>
 </body>
 
 </html>
