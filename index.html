@@ -6,21 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ABRACADABRA — Школа фокусов для детей 7–13 лет</title>
   <meta name="description"
-    content="ABRACADABRA — первая школа фокусов в Ярославле для детей 7–13 лет от иллюзиониста Дмитрия Костюка. Фокусы, сцена, речь и уверенность в себе.">
-  <meta name="theme-color" content="#061421" />
+    content="ABRACADABRA — первая школа фокусов в Ярославле для детей 7–13 лет от иллюзиониста Дмитрия Костюка.">
 
-  <!-- CSP: безопасные источники (добавлены mc.yandex.ru для Метрики) -->
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self' https://magic-school-eight.vercel.app; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; connect-src 'self' https://mc.yandex.ru; frame-ancestors 'self'; base-uri 'self'">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
 
-  <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
     (function (m, e, t, r, i, k, a) {
       m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
@@ -28,863 +24,719 @@
       for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
       k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
     })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=104299107', 'ym');
-
     ym(104299107, 'init', { ssr: true, webvisor: true, clickmap: true, accurateTrackBounce: true, trackLinks: true });
   </script>
-  <!-- /Yandex.Metrika counter -->
 
   <style>
     :root {
-      --bg: #061421;
-      --bg-2: #020912;
-      --text: #f7f1e6;
-      --gold: #f0b63f;
-      --gold2: #d89120;
-      --gold3: #ffe6a3;
-      --copper: #b8651d;
-      --red: #c24a2f;
-      --blue: #1778a9;
-      --panel: rgba(5, 16, 28, .82);
-      --card: rgba(8, 23, 38, .92);
-      --black: #020912;
-      --navy: #061421;
-      --navy-2: #0a1d31;
-      --ivory: var(--text);
-      --bronze: var(--gold3);
-      --muted: #b7c2d0;
-      --glow: rgba(240, 182, 63, .18);
-
-      --r: 14px;
-      --radius: var(--r);
-      --radius-sm: 12px;
-      --maxw: 1120px;
-
+      --bg: #03070b;
+      --bg-panel: rgba(11, 22, 34, 0.4);
+      --text: #e8e2d5;
+      --text-soft: #a8b3c8;
+      --gold: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-dark: #aa8620;
+      --border: rgba(212, 175, 55, 0.15);
+      --border-hover: rgba(212, 175, 55, 0.4);
+      --maxw: 880px;
       --ff-head: 'Cinzel', serif;
       --ff-text: 'Inter', sans-serif;
     }
 
-    * {
-      box-sizing: border-box
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
       scroll-behavior: smooth;
-      overflow-x: hidden
-    }
-
-    html,
-    body {
-      height: 100%
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
-      margin: 0;
-      background:
-        radial-gradient(circle at 78% 12%, rgba(240, 182, 63, .10), transparent 32%),
-        radial-gradient(circle at 16% 32%, rgba(23, 120, 169, .16), transparent 34%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      background: var(--bg);
       color: var(--text);
       font-family: var(--ff-text);
+      font-size: 16px;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
       overflow-x: hidden;
     }
 
-    body::after {
+    /* Ambient Glow Background Effect */
+    body::before {
       content: '';
       position: fixed;
-      inset: 0;
-      z-index: 9997;
+      top: -20vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
+      z-index: -1;
       pointer-events: none;
-      opacity: .035;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none
+    h2 {
+      font-family: var(--ff-head);
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.03em;
+      margin-bottom: 16px;
+      text-transform: uppercase;
     }
 
-    h1,
-    h2,
+    h2 .highlight {
+      color: var(--gold-light);
+      display: block;
+    }
+
     h3 {
       font-family: var(--ff-head);
-      line-height: 1.1;
-      margin: 0 0 .6em;
-      letter-spacing: .02em
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
     }
 
     p {
-      margin: 0 0 1em;
-      line-height: 1.6
+      color: var(--text-soft);
+      font-size: 15px;
+      font-weight: 300;
+      max-width: 600px;
     }
+
+    a { color: var(--gold); text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
     .container {
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 0 20px
+      padding: 0 24px;
+      position: relative;
     }
 
-    .center {
-      text-align: center
-    }
-
-    section {
-      padding: 72px 0
-    }
-
-    @media (max-width:640px) {
-      section {
-        padding: 52px 0
-      }
-
-      .container {
-        padding: 0 16px
-      }
-    }
-
-    /* HEADER */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 30;
+    /* ── Header ── */
+    .header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(3, 7, 11, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      background: rgba(3, 13, 24, 0.88);
-      border-bottom: 1px solid rgba(240, 182, 63, 0.18);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      transition: background 0.3s;
     }
 
-    .topbar__row {
+    .header .container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 80px
+      height: 70px;
     }
 
-    .brand {
+    .header-logo {
       display: flex;
       align-items: center;
-      gap: 12px
-    }
-
-    .brand img {
-      height: 58px;
-      width: 58px;
-      display: block;
-      object-fit: cover;
-      border-radius: 14px;
-      /* Glow effect for logo */
-      filter: drop-shadow(0 0 8px rgba(203, 161, 53, 0.3));
-    }
-
-    .brand-name {
-      display: grid;
-      gap: 2px;
-      line-height: 1.1;
-    }
-
-    .brand-name strong {
-      font-family: var(--ff-head);
-      color: var(--gold3);
-      letter-spacing: .08em;
-      font-size: 16px;
-    }
-
-    .brand-name span {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .mark-inline {
-      width: 54px;
-      height: 54px;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 1px solid rgba(240, 182, 63, .34);
-      box-shadow: 0 0 20px rgba(240, 182, 63, .18);
-    }
-
-    .section-mark {
-      display: block;
-      width: 86px;
-      height: 58px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin: 0 auto 14px;
-      border: 1px solid rgba(240, 182, 63, .28);
-    }
-
-    .contacts {
-      display: flex;
       gap: 12px;
-      align-items: center
     }
 
-    .contact-btn {
-      width: 48px;
-      height: 48px;
-      display: inline-grid;
-      place-items: center;
-      border-radius: 50%;
-      background: rgba(2, 9, 18, .88);
-      border: 1px solid rgba(240, 182, 63, 0.28);
-      transition: .2s;
-    }
-
-    .contact-btn:hover {
-      background: var(--gold);
-      border-color: var(--gold3);
-      box-shadow: 0 0 18px rgba(240, 182, 63, 0.38);
-      transform: translateY(-1px);
-    }
-
-    .contact-btn:hover img {
-      filter: brightness(0) !important;
-    }
-
-    .contact-btn img {
-      width: 28px;
-      height: 28px;
-      display: block
-    }
-
-    .contact-btn--phone {
-      display: inline-grid
-    }
-
-    /* BURGER REMOVED */
-    .burger {
-      display: none !important;
-    }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      padding: 92px 0 68px;
-      overflow: hidden;
-    }
-
-    .hero-poster {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+    .header-logo img {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
       object-fit: cover;
-      z-index: 0;
-      opacity: .18;
-      filter: saturate(1.2) contrast(1.05);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) 360px;
-      gap: 36px;
+    .header-logo span {
+      font-family: var(--ff-head);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .header-phone {
+      font-family: var(--ff-head);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-phone:hover {
+      color: var(--gold-light);
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+    }
+
+    .header-phone svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* ── Section ── */
+    .section { padding: 80px 0; }
+    @media (max-width: 640px) { .section { padding: 50px 0; } }
+
+    /* ── Divider mark ── */
+    .divider-mark {
+      text-align: center;
+      padding: 30px 0;
+      display: flex;
+      justify-content: center;
       align-items: center;
     }
 
-    @media (max-width:860px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-    }
-
-    .hero::before {
+    .divider-mark::before, .divider-mark::after {
       content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(2, 9, 18, .96) 0%, rgba(2, 9, 18, .74) 54%, rgba(2, 9, 18, .92) 100%),
-        linear-gradient(to bottom, rgba(2, 9, 18, .2), var(--bg-2));
-      z-index: 1;
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 0 20px;
     }
 
-    .hero-copy {
-      text-align: left;
+    .divider-mark img {
+      width: 32px;
+      height: 32px;
+      opacity: 0.4;
+      filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.2));
     }
 
-    @media (max-width:860px) {
-      .hero-copy {
-        text-align: center;
-      }
+    /* ── Hero ── */
+    .hero {
+      padding: 70px 0 40px;
+      text-align: center;
     }
 
-    .hero-kicker {
+    .hero .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-badge {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 24px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--border);
+    }
+
+    .hero-tag {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      color: var(--gold3);
-      font-weight: 900;
-      letter-spacing: .12em;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
       text-transform: uppercase;
-      font-size: 13px;
-      margin-bottom: 18px;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 6px 16px;
+      margin-bottom: 24px;
+      background: rgba(212, 175, 55, 0.05);
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--gold);
     }
 
     .hero h1 {
-      font-size: clamp(36px, 6.2vw, 64px);
-      color: var(--gold);
-      text-shadow: 0 2px 30px rgba(240, 182, 63, .32)
-    }
-
-    .subtitle {
-      font-size: clamp(16px, 2.6vw, 22px);
-      color: var(--text);
-      opacity: .9;
-      max-width: 760px;
-      margin: 16px 0 28px
-    }
-
-    @media (max-width:860px) {
-      .subtitle {
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-
-    .cta-row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap
-    }
-
-    @media (max-width:860px) {
-      .cta-row {
-        justify-content: center;
-      }
-    }
-
-    .poster-frame {
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(240, 182, 63, .42);
-      background: rgba(2, 9, 18, .72);
-      box-shadow: 0 26px 80px -36px rgba(240, 182, 63, .42);
-    }
-
-    .poster-frame img {
-      display: block;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .contact-strip {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-      padding: 18px;
-      border: 1px solid rgba(240, 182, 63, .22);
-      background: rgba(8, 23, 38, .76);
-      border-radius: var(--radius);
-    }
-
-    .contact-strip strong {
-      color: var(--gold3);
-      font-size: clamp(22px, 4vw, 34px);
       font-family: var(--ff-head);
-    }
-
-    .btn {
-      appearance: none;
-      border: none;
-      cursor: pointer;
+      font-size: clamp(36px, 6vw, 56px);
       font-weight: 900;
-      letter-spacing: .01em;
-      text-align: center;
-      padding: 18px 28px;
-      border-radius: 999px;
-      transition: transform .2s, box-shadow .25s, background .25s, color .25s;
-      user-select: none;
-      outline: none;
-      display: inline-block
+      color: #fff;
+      text-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      text-transform: uppercase;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold), var(--gold2), var(--gold3));
-      color: #111;
-      font-size: clamp(18px, 2.6vw, 20px);
-      box-shadow: 0 12px 34px -10px rgba(203, 161, 53, .25);
+    .hero .age {
+      font-family: var(--ff-head);
+      font-size: clamp(18px, 2.5vw, 24px);
+      color: var(--gold-light);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-1px) scale(1.01)
+    .hero .lead {
+      font-size: 17px;
+      color: var(--text-soft);
+      max-width: 640px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
     }
 
-    .btn-ghost {
-      background: rgba(8, 23, 38, .82);
-      color: #d7def0;
-      border: 1px solid rgba(240, 182, 63, 0.22);
-      font-weight: 800;
-      padding: 14px 20px;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--gold);
-      box-shadow: 0 8px 24px -10px rgba(214, 179, 107, .18)
-    }
-
-    .btn:hover,
-    a.btn:hover,
-    button:hover {
-      box-shadow: 0 0 24px rgba(240, 182, 63, 0.34);
-      filter: none;
-      transform: translateY(-2px);
-    }
-
-    .btn:active,
-    a.btn:active,
-    button:active {
-      transform: scale(0.98);
-    }
-
-    .hero-badges {
-      margin-top: 20px;
+    .hero-facts {
       display: flex;
-      gap: 10px;
+      flex-wrap: wrap;
       justify-content: center;
-      flex-wrap: wrap;
-      color: #aeb6c9;
-      font-size: 14px
+      gap: 16px;
+      margin-bottom: 40px;
     }
 
-    .hero-badges span {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      padding: 8px 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 999px;
-      background: #050505;
-    }
-
-    .hero-proof {
-      margin-top: 18px;
+    .hero-facts span {
+      font-size: 14px;
+      color: var(--text);
+      padding: 8px 18px;
+      background: rgba(11, 22, 34, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      backdrop-filter: blur(8px);
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
       align-items: center;
+      gap: 8px;
     }
 
-    @media (max-width:860px) {
-      .hero-proof {
-        justify-content: center;
-      }
+    .hero-facts span svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--gold);
     }
 
-    .proof-pill {
-      padding: 6px 10px;
-      border: 1px solid rgba(240, 182, 63, .26);
-      background: rgba(21, 16, 10, .72);
-      color: var(--gold);
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 13px
+    /* Premium Phone Button */
+    .premium-phone {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+      border: 1px solid var(--gold);
+      padding: 18px 40px;
+      border-radius: 12px;
+      color: var(--gold-light);
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
     }
 
-    /* CARDS */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px
+    .premium-phone::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+      transform: skewX(-25deg);
+      animation: shimmer 5s infinite;
     }
 
-    @media (max-width:860px) {
-      .features {
-        grid-template-columns: 1fr
-      }
+    @keyframes shimmer {
+      0% { left: -100%; }
+      15% { left: 200%; }
+      100% { left: 200%; }
     }
 
-    .card {
-      background: linear-gradient(180deg, rgba(10, 29, 49, .96) 0%, rgba(2, 9, 18, .96) 100%);
-      border: 1px solid rgba(240, 182, 63, 0.16);
-      border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: 0 10px 30px -14px rgba(0, 0, 0, .6);
-      transition: transform .2s, box-shadow .25s, border-color .25s;
-    }
-
-    .card:hover {
+    .premium-phone:hover {
+      background: rgba(212, 175, 55, 0.2);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25);
       transform: translateY(-3px);
-      border-color: rgba(240, 182, 63, .52);
-      box-shadow: 0 18px 44px -24px rgba(240, 182, 63, .46);
+      border-color: var(--gold-light);
     }
 
-    .card h3 {
+    .premium-phone .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 4px;
+      opacity: 0.9;
+    }
+
+    .premium-phone .num {
+      font-family: var(--ff-head);
       font-size: 26px;
-      color: var(--gold);
-      margin-bottom: .35em
+      font-weight: 700;
+      letter-spacing: 0.05em;
     }
 
-    .card p {
-      color: #cfd6e6
+    @media (max-width: 640px) {
+      .hero { padding: 40px 0 30px; }
+      .hero-badge { width: 80px; height: 80px; margin-bottom: 20px; }
+      .premium-phone { padding: 14px 30px; width: 100%; }
+      .premium-phone .num { font-size: 22px; }
     }
 
-    /* INFO BLOCKS */
-    .info-grid {
+    /* ── Two-col ── */
+    .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px
+      gap: 20px;
     }
 
-    @media (max-width:900px) {
-      .info-grid {
-        grid-template-columns: 1fr
-      }
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr; }
     }
 
-    .info-panel {
-      background: linear-gradient(180deg, rgba(8, 23, 38, .96), rgba(2, 9, 18, .96));
-      border: 1px solid rgba(240, 182, 63, 0.18);
-      border-radius: var(--radius);
-      padding: 24px;
-      display: grid;
-      gap: 24px;
-      transition: all 0.3s ease;
+    /* ── Panel (Glassmorphism) ── */
+    .panel {
+      background: var(--bg-panel);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .info-panel:hover {
-      border-color: rgba(240, 182, 63, .52);
-      box-shadow: 0 18px 44px -24px rgba(240, 182, 63, .42);
-      transform: translateY(-3px);
-    }
-
-    .info-panel h3 {
-      font-size: 30px;
-      color: var(--ivory);
-      text-align: center
-    }
-
-    .tag-row {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 6px
-    }
-
-    .tag-row .badge {
-      display: inline-block;
-      padding: 6px 10px;
-      border: 1px solid rgba(240, 182, 63, .28);
-      background: rgba(21, 16, 10, .74);
-      color: var(--gold);
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 12px
-    }
-
-    .subnote {
-      color: #cfd6e6;
-      font-size: 14px;
-      text-align: center
-    }
-
-    .bullets {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 10px;
-      color: #d7def0
-    }
-
-    /* === ICON STYLES (Moved to Head per User Request) === */
-    .icon-svg,
-    .icon-svg-inline {
-      object-fit: contain;
-      filter: invert(1) grayscale(1) brightness(2) contrast(1.2);
-      opacity: 0.9;
-      mix-blend-mode: screen;
-    }
-
-    .icon-svg {
-      width: 32px;
-      height: 32px;
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    .icon-svg-inline {
-      width: 28px;
-      height: 28px;
-      vertical-align: middle;
-      margin-right: 8px;
-      display: inline-block;
-      transform: translateY(-2px);
-    }
-
-    .icon-wrap {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-badges .icon-wrap img {
-      width: 18px;
-      height: 18px;
-      filter: invert(1) grayscale(1);
-      opacity: 0.7;
-      mix-blend-mode: normal;
-    }
-
-    /* Specific fix for hero badges */
-
-    /* ABOUT */
-    .about-wrap {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: clamp(16px, 2.2vw, 28px);
-      align-items: start;
-    }
-
-    @media (max-width:760px) {
-      .about-wrap {
-        grid-template-columns: 1fr;
-        text-align: center
-      }
-
-      .about-text {
-        justify-items: center
-      }
-    }
-
-    .about-photo {
-      width: 200px;
-      height: 200px;
+    .panel::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; width: 150px; height: 150px;
+      background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
       border-radius: 50%;
-      object-fit: cover;
-      object-position: center;
-      background: #12131a;
-      display: block;
-      margin: 0 auto;
-      box-shadow: 0 0 0 2px #3a2a10, 0 0 0 6px rgba(214, 179, 107, .15), inset 0 6px 18px rgba(255, 255, 255, .04), inset 0 -8px 18px rgba(0, 0, 0, .4), 0 22px 44px -16px rgba(0, 0, 0, .6);
+      transform: translate(30%, -30%);
+      pointer-events: none;
+    }
+
+    .panel:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.05);
+      background: rgba(16, 28, 42, 0.6);
+    }
+
+    .panel-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      color: var(--gold);
+    }
+
+    .panel-icon svg { width: 24px; height: 24px; fill: currentColor; }
+
+    .panel h3 { margin-bottom: 12px; }
+    .panel p { font-size: 15px; margin: 0; line-height: 1.6; }
+
+    /* ── Stack ── */
+    .stack { display: grid; gap: 16px; }
+
+    .step-panel {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .step-number {
+      font-family: var(--ff-head);
+      font-size: 32px;
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--gold-dark);
+      opacity: 0.6;
+      line-height: 1;
+      margin-top: 4px;
+    }
+
+    /* ── Video Section ── */
+    .video-section {
+      text-align: center;
+    }
+    
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(212, 175, 55, 0.05);
+      margin-top: 30px;
+      group: video;
+    }
+
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(11,22,34,0.8), rgba(3,7,11,0.9));
+      color: var(--gold-light);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .video-placeholder:hover {
+      background: linear-gradient(135deg, rgba(11,22,34,0.7), rgba(3,7,11,0.8));
+    }
+
+    .video-placeholder .play-btn {
+      width: 80px;
+      height: 80px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    }
+
+    .video-placeholder:hover .play-btn {
+      transform: scale(1.1);
+      background: rgba(212, 175, 55, 0.25);
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    }
+
+    .play-btn svg {
+      width: 30px;
+      height: 30px;
+      fill: var(--gold-light);
+      margin-left: 6px; /* visual center for play icon */
+    }
+
+    .video-placeholder span {
+      font-family: var(--ff-head);
+      font-size: 18px;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+    }
+
+    /* ── Quote ── */
+    .quote {
+      text-align: center;
+      padding: 50px 0;
       position: relative;
     }
 
-    .about-title {
-      font-size: clamp(26px, 3.2vw, 38px);
-      line-height: 1.15;
-      margin: 2px 0 6px;
-      text-align: center;
-      background: linear-gradient(135deg, var(--gold), var(--bronze));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: .02em;
+    .quote::before {
+      content: '“';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--ff-head);
+      font-size: 120px;
+      color: var(--border);
+      line-height: 1;
+      z-index: -1;
     }
 
-    .about-lead {
-      color: #d8def0;
-      font-size: clamp(16px, 1.6vw, 18px);
+    .quote p {
+      font-family: var(--ff-head);
+      font-size: clamp(20px, 3vw, 28px);
+      color: var(--text);
+      line-height: 1.5;
+      max-width: 700px;
       margin: 0 auto;
-      max-width: 72ch;
-      text-align: center
+    }
+
+    .quote p em {
+      color: var(--gold-light);
+      font-style: normal;
+      text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    }
+
+    /* ── About ── */
+    .about-row {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      background: var(--bg-panel);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .about-row { flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; gap: 24px; }
+    }
+
+    .about-photo-wrapper {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .about-photo-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border: 1px solid var(--border-hover);
+      border-radius: 50%;
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+    .about-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .about-list {
       list-style: none;
-      padding: 0;
-      margin: 10px авто 0;
       display: grid;
-      gap: 8px;
-      color: #e4e9f7;
-      font-size: clamp(15px, 1.5vw, 17px);
-      max-width: 62ch;
-      text-align: left
+      gap: 12px;
+      margin-top: 20px;
     }
 
     .about-list li {
       display: flex;
-      gap: 10px;
-      align-items: flex-start
-    }
-
-    .about-list li span {
-      flex: 0 0 auto
-    }
-
-    .about-par {
-      color: #cfd6e6;
-      margin: 10px auto 0;
-      max-width: 72ch;
-      text-align: center
-    }
-
-    .about-sep {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #2a3a67, transparent);
-      margin: 16px 0
-    }
-
-    .about-slogan {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(20px, 2.2vw, 26px);
-      text-align: center;
-      margin-top: 10px;
-      letter-spacing: .01em;
-      color: var(--ivory)
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 28px 0 40px;
-      margin-top: 60px
-    }
-
-    .foot-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: center;
-      flex-wrap: wrap
-    }
-
-    .foot-brand {
-      display: flex;
-      align-items: center;
-      gap: 16px
-    }
-
-    .foot-brand img {
-      height: 200px;
-      width: auto;
-      border-radius: 8px
-    }
-
-    .foot-phrase {
-      color: #d7def0;
-      font-weight: 800;
-      letter-spacing: .01em
-    }
-
-    .foot-copy {
-      color: #98a6c9;
-      font-size: 14px
-    }
-
-    /* MENU MODAL */
-    .menu-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 10px
-    }
-
-    .menu-list a,
-    .menu-list button {
-      display: block;
-      width: 100%;
-      text-align: left;
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid #26365f;
-      background: #0c1326;
-      color: #e9ecf4;
-      font-weight: 800;
-      font-size: 16px;
-      letter-spacing: .01em;
-      line-height: 1.25;
-      cursor: pointer;
-    }
-
-    .menu-list a:hover,
-    .menu-list button:hover {
-      border-color: var(--gold)
-    }
-
-    /* FAQ */
-    #faqModal .faq-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 10px
-    }
-
-    #faqModal .faq-item {
-      border: 1px solid #26365f;
-      border-radius: 14px;
-      background: #0c1326;
-      box-shadow: 0 8px 24px -16px rgba(0, 0, 0, .5);
-      overflow: hidden;
-      transition: border-color .2s, box-shadow .25s, transform .18s;
-    }
-
-    #faqModal .faq-item:hover {
-      border-color: var(--gold);
-      box-shadow: 0 14px 34px -16px rgba(214, 179, 107, .25);
-      transform: translateY(-1px)
-    }
-
-    #faqModal .faq-item summary {
-      list-style: none;
-      outline: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
       gap: 12px;
-      padding: 14px 16px;
-      font-weight: 800;
-      font-size: 16px;
-      color: var(--ivory);
-      letter-spacing: .01em;
-      line-height: 1.25;
+      align-items: flex-start;
+      color: var(--text-soft);
+      font-size: 15px;
     }
 
-    #faqModal .faq-item summary::-webkit-details-marker {
-      display: none
-    }
-
-    #faqModal .faq-item summary .qdot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--gold);
-      flex: 0 0 auto;
-      box-shadow: 0 0 0 3px rgba(214, 179, 107, .15)
-    }
-
-    #faqModal .faq-item summary .chev {
-      margin-left: auto;
+    .about-list li svg {
       width: 18px;
       height: 18px;
-      flex: 0 0 auto;
-      opacity: .9;
-      transition: transform .25s ease
+      fill: var(--gold);
+      flex-shrink: 0;
+      margin-top: 4px;
     }
 
-    #faqModal .faq-item[open] summary .chev {
-      transform: rotate(180deg)
+    .about-foot {
+      margin-top: 24px;
+      font-family: var(--ff-head);
+      font-size: 18px;
+      color: var(--gold-light);
+      font-weight: 700;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
     }
 
-    #faqModal .faq-item p {
-      color: #cfd6e6;
-      padding: 0 16px 16px 38px;
-      margin-top: -2px;
-      border-top: 1px solid #233256
+    /* ── FAQ ── */
+    .faq-list { display: grid; gap: 12px; }
+
+    .faq-item {
+      background: var(--bg-panel);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
     }
 
-    /* reveal эффект */
+    .faq-item:hover {
+      border-color: var(--border-hover);
+      background: rgba(16, 28, 42, 0.6);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+      list-style: none;
+      color: var(--text);
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: "+";
+      color: var(--gold);
+      font-size: 24px;
+      font-weight: 300;
+      margin-left: 12px;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+
+    .faq-item .faq-body {
+      padding: 0 24px 20px;
+      color: var(--text-soft);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── Contact block ── */
+    .contact-panel {
+      background: linear-gradient(135deg, rgba(11,22,34,0.8), rgba(3,7,11,0.9));
+      border: 1px solid var(--border-hover);
+      border-radius: 20px;
+      padding: 50px 30px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 40px rgba(212, 175, 55, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-panel::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle at center, rgba(212,175,55,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .contact-panel h2 { margin-bottom: 8px; }
+    .contact-panel p.sub { margin: 0 auto 30px; max-width: 500px; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      margin-top: 40px;
+      background: #020508;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-row .copy {
+      font-size: 14px;
+      color: var(--text-soft);
+      opacity: 0.6;
+    }
+
+    /* ── Reveal ── */
     @media (prefers-reduced-motion: no-preference) {
       [data-reveal] {
         opacity: 0;
-        transform: translateY(16px);
-        transition: opacity .6s ease, transform .6s ease
+        transform: translateY(20px);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
       [data-reveal].in {
         opacity: 1;
-        transform: none
+        transform: none;
       }
     }
   </style>
@@ -892,473 +744,249 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header class="topbar">
-    <div class="container topbar__row">
-      <div class="brand">
-        <!-- ЛОГО грузим сразу -->
-        <img src="assets/logo/abracadabra-a-mark.png" alt="Abracadabra" loading="eager">
-        <div class="brand-name">
-          <strong>ABRACADABRA</strong>
-          <span>первая школа фокусов в Ярославле</span>
-        </div>
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header class="header">
+    <div class="container">
+      <div class="header-logo">
+        <img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt="Abracadabra Logo" loading="eager">
+        <span>Abracadabra</span>
       </div>
-
-      <a class="contact-btn contact-btn--phone" href="tel:+79092763386" aria-label="Позвонить">
-        <img src="assets/icons/phone.png" alt="Телефон" loading="eager">
+      <a class="header-phone" href="tel:+79092763386">
+        <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+        +7 909 276-33-86
       </a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <!-- HERO SECTOR -->
+  <!-- ═══════════ HERO ═══════════ -->
   <section class="hero" data-reveal>
-    <img class="hero-poster" src="assets/images/abracadabra-poster.png" alt="" aria-hidden="true">
-    <div class="hero-overlay"></div>
+    <div class="container">
+      <img class="hero-badge" src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt="Школа фокусов">
+      <div class="hero-tag">Первая в Ярославле</div>
+      <h1>Школа фокусов</h1>
+      <p class="age">для детей 7–13 лет</p>
+      <p class="lead">
+        Место, где ребёнок выходит на сцену и перестаёт бояться. Фокусы — это
+        повод. Настоящая цель — уверенность, речь, внимание и умение держать зал.
+      </p>
+      <div class="hero-facts">
+        <span><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> До 10 детей в группе</span>
+        <span><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg> 1 занятие в неделю</span>
+        <span><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> Шоу для родителей</span>
+      </div>
+      <a class="premium-phone" href="tel:+79092763386">
+        <span class="label">Узнать о школе и записаться</span>
+        <span class="num">+7 909 276-33-86</span>
+      </a>
+    </div>
+  </section>
 
-    <div class="container hero-content">
-      <div class="hero-copy">
-        <div class="hero-kicker">Первая в Ярославле</div>
-        <div class="brand" style="margin-bottom:24px">
-          <img src="assets/logo/abracadabra-a-mark.png" alt="Abracadabra" loading="eager">
-          <div class="brand-name">
-            <strong>ABRACADABRA</strong>
-            <span>школа фокусов Дмитрия Костюка</span>
+  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
+
+  <!-- ═══════════ VIDEO PLACEHOLDER ═══════════ -->
+  <section class="section video-section" data-reveal>
+    <div class="container">
+      <h2>Как это выглядит <span class="highlight">вживую</span></h2>
+      <p style="margin: 0 auto; text-align: center;">Посмотрите атмосферу наших занятий и первые выступления учеников.</p>
+      
+      <div class="video-container">
+        <!-- 
+          РАЗРАБОТЧИКУ / ВЛАДЕЛЬЦУ: 
+          Вставьте сюда iframe с YouTube/Vimeo или тег <video>, когда видео будет готово. 
+          Сейчас здесь премиальная заглушка. Чтобы использовать заглушку для открытия попапа, можно повесить на неё JS скрипт.
+        -->
+        <div class="video-placeholder">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           </div>
-        </div>
-        <h1>Школа фокусов<br><span style="color:var(--text)">для детей 7–13 лет</span></h1>
-        <p class="subtitle">Информационный сайт о школе, где фокусы становятся инструментом уверенности, речи, внимания и сценической свободы ребёнка.</p>
-
-        <div class="cta-row">
-          <a href="tel:+79092763386" class="btn btn-primary">Позвонить: +7 909 276-33-86</a>
-          <a href="#program" class="btn btn-ghost">Увидеть формат занятий</a>
-        </div>
-
-        <div class="hero-proof">
-          <span class="proof-pill">Группа до 10 детей</span>
-          <span class="proof-pill">1 занятие в неделю</span>
-          <span class="proof-pill">Мини-шоу для родителей</span>
-        </div>
-
-        <div class="hero-badges" style="margin-top:18px">
-          <span><img src="assets/icons/magician.png" class="icon-svg" style="width:16px;"> Артистизм</span>
-          <span><img src="assets/icons/smoke.png" class="icon-svg" style="width:16px;"> Уверенная речь</span>
-          <span class="icon-wrap"><img src="assets/icons/book.png" class="icon-svg" style="width:16px;"> Игровой дневник</span>
-        </div>
-      </div>
-
-      <div class="poster-frame">
-        <img src="assets/logo/abracadabra-a-mark.png" alt="Логотип школы фокусов Абракадабра" loading="eager">
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY -->
-  <section id="why" data-reveal>
-    <div class="container">
-      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
-      <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:22px;">
-        Почему не футбол, музыка или «ещё один кружок»?
-      </h2>
-      <div class="features">
-        <div class="card">
-          <h3><img src="assets/icons/magic-ball.png" class="icon-svg-inline"> Мы прокачиваем харизму</h3>
-          <p>Навык держать паузу, говорить уверенно и управлять вниманием ценится сильнее, чем сотня подтягиваний.</p>
-        </div>
-        <div class="card">
-          <h3><img src="assets/icons/smoke.png" class="icon-svg-inline"> Каждый урок — мини-выступление</h3>
-          <p>Ребёнок получает реакцию зала и перестаёт бояться сцены. Аплодисменты → уверенность.</p>
-        </div>
-        <div class="card">
-          <h3><img src="assets/icons/magic.png" class="icon-svg-inline"> Суперсила на всю жизнь</h3>
-          <p>Умение удерживать внимание полезно в школе, в университете и во взрослой карьере.</p>
-        </div>
-        <div class="card">
-          <h3><img src="assets/icons/dice.png" class="icon-svg-inline"> Геймификация без домашних</h3>
-          <p>Очки, ачивки, наклейки и «шкала побед» — ребёнок сам стремится к результату.</p>
+          <span>Видео скоро появится</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- RARE SKILL -->
-  <section data-reveal>
-    <div class="container">
-      <div class="card center" style="padding:28px;">
-        <h2 style="font-size: clamp(28px,4.8vw,46px); color:var(--ivory)">Редкий элитный навык, который выделяет</h2>
-        <p style="max-width:72ch; margin:10px auto 0; color:#d7def0">
-          Футболистов — тысячи. Музыкантов — сотни. А ребёнок, умеющий увлечь зал и держать внимание, — один на миллион.
-          Ваш сын или дочь — среди них.
-        </p>
-      </div>
-    </div>
-  </section>
+  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
 
-  <!-- PROGRAM -->
-  <section id="program" data-reveal>
+  <!-- ═══════════ WHY ═══════════ -->
+  <section class="section" data-reveal>
     <div class="container">
-      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
-      <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:22px;">
-        Как это устроено — коротко и по делу
-      </h2>
-      <div class="features">
-        <div class="card">
-          <h3><img src="assets/icons/sand-clock.png" class="icon-svg-inline"> 1 занятие в неделю</h3>
-          <p>Два академических часа. Без перегрузки, но с результатом.</p>
+      <h2>Что ребёнок получает <span class="highlight">на самом деле</span></h2>
+      <p style="margin-bottom:40px;">
+        Это не кружок с карточными фокусами. Это система развития личности через сцену и искусство иллюзии.
+      </p>
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+          <h3>Уверенность на сцене и в жизни</h3>
+          <p>Ребёнок учится говорить спокойно, смотреть в глаза, держать паузу. Аплодисменты зала — лучший тренажёр самооценки, который останется с ним навсегда.</p>
         </div>
-        <div class="card">
-          <h3><img src="assets/icons/magician.png" class="icon-svg-inline"> Постановка номеров</h3>
-          <p>Не просто «фокусы», а работа над выступлением и образом.</p>
+        <div class="panel">
+          <div class="panel-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
+          <h3>Умение управлять вниманием</h3>
+          <p>Навык, который пригодится в школе, институте и карьере. Тот, кто владеет вниманием аудитории — владеет любой ситуацией.</p>
         </div>
-        <div class="card">
-          <h3><img src="assets/icons/book.png" class="icon-svg-inline"> AR-дневник и ачивки</h3>
-          <p>Игровая шкала побед, наклейки и приз-реквизит в конце месяца.</p>
+        <div class="panel">
+          <div class="panel-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.88-11.71L10 14.17l-1.88-1.88a.996.996 0 10-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 10-1.42-1.41z"/></svg></div>
+          <h3>Речь и подача</h3>
+          <p>Каждое занятие — мини-выступление. Через месяц ребёнок говорит громче, чётче и увереннее, чем после года стандартных «развивашек».</p>
         </div>
-        <div class="card">
-          <h3><img src="assets/icons/wand.png" class="icon-svg-inline"> Мини-шоу ежемесячно</h3>
-          <p>Родители видят прогресс, а дети — получают сцепку «труд → аплодисменты».</p>
+        <div class="panel">
+          <div class="panel-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 9h-2V7h-2v5H6v2h2v5h2v-5h2v-2z"/></svg></div>
+          <h3>Азарт без домашки</h3>
+          <p>Дневник Волшебника, ачивки, наклейки, шкала побед. Игровая система прогресса выстроена так, что ребёнок сам хочет прийти и показать новый трюк.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FORMAT -->
-  <section id="format" data-reveal>
-    <div class="container">
-      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
-      <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:22px;">
-        Что получает ребёнок
-      </h2>
-      <div class="info-grid">
+  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
 
-        <div class="info-panel" style="text-align:center;">
+  <!-- ═══════════ QUOTE ═══════════ -->
+  <section class="quote" data-reveal>
+    <div class="container">
+      <p>
+        Футболистов — тысячи. Музыкантов — сотни.<br>
+        А <em>ребёнок, способный увлечь зал, — один на миллион</em>.
+      </p>
+    </div>
+  </section>
+
+  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
+
+  <!-- ═══════════ HOW IT WORKS ═══════════ -->
+  <section class="section" data-reveal>
+    <div class="container">
+      <h2>Как проходят <span class="highlight">занятия</span></h2>
+      <p style="margin-bottom:40px;">Всё просто. Без путаницы, зубрёжки и лишней бюрократии.</p>
+      <div class="stack">
+        <div class="panel step-panel">
+          <div class="step-number">01</div>
           <div>
-            <h3>Сценическая уверенность</h3>
-            <div class="tag-row"><span class="badge">речь</span><span class="badge">пауза</span><span class="badge">внимание</span></div>
-            <p class="subnote">Ребёнок учится говорить спокойно, смотреть в зал и не теряться, когда на него смотрят.</p>
-            <ul class="bullets" style="margin-top:16px; display:inline-block; text-align:left;">
-              <li>✔️ упражнения на речь и подачу</li>
-              <li>✔️ работа с вниманием зрителей</li>
-              <li>✔️ маленькие выступления на каждом занятии</li>
-            </ul>
+            <h3>1 занятие в неделю</h3>
+            <p>Два академических часа. Оптимальный ритм, который не перегружает школьника, но даёт стабильный и заметный результат.</p>
           </div>
         </div>
-
-        <div class="info-panel" style="text-align:center;">
+        <div class="panel step-panel">
+          <div class="step-number">02</div>
           <div>
-            <h3>Магия как игра</h3>
-            <div class="tag-row"><span class="badge">фокусы</span><span class="badge">дневник</span><span class="badge">ачивки</span></div>
-            <p class="subnote">Фокусы становятся понятным инструментом: ребёнок видит прогресс и хочет повторять.</p>
-            <ul class="bullets" style="margin-top:16px; display:inline-block; text-align:left;">
-              <li>✔️ Дневник Волшебника</li>
-              <li>✔️ секретные конверты и задания</li>
-              <li>✔️ мини-шоу для родителей</li>
-            </ul>
-            <div class="center" style="margin-top:18px">
-              <a href="#about" class="btn btn-ghost">Узнать о школе</a>
-            </div>
+            <h3>Фокусы → выступление</h3>
+            <p>Не просто «узнал секрет и забыл». Каждый трюк прорабатывается до мелочей и становится частью личного сценического номера.</p>
           </div>
         </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" data-reveal>
-    <div class="container">
-      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
-      <h2 class="center" style="color:var(--ivory); font-size: clamp(28px,4.8vw,48px); margin-bottom:12px;">
-        Связь со школой
-      </h2>
-      <p class="center" style="color:#cfd6e6; margin-bottom:22px">Пока сайт работает как визитка. Для вопросов о школе, формате занятий и запуске группы можно связаться напрямую.</p>
-
-      <div class="contact-strip">
-        <img class="mark-inline" src="assets/logo/abracadabra-a-mark.png" alt="">
-        <div class="center">
-          <div style="color:var(--muted); font-weight:800; margin-bottom:4px">Телефон для связи</div>
-          <a href="tel:+79092763386"><strong>+7 909 276-33-86</strong></a>
+        <div class="panel step-panel">
+          <div class="step-number">03</div>
+          <div>
+            <h3>Дневник и ачивки</h3>
+            <p>Игровая система мотивации. Наклейки, призы, настоящий профессиональный реквизит в конце месяца за достижения.</p>
+          </div>
+        </div>
+        <div class="panel step-panel">
+          <div class="step-number">04</div>
+          <div>
+            <h3>Мини-шоу для вас</h3>
+            <p>Каждый месяц — открытое выступление для родителей. Вы видите реальный прогресс и эмоции своими глазами.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="container" data-reveal>
-      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
-      <h3 class="about-title">Создатель школы — Дмитрий Костюк</h3>
+  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
 
-      <div class="about-wrap">
-        <img class="about-photo" src="assets/photos/IMG_0793.JPG" alt="Дмитрий Костюк" loading="lazy">
-        <div class="about-text">
-          <p class="about-lead">
-            Дмитрий Костюк — профессиональный иллюзионист с многолетним опытом, автор театрального шоу «Секрет» и
-            открыватель первой школы фокусов в Ярославле.
+  <!-- ═══════════ ABOUT ═══════════ -->
+  <section class="section" data-reveal>
+    <div class="container">
+      <h2>Кто ведёт <span class="highlight">школу</span></h2>
+      <div class="about-row">
+        <div class="about-photo-wrapper">
+          <img class="about-photo" src="assets/photos/dmitry.jpg" alt="Дмитрий Костюк" loading="lazy">
+        </div>
+        <div>
+          <h3>Дмитрий Костюк</h3>
+          <p style="color:var(--text); font-weight:500; margin-bottom:12px;">Профессиональный иллюзионист, автор театрального шоу «Секрет», открыватель первой школы фокусов в Ярославле.</p>
+          <p>
+            Создаёт иллюзионные шоу, ментализм и микромагию. Свой огромный сценический опыт переводит на детский язык. В его подходе фокусы — это инструмент, который учит детей красиво говорить, держать паузу, работать с публикой и быть собой.
           </p>
-
-          <div class="about-sep"></div>
-
-          <p class="about-par">
-            Дмитрий создаёт иллюзионные шоу, ментализм и микромагию, где зритель становится соучастником волшебства.
-            В школе этот сценический опыт переведён на детский язык: через фокусы ребёнок учится говорить, держать паузу,
-            работать с вниманием и уверенно выходить к людям.
-          </p>
-
           <ul class="about-list">
-            <li><span style="width:24px"><img src="assets/icons/wand.png" class="icon-svg"></span>
-              <div>опыт выступлений на частных мероприятиях, сцене и корпоративных событиях;</div>
-            </li>
-            <li><span style="width:24px"><img src="assets/icons/smoke.png" class="icon-svg"></span>
-              <div>понимание, как управлять вниманием зала и создавать эмоцию;</div>
-            </li>
-            <li><span style="width:24px"><img src="assets/icons/magic-ball.png" class="icon-svg"></span>
-              <div>авторский подход: фокусы, сцена, речь, харизма и уверенность в одном формате;</div>
-            </li>
-            <li><span style="width:24px"><img src="assets/icons/magician.png" class="icon-svg"></span>
-              <div>задача школы — не просто научить трюкам, а раскрыть ребёнка как маленького артиста.</div>
-            </li>
+            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Огромный опыт на сценических и корпоративных событиях</li>
+            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Понимает, как создавать эмоцию и управлять вниманием зала</li>
+            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Авторский подход: фокусы + сцена + речь + харизма</li>
+            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Главная цель — раскрытие вашего ребёнка как артиста</li>
           </ul>
-
-          <p class="about-par">
-            «Абракадабра» — это не кружок ради реквизита. Это школа, где магия становится способом вырасти:
-            в речи, смелости, самоощущении и умении быть в центре внимания.
-          </p>
-          <div class="about-sep"></div>
-          <p class="about-slogan">«Абракадабра» — школа, где ребёнок становится артистом.</p>
+          <p class="about-foot">«Абракадабра» — школа, где ребёнок становится уверенной личностью.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="container" style="padding-top:0;" data-reveal>
-      <img class="section-mark" src="assets/logo/abracadabra-a-mark.png" alt="">
-      <h3 class="center" style="font-size: clamp(24px,2.6vw,30px); margin-bottom: 24px;">Частые вопросы</h3>
+  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
+
+  <!-- ═══════════ FAQ ═══════════ -->
+  <section class="section" data-reveal>
+    <div class="container">
+      <h2>Частые <span class="highlight">вопросы</span></h2>
       <div class="faq-list">
-
-        <!-- 1. Shy Child -->
         <details class="faq-item">
-          <summary>
-            <span class="qicon"><img src="assets/icons/smoke.png" alt="Icon"></span>
-            <span class="qtext">Если ребёнок стеснительный?</span>
-            <svg class="chev" viewBox="0 0 24 24">
-              <path d="M7 10l5 5 5-5" stroke="currentColor" />
-            </svg>
-          </summary>
-          <div class="faq-content">
-            <p>Начинаем с простых шагов без давления: сначала внимание, контакт и простые действия, потом сцена и выступление.</p>
-          </div>
+          <summary>Если ребёнок стеснительный?</summary>
+          <div class="faq-body">Начинаем без давления: контакт, простые действия, внимание. Потом — сцена. Игровая атмосфера и магия творят чудеса — дети раскрываются за 3-4 занятия.</div>
         </details>
-
-        <!-- 2. How to understand -->
         <details class="faq-item">
-          <summary>
-            <span class="qicon"><img src="assets/icons/ticket.png" alt="Icon"></span>
-            <span class="qtext">Кому подходит школа?</span>
-            <svg class="chev" viewBox="0 0 24 24">
-              <path d="M7 10l5 5 5-5" stroke="currentColor" />
-            </svg>
-          </summary>
-          <div class="faq-content">
-            <p>Детям 7–13 лет, которым интересны фокусы, сцена, выступления, общение и развитие уверенности.</p>
-          </div>
+          <summary>Кому подходит школа?</summary>
+          <div class="faq-body">Детям 7–13 лет. Совершенно не важно, видел ли ребёнок фокусы раньше и умеет ли выступать. Важно только одно — хочет ли он попробовать.</div>
         </details>
-
-        <!-- 3. How many kids -->
         <details class="faq-item">
-          <summary>
-            <span class="qicon"><img src="assets/icons/magician.png" alt="Icon"></span>
-            <span class="qtext">Сколько детей в группе?</span>
-            <svg class="chev" viewBox="0 0 24 24">
-              <path d="M7 10l5 5 5-5" stroke="currentColor" />
-            </svg>
-          </summary>
-          <div class="faq-content">
-            <p>До 10 человек. У каждого — время на сцене и внимание педагога.</p>
-          </div>
+          <summary>Сколько детей в группе?</summary>
+          <div class="faq-body">До 10 человек. Это идеальный формат: каждый успевает выйти на сцену и каждый получает персональное внимание преподавателя.</div>
         </details>
-
-        <!-- 4. Homework -->
         <details class="faq-item">
-          <summary>
-            <span class="qicon"><img src="assets/icons/scroll.png" alt="Icon"></span>
-            <span class="qtext">Будут домашние задания?</span>
-            <svg class="chev" viewBox="0 0 24 24">
-              <path d="M7 10l5 5 5-5" stroke="currentColor" />
-            </svg>
-          </summary>
-          <div class="faq-content">
-            <p>Нет. Весь прогресс — на занятиях. Раз в месяц — мини-шоу для родителей.</p>
-          </div>
+          <summary>Будут ли домашние задания?</summary>
+          <div class="faq-body">Нет. Весь образовательный прогресс происходит исключительно на занятиях. Ребёнок не устаёт после школы и с радостью хочет возвращаться к нам.</div>
         </details>
-
-        <!-- 5. Start of year -->
         <details class="faq-item">
-          <summary>
-            <span class="qicon"><img src="assets/icons/sand-clock.png" alt="Icon"></span>
-            <span class="qtext">Почему не с начала учебного года?</span>
-            <svg class="chev" viewBox="0 0 24 24">
-              <path d="M7 10l5 5 5-5" stroke="currentColor" />
-            </svg>
-          </summary>
-          <div class="faq-content">
-            <p>Нам не важна сезонность. Важны этапы обучения ребёнка.</p>
-          </div>
+          <summary>Когда можно начать обучение?</summary>
+          <div class="faq-body">В любое время. Наша программа построена так, что мы не привязаны к сентябрю. Позвоните нам, и мы подберём удобный день для старта.</div>
         </details>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container foot-row">
-      <div class="foot-brand">
-        <!-- ЛОГО в подвале тоже сразу -->
-        <img src="assets/logo/abracadabra-a-mark.png" alt="Abracadabra" loading="eager">
-        <div class="foot-phrase">Первая школа фокусов в Ярославле</div>
-      </div>
+  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
 
-      <div class="contacts">
-        <a class="contact-btn" href="tel:+79092763386" aria-label="Позвонить">
-          <img src="assets/icons/phone.png" alt="Phone" loading="eager">
+  <!-- ═══════════ CONTACT ═══════════ -->
+  <section class="section" data-reveal>
+    <div class="container">
+      <div class="contact-panel">
+        <h2>Свяжитесь с нами</h2>
+        <p class="sub">
+          Расскажем подробнее о школе, ответим на вопросы и подберём удобное время для первого занятия. Без навязывания — решение принимаете вы после разговора.
+        </p>
+        <a class="premium-phone" href="tel:+79092763386" style="margin: 0 auto;">
+          <span class="label">Позвонить руководителю</span>
+          <span class="num">+7 909 276-33-86</span>
         </a>
+        <p style="margin-top:20px; font-size: 14px; opacity: 0.7;">Дмитрий ответит лично.</p>
       </div>
+    </div>
+  </section>
 
-      <div class="foot-copy">© 2025 Abracadabra — Школа фокусов. Все права защищены.</div>
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div class="container footer-row">
+      <span class="copy">© 2025 Abracadabra — Школа фокусов. Ярославль.</span>
+      <img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt="" style="width:36px;height:36px;border-radius:8px;opacity:0.3;">
     </div>
   </footer>
 
   <script>
-    /* reveal */
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
         const io = new IntersectionObserver(es => {
           es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } })
-        }, { threshold: .18 });
+        }, { threshold: 0.12 });
         document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
       }
     })();
   </script>
 
-  <style>
-    /* FAQ IMPROVEMENTS */
-    .faq-list {
-      display: grid;
-      gap: 12px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .faq-item {
-      background: #12131a;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      /* Site76 Card Border */
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .faq-item:hover {
-      border-color: rgba(203, 161, 53, 0.5);
-      /* Gold hover */
-      box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.5);
-    }
-
-    .faq-item[open] {
-      background: #15161e;
-      border-color: rgba(203, 161, 53, 0.3);
-    }
-
-    .faq-item summary {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px;
-      list-style: none;
-      cursor: pointer;
-      font-weight: 600;
-      color: #e9ecf4;
-    }
-
-    .faq-item summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .qicon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 32px;
-      width: 32px;
-      height: 32px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 8px;
-    }
-
-    .qicon img {
-      width: 20px;
-      height: 20px;
-      object-fit: contain;
-      filter: invert(1) grayscale(1);
-      opacity: 0.8;
-    }
-
-    .qtext {
-      flex: 1;
-      font-size: 16px;
-    }
-
-    .chev {
-      width: 20px;
-      height: 20px;
-      opacity: 0.5;
-      fill: none;
-      stroke-width: 2.5;
-      transition: transform 0.3s;
-    }
-
-    .faq-item[open] .chev {
-      transform: rotate(180deg);
-      color: var(--gold);
-      opacity: 1;
-    }
-
-    .faq-content {
-      padding: 0 16px 16px 60px;
-      /* Aligned with text */
-      color: #9ea6b8;
-      font-size: 15px;
-      line-height: 1.5;
-      animation: slideDown 0.3s ease-out;
-    }
-
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .faq-content {
-        padding: 0 16px 16px 16px;
-      }
-
-      .qicon {
-        min-width: 28px;
-        width: 28px;
-        height: 28px;
-      }
-
-      .qtext {
-        font-size: 14px;
-      }
-    }
-  </style>
 </body>
-
 </html>
