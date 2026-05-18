@@ -1,992 +1,769 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ABRACADABRA — Школа фокусов для детей 7–13 лет</title>
-  <meta name="description"
-    content="ABRACADABRA — первая школа фокусов в Ярославле для детей 7–13 лет от иллюзиониста Дмитрия Костюка.">
-
-  <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self' https://magic-school-eight.vercel.app; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://mc.yandex.ru; connect-src 'self' https://mc.yandex.ru; frame-ancestors 'self'; base-uri 'self'">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-
-  <script type="text/javascript">
-    (function (m, e, t, r, i, k, a) {
-      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-      m[i].l = 1 * new Date();
-      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=104299107', 'ym');
-    ym(104299107, 'init', { ssr: true, webvisor: true, clickmap: true, accurateTrackBounce: true, trackLinks: true });
-  </script>
-
+  <title>Abracadabra — Первая школа фокусов в Ярославле</title>
+  <meta name="description" content="ABRACADABRA — первая школа фокусов в Ярославле для детей 7–13 лет от иллюзиониста Дмитрия Костюка." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #03070b;
-      --bg-panel: rgba(11, 22, 34, 0.4);
-      --text: #e8e2d5;
-      --text-soft: #a8b3c8;
-      --gold: #d4af37;
-      --gold-light: #f3e5ab;
-      --gold-dark: #aa8620;
-      --border: rgba(212, 175, 55, 0.15);
-      --border-hover: rgba(212, 175, 55, 0.4);
-      --maxw: 880px;
-      --ff-head: 'Cinzel', serif;
-      --ff-text: 'Inter', sans-serif;
-    }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #05080b;
+      --card: #0d121c;
+      --gold: #c9a84c;
+      --gold-dim: #9e823b;
+      --gold-soft: rgba(201, 168, 76, 0.07);
+      --gold-border: rgba(201, 168, 76, 0.13);
+      --gold-glow: rgba(201, 168, 76, 0.2);
+      --text: #ece8e0;
+      --text-secondary: #a8a49c;
+      --text-muted: #6b6860;
+      --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+      --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --max: 1200px;
     }
-
     body {
+      font-family: var(--font-body);
       background: var(--bg);
       color: var(--text);
-      font-family: var(--ff-text);
-      font-size: 16px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+      line-height: 1.65;
       overflow-x: hidden;
     }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+    a:hover { color: #e6d08a; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
-    /* Ambient Glow Background Effect */
-    body::before {
-      content: '';
-      position: fixed;
-      top: -20vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100vw;
-      height: 100vh;
-      background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    h2 {
-      font-family: var(--ff-head);
-      font-size: clamp(26px, 4vw, 36px);
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 0.03em;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-    }
-
-    h2 .highlight {
-      color: var(--gold-light);
-      display: block;
-    }
-
-    h3 {
-      font-family: var(--ff-head);
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--gold-light);
-      letter-spacing: 0.04em;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: var(--text-soft);
-      font-size: 15px;
-      font-weight: 300;
-      max-width: 600px;
-    }
-
-    a { color: var(--gold); text-decoration: none; }
-    img { display: block; max-width: 100%; }
-
-    .container {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-    }
-
-    /* ── Header ── */
     .header {
-      border-bottom: 1px solid var(--border);
-      background: rgba(3, 7, 11, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      transition: background 0.3s;
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      background: rgba(5, 8, 11, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gold-border);
     }
-
-    .header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 70px;
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 24px; max-width: var(--max); margin: 0 auto;
     }
-
-    .header-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .header-nav { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .header-nav a {
+      font-size: 11px; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-secondary);
+      white-space: nowrap;
     }
-
-    .header-logo img {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      object-fit: cover;
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-    }
-
-    .header-logo span {
-      font-family: var(--ff-head);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--gold-light);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
+    .header-nav a:hover { color: var(--gold); }
     .header-phone {
-      font-family: var(--ff-head);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.05em;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-family: var(--font-display); font-size: 15px;
+      color: var(--gold); border: 1px solid var(--gold-border);
+      padding: 4px 14px; border-radius: 100px;
+      flex-shrink: 0; white-space: nowrap;
+    }
+    .header-phone:hover { background: var(--gold-soft); }
+    .nav-toggle {
+      display: none; background: none; border: none;
+      color: var(--text); font-size: 26px; cursor: pointer; line-height: 1;
     }
 
-    .header-phone:hover {
-      color: var(--gold-light);
-      text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-    }
-
-    .header-phone svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
-
-    /* ── Section ── */
-    .section { padding: 80px 0; }
-    @media (max-width: 640px) { .section { padding: 50px 0; } }
-
-    /* ── Divider mark ── */
-    .divider-mark {
-      text-align: center;
-      padding: 30px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .divider-mark::before, .divider-mark::after {
-      content: '';
-      height: 1px;
-      width: 60px;
-      background: linear-gradient(to right, transparent, var(--border), transparent);
-      margin: 0 20px;
-    }
-
-    .divider-mark img {
-      width: 32px;
-      height: 32px;
-      opacity: 0.4;
-      filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.2));
-    }
-
-    /* ── Hero ── */
     .hero {
-      padding: 70px 0 40px;
-      text-align: center;
-    }
-
-    .hero .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hero-badge {
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 24px;
-      border-radius: 20px;
-      object-fit: cover;
-      box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
-      border: 1px solid var(--border);
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 6px 16px;
-      margin-bottom: 24px;
-      background: rgba(212, 175, 55, 0.05);
-      backdrop-filter: blur(4px);
-    }
-
-    .hero-tag::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: var(--gold);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--gold);
-    }
-
-    .hero h1 {
-      font-family: var(--ff-head);
-      font-size: clamp(36px, 6vw, 56px);
-      font-weight: 900;
-      color: #fff;
-      text-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
-      letter-spacing: 0.04em;
-      line-height: 1.1;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-    }
-
-    .hero .age {
-      font-family: var(--ff-head);
-      font-size: clamp(18px, 2.5vw, 24px);
-      color: var(--gold-light);
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      margin-bottom: 24px;
-    }
-
-    .hero .lead {
-      font-size: 17px;
-      color: var(--text-soft);
-      max-width: 640px;
-      margin: 0 auto 36px;
-      line-height: 1.6;
-    }
-
-    .hero-facts {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-
-    .hero-facts span {
-      font-size: 14px;
-      color: var(--text);
-      padding: 8px 18px;
-      background: rgba(11, 22, 34, 0.6);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hero-facts span svg {
-      width: 16px;
-      height: 16px;
-      fill: var(--gold);
-    }
-
-    /* Premium Phone Button */
-    .premium-phone {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
-      border: 1px solid var(--gold);
-      padding: 18px 40px;
-      border-radius: 12px;
-      color: var(--gold-light);
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
-    }
-
-    .premium-phone::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%; width: 50%; height: 100%;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
-      transform: skewX(-25deg);
-      animation: shimmer 5s infinite;
-    }
-
-    @keyframes shimmer {
-      0% { left: -100%; }
-      15% { left: 200%; }
-      100% { left: 200%; }
-    }
-
-    .premium-phone:hover {
-      background: rgba(212, 175, 55, 0.2);
-      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25);
-      transform: translateY(-3px);
-      border-color: var(--gold-light);
-    }
-
-    .premium-phone .label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text);
-      margin-bottom: 4px;
-      opacity: 0.9;
-    }
-
-    .premium-phone .num {
-      font-family: var(--ff-head);
-      font-size: 26px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-    }
-
-    @media (max-width: 640px) {
-      .hero { padding: 40px 0 30px; }
-      .hero-badge { width: 80px; height: 80px; margin-bottom: 20px; }
-      .premium-phone { padding: 14px 30px; width: 100%; }
-      .premium-phone .num { font-size: 22px; }
-    }
-
-    /* ── Two-col ── */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .grid-2 { grid-template-columns: 1fr; }
-    }
-
-    /* ── Panel (Glassmorphism) ── */
-    .panel {
-      background: var(--bg-panel);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 36px 32px;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .panel::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; width: 150px; height: 150px;
-      background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
-      border-radius: 50%;
-      transform: translate(30%, -30%);
-      pointer-events: none;
-    }
-
-    .panel:hover {
-      transform: translateY(-6px);
-      border-color: var(--border-hover);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.05);
-      background: rgba(16, 28, 42, 0.6);
-    }
-
-    .panel-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(212, 175, 55, 0.1);
-      border-radius: 12px;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
-      border: 1px solid var(--border);
-      color: var(--gold);
+      padding: 140px 24px 60px;
+      background:
+        linear-gradient(90deg, rgba(3, 7, 11, 0.92) 0%, rgba(3, 7, 11, 0.74) 50%, rgba(3, 7, 11, 0.94) 100%),
+        url('assets/images/abracadabra-poster.png') center center / cover no-repeat,
+        var(--bg);
     }
-
-    .panel-icon svg { width: 24px; height: 24px; fill: currentColor; }
-
-    .panel h3 { margin-bottom: 12px; }
-    .panel p { font-size: 15px; margin: 0; line-height: 1.6; }
-
-    /* ── Stack ── */
-    .stack { display: grid; gap: 16px; }
-
-    .step-panel {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
-    }
-
-    .step-number {
-      font-family: var(--ff-head);
-      font-size: 32px;
-      font-weight: 900;
-      color: transparent;
-      -webkit-text-stroke: 1px var(--gold-dark);
-      opacity: 0.6;
-      line-height: 1;
-      margin-top: 4px;
-    }
-
-    /* ── Video Section ── */
-    .video-section {
-      text-align: center;
-    }
-    
-    .video-container {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: #000;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(212, 175, 55, 0.05);
-      margin-top: 30px;
-      group: video;
-    }
-
-    .video-placeholder {
+    .hero::before {
+      content: '';
       position: absolute;
       inset: 0;
+      background: radial-gradient(ellipse 60% 35% at 50% 30%, rgba(201, 168, 76, 0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, rgba(11,22,34,0.8), rgba(3,7,11,0.9));
-      color: var(--gold-light);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .video-placeholder:hover {
-      background: linear-gradient(135deg, rgba(11,22,34,0.7), rgba(3,7,11,0.8));
-    }
-
-    .video-placeholder .play-btn {
-      width: 80px;
-      height: 80px;
-      background: rgba(212, 175, 55, 0.15);
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      transition: all 0.3s;
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-    }
-
-    .video-placeholder:hover .play-btn {
-      transform: scale(1.1);
-      background: rgba(212, 175, 55, 0.25);
-      box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
-    }
-
-    .play-btn svg {
-      width: 30px;
-      height: 30px;
-      fill: var(--gold-light);
-      margin-left: 6px; /* visual center for play icon */
-    }
-
-    .video-placeholder span {
-      font-family: var(--ff-head);
-      font-size: 18px;
-      letter-spacing: 0.05em;
-      opacity: 0.8;
-    }
-
-    /* ── Quote ── */
-    .quote {
       text-align: center;
-      padding: 50px 0;
-      position: relative;
+      padding: 36px 28px 34px;
+      border: 1px solid rgba(201, 168, 76, 0.14);
+      border-radius: 24px;
+      background: rgba(5, 8, 11, 0.40);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
     }
-
-    .quote::before {
-      content: '“';
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--ff-head);
-      font-size: 120px;
-      color: var(--border);
-      line-height: 1;
-      z-index: -1;
-    }
-
-    .quote p {
-      font-family: var(--ff-head);
-      font-size: clamp(20px, 3vw, 28px);
-      color: var(--text);
-      line-height: 1.5;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .quote p em {
-      color: var(--gold-light);
-      font-style: normal;
-      text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-    }
-
-    /* ── About ── */
-    .about-row {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-      background: var(--bg-panel);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 40px;
-    }
-
-    @media (max-width: 768px) {
-      .about-row { flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; gap: 24px; }
-    }
-
-    .about-photo-wrapper {
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .about-photo-wrapper::before {
-      content: '';
-      position: absolute;
-      inset: -10px;
-      border: 1px solid var(--border-hover);
+    .hero-mark-wrap {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 24px;
       border-radius: 50%;
-      animation: rotate 10s linear infinite;
+      padding: 8px;
+      background: linear-gradient(180deg, rgba(201,168,76,0.14), rgba(201,168,76,0.03));
+      border: 1px solid rgba(201, 168, 76, 0.18);
+      box-shadow: 0 0 0 10px rgba(201, 168, 76, 0.03);
     }
-
-    @keyframes rotate { 100% { transform: rotate(360deg); } }
-
-    .about-photo {
-      width: 180px;
-      height: 180px;
+    .hero-mark-wrap img {
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      position: relative;
-      z-index: 2;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: block;
     }
-
-    .about-list {
-      list-style: none;
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
+    .hero-suptitle {
+      font-family: var(--font-display); font-size: 16px;
+      color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase;
+      margin-bottom: 10px;
     }
-
-    .about-list li {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      color: var(--text-soft);
-      font-size: 15px;
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 10vw, 100px); font-weight: 600; line-height: 1;
+      margin-bottom: 16px;
     }
-
-    .about-list li svg {
-      width: 18px;
-      height: 18px;
-      fill: var(--gold);
-      flex-shrink: 0;
-      margin-top: 4px;
+    .hero-sub {
+      font-size: 18px; color: var(--text-secondary);
+      max-width: 560px; margin: 0 auto 24px;
     }
-
-    .about-foot {
-      margin-top: 24px;
-      font-family: var(--ff-head);
-      font-size: 18px;
-      color: var(--gold-light);
-      font-weight: 700;
-      border-top: 1px solid var(--border);
-      padding-top: 20px;
+    .hero-age {
+      display: inline-block; font-family: var(--font-display); font-size: 16px;
+      color: var(--gold-dim); border: 1px solid var(--gold-border);
+      padding: 6px 24px; border-radius: 100px;
     }
-
-    /* ── FAQ ── */
-    .faq-list { display: grid; gap: 12px; }
-
-    .faq-item {
-      background: var(--bg-panel);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
+    .hero-phone {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-display); font-size: 18px;
+      color: var(--gold); border: 1px solid var(--gold-dim);
+      padding: 6px 24px; border-radius: 100px;
       transition: all 0.3s;
+      text-decoration: none;
     }
-
-    .faq-item:hover {
-      border-color: var(--border-hover);
-      background: rgba(16, 28, 42, 0.6);
-    }
-
-    .faq-item summary {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 24px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 16px;
-      list-style: none;
-      color: var(--text);
-    }
-
-    .faq-item summary::-webkit-details-marker { display: none; }
-
-    .faq-item summary::after {
-      content: "+";
-      color: var(--gold);
-      font-size: 24px;
-      font-weight: 300;
-      margin-left: 12px;
-      flex-shrink: 0;
-      transition: transform 0.3s;
-    }
-
-    .faq-item[open] summary::after { transform: rotate(45deg); }
-
-    .faq-item .faq-body {
-      padding: 0 24px 20px;
-      color: var(--text-soft);
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    /* ── Contact block ── */
-    .contact-panel {
-      background: linear-gradient(135deg, rgba(11,22,34,0.8), rgba(3,7,11,0.9));
-      border: 1px solid var(--border-hover);
-      border-radius: 20px;
-      padding: 50px 30px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 40px rgba(212, 175, 55, 0.05);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-panel::before {
+    .hero-phone::before {
       content: '';
-      position: absolute;
-      top: -50%; left: -50%; width: 200%; height: 200%;
-      background: radial-gradient(circle at center, rgba(212,175,55,0.08) 0%, transparent 60%);
-      pointer-events: none;
+      display: inline-block;
+      width: 12px; height: 12px;
+      background: var(--gold);
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'%3E%3C/path%3E%3C/svg%3E") center / contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'%3E%3C/path%3E%3C/svg%3E") center / contain no-repeat;
+    }
+    .hero-phone:hover {
+      background: var(--gold-soft);
+      border-color: var(--gold);
+      color: #e6d08a;
+      text-shadow: 0 0 12px rgba(201, 168, 76, 0.3);
     }
 
-    .contact-panel h2 { margin-bottom: 8px; }
-    .contact-panel p.sub { margin: 0 auto 30px; max-width: 500px; }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 0;
-      margin-top: 40px;
-      background: #020508;
+    .divider {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      max-width: 180px; margin: 0 auto; padding: 32px 0; opacity: 0.4;
     }
-
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
     }
+    .divider img { width: 22px; height: 22px; opacity: 0.5; }
 
-    .footer-row .copy {
-      font-size: 14px;
-      color: var(--text-soft);
-      opacity: 0.6;
+    section { padding: 80px 0; }
+    .section-label {
+      font-family: var(--font-display); font-size: 12px;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 8px;
     }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4.5vw, 50px);
+      font-weight: 600; line-height: 1.12; margin-bottom: 12px;
+    }
+    .section-sub {
+      color: var(--text-secondary); font-size: 16px;
+      max-width: 560px; line-height: 1.55;
+    }
+    .section-header { margin-bottom: 48px; }
+    .section-header.centered { text-align: center; }
+    .section-header.centered .section-sub { margin: 0 auto; }
 
-    /* ── Reveal ── */
-    @media (prefers-reduced-motion: no-preference) {
-      [data-reveal] {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      [data-reveal].in {
-        opacity: 1;
-        transform: none;
-      }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .card {
+      background: var(--card); border: 1px solid var(--gold-border);
+      padding: 28px 24px; border-radius: 12px;
+      transition: border-color 0.35s, transform 0.35s;
+    }
+    .card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .card .icon { width: 36px; height: 36px; margin-bottom: 16px; opacity: 0.85; }
+    .card h3 { font-family: var(--font-display); font-size: 19px; font-weight: 600; margin-bottom: 6px; }
+    .card p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+
+    .grid-4-alt { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .block {
+      padding: 20px 16px 20px 32px; border-left: 1px solid var(--gold-border);
+      position: relative; transition: border-color 0.3s;
+    }
+    .block:hover { border-left-color: var(--gold); }
+    .block::before {
+      content: ''; position: absolute; left: -4px; top: 20px;
+      width: 7px; height: 7px; background: var(--gold); border-radius: 50%;
+    }
+    .block h3 { font-family: var(--font-display); font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+    .block p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+
+    .app-section { background: radial-gradient(ellipse 60% 70% at 30% 50%, rgba(201, 168, 76, 0.04) 0%, transparent 60%), var(--bg); }
+    .app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .app-frame {
+      width: 300px; height: 600px;
+      background: linear-gradient(145deg, #0d1520, #162233);
+      border-radius: 42px; border: 2px solid var(--gold-border);
+      padding: 14px 12px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+    .app-screen {
+      width: 100%; height: 100%;
+      background: var(--bg); border-radius: 28px;
+      padding: 16px; display: flex; flex-direction: column; overflow-y: auto;
+    }
+    .app-screen::-webkit-scrollbar { width: 2px; }
+    .app-screen::-webkit-scrollbar-track { background: transparent; }
+    .app-screen::-webkit-scrollbar-thumb { background: var(--gold-border); border-radius: 99px; }
+
+    .app-title-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px; padding-bottom: 10px;
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .app-title-bar h3 { font-family: var(--font-display); font-size: 15px; font-weight: 500; }
+    .app-title-icons { display: flex; gap: 10px; }
+    .app-title-icons button { background: none; border: none; color: var(--text-secondary); font-size: 15px; cursor: pointer; }
+    .app-title-icons button:hover { color: var(--gold); }
+
+    .app-profile {
+      display: flex; align-items: center; gap: 10px; padding: 10px;
+      background: var(--card); border: 1px solid var(--gold-border); border-radius: 12px; margin-bottom: 14px;
+    }
+    .app-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-soft), rgba(201,168,76,0.15));
+      display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
+    }
+    .app-profile-info { flex: 1; min-width: 0; }
+    .app-profile-name { font-family: var(--font-display); font-size: 13px; font-weight: 600; }
+    .app-profile-level { font-size: 10px; color: var(--text-muted); }
+    .app-profile-xp { font-size: 10px; color: var(--gold); text-align: right; white-space: nowrap; }
+    .app-xp-bar { width: 100%; height: 3px; background: rgba(201, 168, 76, 0.08); border-radius: 99px; margin: 0 0 16px; overflow: hidden; }
+    .app-xp-fill { height: 100%; background: linear-gradient(to right, var(--gold-dim), var(--gold)); border-radius: 99px; transition: width 0.6s ease; }
+
+    .app-daily-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .app-daily-header h4 { font-family: var(--font-display); font-size: 12px; font-weight: 500; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+    .app-daily-header span { font-size: 10px; color: var(--text-muted); }
+    .app-daily-items { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .app-daily-item {
+      display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+      background: rgba(201,168,76,0.04); border: 1px solid var(--gold-border); border-radius: 8px;
+      cursor: pointer; transition: border-color 0.3s, opacity 0.3s;
+      font-size: 11px; color: var(--text-secondary);
+    }
+    .app-daily-item:hover { border-color: var(--gold); }
+    .app-daily-item.done { opacity: 0.45; text-decoration: line-through; }
+    .app-daily-item .check {
+      width: 14px; height: 14px; border: 1px solid var(--gold-border); border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 7px;
+      transition: background 0.3s;
+    }
+    .app-daily-item.done .check { background: var(--gold); border-color: var(--gold); }
+    .app-daily-item .reward { margin-left: auto; font-size: 9px; color: var(--gold); }
+
+    .app-missions-header { font-family: var(--font-display); font-size: 12px; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .app-mission { padding: 10px 12px; background: var(--card); border: 1px solid var(--gold-border); border-radius: 8px; margin-bottom: 6px; cursor: pointer; transition: border-color 0.3s, opacity 0.3s; }
+    .app-mission:hover { border-color: var(--gold); }
+    .app-mission.done { opacity: 0.4; }
+    .app-mission .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+    .app-mission .title { font-size: 11px; font-weight: 500; }
+    .app-mission .xp { font-size: 9px; color: var(--gold); }
+    .app-mission .desc { font-size: 10px; color: var(--text-muted); }
+
+    .app-info h2 { margin-bottom: 16px; }
+    .app-info .highlight { font-family: var(--font-display); font-size: 20px; color: var(--gold); margin-bottom: 20px; }
+    .app-info p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px; }
+    .app-features { list-style: none; margin-top: 24px; }
+    .app-features li { padding: 10px 0 10px 28px; position: relative; font-size: 14px; color: var(--text-secondary); border-bottom: 1px solid var(--gold-border); }
+    .app-features li:last-child { border-bottom: none; }
+    .app-features li::before { content: '\2726'; position: absolute; left: 0; color: var(--gold); font-size: 10px; }
+
+    .creator-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .creator-photo { border-radius: 14px; overflow: hidden; border: 1px solid var(--gold-border); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+    .creator-photo img { width: 100%; height: 480px; object-fit: cover; }
+    .creator-info .role { font-family: var(--font-display); font-size: 16px; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 16px; }
+    .creator-info p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+    .quote { font-family: var(--font-display); font-size: 18px; font-style: italic; border-left: 2px solid var(--gold); padding: 12px 20px; margin-top: 8px; }
+
+    .faq-list { max-width: 680px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--gold-border); }
+    .faq-question {
+      display: flex; justify-content: space-between; align-items: center; width: 100%;
+      background: none; border: none; font-family: var(--font-display); font-size: 17px;
+      color: var(--text); text-align: left; cursor: pointer; padding: 18px 0; transition: color 0.3s;
+    }
+    .faq-question:hover { color: var(--gold); }
+    .faq-question .icon { font-size: 22px; color: var(--gold); transition: transform 0.4s; flex-shrink: 0; margin-left: 12px; }
+    .faq-item.open .faq-question .icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.45s ease, padding 0.45s ease; padding: 0; }
+    .faq-item.open .faq-answer { max-height: 200px; padding: 0 0 16px; }
+    .faq-answer p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+    .contact-section { text-align: center; padding: 100px 24px; background: radial-gradient(ellipse 80% 40% at 50% 100%, rgba(201, 168, 76, 0.05) 0%, transparent 60%), var(--bg); }
+    .contact-phone { font-family: var(--font-display); font-size: clamp(32px, 5vw, 56px); color: var(--gold); display: inline-block; margin: 16px 0 20px; text-shadow: 0 0 40px rgba(201, 168, 76, 0.1); }
+    .contact-phone:hover { color: #e6d08a; text-shadow: 0 0 60px rgba(201, 168, 76, 0.2); }
+    .contact-section p { color: var(--text-secondary); max-width: 440px; margin: 0 auto; font-size: 16px; }
+
+    .footer { border-top: 1px solid var(--gold-border); padding: 32px 24px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; max-width: var(--max); margin: 0 auto; }
+    .footer-logo { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 15px; }
+    .footer-logo img { width: 22px; height: 22px; }
+    .footer-info { font-size: 12px; color: var(--text-muted); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1024px) {
+      .header-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; flex-direction: column; background: rgba(5,8,11,0.98); padding: 20px 24px; gap: 16px; border-bottom: 1px solid var(--gold-border); z-index: 99; }
+      .header-nav.open { display: flex; }
+      .nav-toggle { display: block; }
+      .header-phone { display: none; }
+      .app-grid { grid-template-columns: 1fr; text-align: center; }
+      .app-features { text-align: left; max-width: 480px; margin: 24px auto 0; }
+      .creator-grid { grid-template-columns: 1fr; text-align: center; }
+      .creator-photo { max-width: 420px; margin: 0 auto; }
+      .creator-photo img { height: 380px; }
+      .quote { text-align: left; }
+    }
+    @media (max-width: 768px) {
+      .hero { padding: 120px 20px 40px; }
+      section { padding: 56px 0; }
+      .grid-4, .grid-4-alt { grid-template-columns: 1fr; }
+      .app-frame { width: 260px; height: 520px; }
+      .creator-photo img { height: 300px; }
+      .creator-photos { grid-template-columns: repeat(2,1fr); }
+      .contact-section { padding: 60px 20px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 36px; }
+      .section-title { font-size: 26px; }
+      .app-frame { width: 220px; height: 440px; }
+      .creator-photos { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- ═══════════ HEADER ═══════════ -->
   <header class="header">
-    <div class="container">
-      <div class="header-logo">
-        <img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt="Abracadabra Logo" loading="eager">
-        <span>Abracadabra</span>
-      </div>
-      <a class="header-phone" href="tel:+79092763386">
-        <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
-        +7 909 276-33-86
-      </a>
+    <div class="header-inner">
+      <a href="#" class="logo-link"><img src="assets/logo/logo.png" alt="" width="32" height="32" /> Abracadabra</a>
+      <nav class="header-nav" id="headerNav">
+        <a href="#benefits">Выгоды</a>
+        <a href="#results">Результаты</a>
+        <a href="#program">Программа</a>
+        <a href="#app">Приложение</a>
+        <a href="#creator">Создатель</a>
+        <a href="#faq">Вопросы</a>
+        <a href="#video">Видео</a>
+        <a href="#contact" style="color:var(--gold)">Контакты</a>
+      </nav>
+      <a href="tel:+79092763386" class="header-phone">+7 909 276-33-86</a>
+      <button class="nav-toggle" id="navToggle">☰</button>
     </div>
   </header>
 
-  <!-- ═══════════ HERO ═══════════ -->
-  <section class="hero" data-reveal>
-    <div class="container">
-      <img class="hero-badge" src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt="Школа фокусов">
-      <div class="hero-tag">Первая в Ярославле</div>
-      <h1>Школа фокусов</h1>
-      <p class="age">для детей 7–13 лет</p>
-      <p class="lead">
-        Место, где ребёнок выходит на сцену и перестаёт бояться. Фокусы — это
-        повод. Настоящая цель — уверенность, речь, внимание и умение держать зал.
-      </p>
-      <div class="hero-facts">
-        <span><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> До 10 детей в группе</span>
-        <span><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg> 1 занятие в неделю</span>
-        <span><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> Шоу для родителей</span>
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-suptitle">Первая школа фокусов в Ярославле</p>
+      <h1 class="hero-title">Abracadabra</h1>
+      <p class="hero-sub">Ваш ребёнок сможет то, о чём вы даже не догадываетесь. Мы раскрываем уверенность, речь и артистизм через искусство иллюзии.</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px;">
+        <span class="hero-age">Дети 7–13 лет</span>
+        <a href="tel:+79092763386" class="hero-phone">+7 909 276-33-86</a>
       </div>
-      <a class="premium-phone" href="tel:+79092763386">
-        <span class="label">Узнать о школе и записаться</span>
-        <span class="num">+7 909 276-33-86</span>
-      </a>
     </div>
   </section>
 
-  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
+  <div class="divider" aria-hidden="true"><span></span><img src="assets/logo/logo.png" alt="" /><span></span></div>
 
-  <!-- ═══════════ VIDEO PLACEHOLDER ═══════════ -->
-  <section class="section video-section" data-reveal>
+  <section id="benefits">
     <div class="container">
-      <h2>Как это выглядит <span class="highlight">вживую</span></h2>
-      <p style="margin: 0 auto; text-align: center;">Посмотрите атмосферу наших занятий и первые выступления учеников.</p>
-      
-      <div class="video-container">
-        <!-- 
-          РАЗРАБОТЧИКУ / ВЛАДЕЛЬЦУ: 
-          Вставьте сюда iframe с YouTube/Vimeo или тег <video>, когда видео будет готово. 
-          Сейчас здесь премиальная заглушка. Чтобы использовать заглушку для открытия попапа, можно повесить на неё JS скрипт.
-        -->
-        <div class="video-placeholder">
-          <div class="play-btn">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <span>Видео скоро появится</span>
+      <div class="section-header centered">
+        <p class="section-label">Почему фокусы</p>
+        <h2 class="section-title">Что это даёт ребёнку</h2>
+        <p class="section-sub">Фокусы — не просто трюки. Это способ изменить то, как ребёнок чувствует себя в школе, среди друзей и на сцене.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card">
+          <h3>Перестанет стесняться</h3>
+          <p>Каждое выступление учит держать внимание зала. Ребёнок перестаёт бояться быть в центре внимания.</p>
+        </div>
+        <div class="card">
+          <h3>Начнёт чётко говорить</h3>
+          <p>Фокусник — это рассказчик. Мы тренируем речь, дикцию и умение увлечь слушателя историей.</p>
+        </div>
+        <div class="card">
+          <h3>Станет внимательнее</h3>
+          <p>Фокус требует концентрации. Дети становятся собраннее и замечают детали, которые раньше ускользали.</p>
+        </div>
+        <div class="card">
+          <h3>Раскроет талант</h3>
+          <p>Каждый придумывает свой образ и номер. Это раскрывает творческую природу ребёнка.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
+  <div class="divider" aria-hidden="true"><span></span><img src="assets/logo/logo.png" alt="" /><span></span></div>
 
-  <!-- ═══════════ WHY ═══════════ -->
-  <section class="section" data-reveal>
+  <section id="results">
     <div class="container">
-      <h2>Что ребёнок получает <span class="highlight">на самом деле</span></h2>
-      <p style="margin-bottom:40px;">
-        Это не кружок с карточными фокусами. Это система развития личности через сцену и искусство иллюзии.
-      </p>
-      <div class="grid-2">
-        <div class="panel">
-          <div class="panel-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
-          <h3>Уверенность на сцене и в жизни</h3>
-          <p>Ребёнок учится говорить спокойно, смотреть в глаза, держать паузу. Аплодисменты зала — лучший тренажёр самооценки, который останется с ним навсегда.</p>
+      <div class="section-header centered">
+        <p class="section-label">Результат</p>
+        <h2 class="section-title">Чему научится ваш ребёнок</h2>
+        <p class="section-sub">Через несколько занятий вы увидите не просто фокусы. Вы увидите другого ребёнка — уверенного, собранного и свободного на сцене.</p>
+      </div>
+      <div class="grid-4-alt">
+        <div class="block">
+          <h3>Знает секреты магии</h3>
+          <p>Понимает устройство десятков фокусов. Может показать их в школе, в гостях, на любом празднике.</p>
         </div>
-        <div class="panel">
-          <div class="panel-icon"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></div>
-          <h3>Умение управлять вниманием</h3>
-          <p>Навык, который пригодится в школе, институте и карьере. Тот, кто владеет вниманием аудитории — владеет любой ситуацией.</p>
+        <div class="block">
+          <h3>Держит внимание зала</h3>
+          <p>Уверенно ведёт номер: жесты, голос, взгляд работают как у опытного артиста.</p>
         </div>
-        <div class="panel">
-          <div class="panel-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.88-11.71L10 14.17l-1.88-1.88a.996.996 0 10-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 10-1.42-1.41z"/></svg></div>
-          <h3>Речь и подача</h3>
-          <p>Каждое занятие — мини-выступление. Через месяц ребёнок говорит громче, чётче и увереннее, чем после года стандартных «развивашек».</p>
+        <div class="block">
+          <h3>Придумывает свои номера</h3>
+          <p>Создаёт персонажа, пишет сценарий, готовит реквизит. Это прокачивает фантазию и самостоятельность.</p>
         </div>
-        <div class="panel">
-          <div class="panel-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 9h-2V7h-2v5H6v2h2v5h2v-5h2v-2z"/></svg></div>
-          <h3>Азарт без домашки</h3>
-          <p>Дневник Волшебника, ачивки, наклейки, шкала побед. Игровая система прогресса выстроена так, что ребёнок сам хочет прийти и показать новый трюк.</p>
+        <div class="block">
+          <h3>Не боится сцены</h3>
+          <p>После регулярных выступлений страх уходит. Ребёнок спокойно отвечает у доски и выступает перед классом.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
+  <div class="divider" aria-hidden="true"><span></span><img src="assets/logo/logo.png" alt="" /><span></span></div>
 
-  <!-- ═══════════ QUOTE ═══════════ -->
-  <section class="quote" data-reveal>
+  <section id="championship">
     <div class="container">
-      <p>
-        Футболистов — тысячи. Музыкантов — сотни.<br>
-        А <em>ребёнок, способный увлечь зал, — один на миллион</em>.
-      </p>
+      <div style="max-width:680px;margin:0 auto;text-align:center;padding:40px 32px;border:1px solid var(--gold-border);border-radius:16px;background:var(--card);">
+        <p class="section-label">Для тех, кто хочет большего</p>
+        <h2 class="section-title" style="margin-bottom:8px;">Выход на чемпионат</h2>
+        <p class="section-sub" style="margin:0 auto 20px;">Если ребёнок увлечётся — появится реальная возможность выступить на чемпионате России по фокусам. А при большом желании — и на чемпионате мира. Всё зависит только от него.</p>
+        <p style="font-size:13px;color:var(--text-muted);">Фокусы — это спорт. Со своими соревнованиями, уровнями и признанием.</p>
+      </div>
     </div>
   </section>
 
-  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
+  <div class="divider" aria-hidden="true"><span></span><img src="assets/logo/logo.png" alt="" /><span></span></div>
 
-  <!-- ═══════════ HOW IT WORKS ═══════════ -->
-  <section class="section" data-reveal>
+  <section id="program">
     <div class="container">
-      <h2>Как проходят <span class="highlight">занятия</span></h2>
-      <p style="margin-bottom:40px;">Всё просто. Без путаницы, зубрёжки и лишней бюрократии.</p>
-      <div class="stack">
-        <div class="panel step-panel">
-          <div class="step-number">01</div>
-          <div>
-            <h3>1 занятие в неделю</h3>
-            <p>Два академических часа. Оптимальный ритм, который не перегружает школьника, но даёт стабильный и заметный результат.</p>
-          </div>
+      <div class="section-header centered">
+        <p class="section-label">Программа</p>
+        <h2 class="section-title">Что входит в занятие</h2>
+        <p class="section-sub">Два часа — это не просто фокусы. Иллюзионист соединяет в себе актёра, сценариста, режиссёра и музыканта. Мы развиваем всё сразу.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card">
+          <h3>Актёрское мастерство</h3>
+          <p>Ребёнок учится держать внимание зала: жесты, мимика, голос, паузы. Как в театре.</p>
         </div>
-        <div class="panel step-panel">
-          <div class="step-number">02</div>
-          <div>
-            <h3>Фокусы → выступление</h3>
-            <p>Не просто «узнал секрет и забыл». Каждый трюк прорабатывается до мелочей и становится частью личного сценического номера.</p>
-          </div>
+        <div class="card">
+          <h3>Сценическая речь</h3>
+          <p>Дикция, интонация, умение рассказать историю. Навык, который пригодится везде.</p>
         </div>
-        <div class="panel step-panel">
-          <div class="step-number">03</div>
-          <div>
-            <h3>Дневник и ачивки</h3>
-            <p>Игровая система мотивации. Наклейки, призы, настоящий профессиональный реквизит в конце месяца за достижения.</p>
-          </div>
+        <div class="card">
+          <h3>Чувство стиля и музыки</h3>
+          <p>Подбор образа, костюма, музыкального сопровождения. Учим чувствовать сцену.</p>
         </div>
-        <div class="panel step-panel">
-          <div class="step-number">04</div>
-          <div>
-            <h3>Мини-шоу для вас</h3>
-            <p>Каждый месяц — открытое выступление для родителей. Вы видите реальный прогресс и эмоции своими глазами.</p>
-          </div>
+        <div class="card">
+          <h3>Построение номера</h3>
+          <p>Ребёнок учится собирать выступление: от идеи до финального поклона. Как режиссёр.</p>
+        </div>
+        <div class="card">
+          <h3>Фокусы и иллюзии</h3>
+          <p>Карты, монеты, предметы. От простого к сложному. Ребёнок знает, как устроена магия.</p>
+        </div>
+        <div class="card">
+          <h3>Реквизит и приложение</h3>
+          <p>Всё необходимое выдаётся на занятии. Плюс личный игровой дневник в телефоне.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
+  <div class="divider" aria-hidden="true"><span></span><img src="assets/logo/logo.png" alt="" /><span></span></div>
 
-  <!-- ═══════════ ABOUT ═══════════ -->
-  <section class="section" data-reveal>
+  <section class="app-section" id="app">
     <div class="container">
-      <h2>Кто ведёт <span class="highlight">школу</span></h2>
-      <div class="about-row">
-        <div class="about-photo-wrapper">
-          <img class="about-photo" src="assets/photos/dmitry.jpg" alt="Дмитрий Костюк" loading="lazy">
+      <div class="app-grid">
+        <div class="app-visual">
+          <div class="app-frame">
+            <div class="app-screen" id="appScreen">
+              <div class="app-title-bar">
+                <h3>Мой дневник</h3>
+                <div class="app-title-icons">
+                  <button aria-label="Профиль">👤</button>
+                  <button aria-label="Настройки">⚙️</button>
+                </div>
+              </div>
+              <div class="app-profile">
+                <div class="app-avatar">🧙</div>
+                <div class="app-profile-info">
+                  <div class="app-profile-name">Артём</div>
+                  <div class="app-profile-level">Уровень 4 · Маг-новичок</div>
+                </div>
+                <div class="app-profile-xp" id="xpText">120 / 200 XP</div>
+              </div>
+              <div class="app-xp-bar"><div class="app-xp-fill" id="xpBar" style="width:60%"></div></div>
+              <div class="app-daily">
+                <div class="app-daily-header">
+                  <h4>✨ Ежедневные цели</h4>
+                  <span id="dailyCount">0 / 3</span>
+                </div>
+                <div class="app-daily-items" id="dailyItems">
+                  <div class="app-daily-item" data-id="0"><span class="check">✓</span>Посмотреть видео урока<span class="reward">+15 XP</span></div>
+                  <div class="app-daily-item" data-id="1"><span class="check">✓</span>Ответить на 3 вопроса<span class="reward">+20 XP</span></div>
+                  <div class="app-daily-item" data-id="2"><span class="check">✓</span>Написать секретное слово<span class="reward">+25 XP</span></div>
+                </div>
+              </div>
+              <div class="app-missions">
+                <div class="app-missions-header">📋 Задания</div>
+                <div class="app-mission" data-id="0">
+                  <div class="top"><span class="title">Основы карточного веера</span><span class="xp">+30 XP</span></div>
+                  <div class="desc">Повторить движение 5 раз</div>
+                </div>
+                <div class="app-mission" data-id="1">
+                  <div class="top"><span class="title">Монета: исчезновение</span><span class="xp">+40 XP</span></div>
+                  <div class="desc">Записать видео и отправить</div>
+                </div>
+                <div class="app-mission" data-id="2">
+                  <div class="top"><span class="title">Теневой театр руками</span><span class="xp">+25 XP</span></div>
+                  <div class="desc">Выучить 3 фигуры</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h3>Дмитрий Костюк</h3>
-          <p style="color:var(--text); font-weight:500; margin-bottom:12px;">Профессиональный иллюзионист, автор театрального шоу «Секрет», открыватель первой школы фокусов в Ярославле.</p>
-          <p>
-            Создаёт иллюзионные шоу, ментализм и микромагию. Свой огромный сценический опыт переводит на детский язык. В его подходе фокусы — это инструмент, который учит детей красиво говорить, держать паузу, работать с публикой и быть собой.
-          </p>
-          <ul class="about-list">
-            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Огромный опыт на сценических и корпоративных событиях</li>
-            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Понимает, как создавать эмоцию и управлять вниманием зала</li>
-            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Авторский подход: фокусы + сцена + речь + харизма</li>
-            <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Главная цель — раскрытие вашего ребёнка как артиста</li>
+        <div class="app-info">
+          <p class="section-label">Школьное приложение</p>
+          <h2 class="section-title">Личный дневник в виде игры</h2>
+          <div class="highlight">Никаких оценок. Только уровни, награды и магия.</div>
+          <p>Каждый ученик получает доступ к приложению — личному дневнику, оформленному как увлекательная игра. Пользователи проходят уровни, получают профессиональный реквизит фокусника и могут показывать фокусы родителям и друзьям.</p>
+          <p>В дневнике нет оценок. Ты просто проходишь уровни. Кто-то быстрее, кто-то медленнее — проигравших нет. Все действия школы происходят в игровой манере.</p>
+          <ul class="app-features">
+            <li>Личная учётная запись у каждого ученика</li>
+            <li>Профессиональный реквизит в награду за уровни</li>
+            <li>Никаких оценок — только прогресс</li>
+            <li>Достижения, которыми можно делиться</li>
           </ul>
-          <p class="about-foot">«Абракадабра» — школа, где ребёнок становится уверенной личностью.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
+  <div class="divider" aria-hidden="true"><span></span><img src="assets/logo/logo.png" alt="" /><span></span></div>
 
-  <!-- ═══════════ FAQ ═══════════ -->
-  <section class="section" data-reveal>
+  <section id="creator">
     <div class="container">
-      <h2>Частые <span class="highlight">вопросы</span></h2>
+      <div class="section-header centered">
+        <p class="section-label">Основатель</p>
+        <h2 class="section-title">Дмитрий Костюк</h2>
+        <p class="section-sub" style="margin:0 auto">Иллюзионист, педагог, автор методики</p>
+      </div>
+      <div class="creator-grid">
+        <div class="creator-photo"><img src="assets/photos/IMG_0793.JPG" alt="Дмитрий Костюк" loading="lazy" /></div>
+        <div class="creator-info">
+          <p class="role">Иллюзионист, педагог</p>
+          <p>Дмитрий — профессиональный иллюзионист. За его плечами десятки шоу для детей и взрослых, мастер-классы и авторская методика. Он убеждён: фокусы меняют детей — делают их увереннее, внимательнее и счастливее.</p>
+          <div class="quote">«Когда ребёнок показывает фокус и видит удивление в глазах зрителей, он чувствует свою ценность. Это меняет всё»</div>
+        </div>
+      </div>
+      <div class="creator-photos" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;">
+        <div style="border-radius:12px;overflow:hidden;border:1px solid var(--gold-border);aspect-ratio:4/3;"><img src="assets/photos/DSC_0271.JPG" alt="Занятие с детьми" loading="lazy" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div style="border-radius:12px;overflow:hidden;border:1px solid var(--gold-border);aspect-ratio:4/3;"><img src="assets/photos/DSC_0955.JPG" alt="Занятие с детьми" loading="lazy" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div style="border-radius:12px;overflow:hidden;border:1px solid var(--gold-border);aspect-ratio:4/3;"><img src="assets/photos/DSC_0284.jpg" alt="Занятие с детьми" loading="lazy" style="width:100%;height:100%;object-fit:cover;" /></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span></span><img src="assets/logo/logo.png" alt="" /><span></span></div>
+
+  <section id="faq">
+    <div class="container">
+      <div class="section-header centered">
+        <p class="section-label">Вопросы</p>
+        <h2 class="section-title">Всё, что важно знать</h2>
+      </div>
       <div class="faq-list">
-        <details class="faq-item">
-          <summary>Если ребёнок стеснительный?</summary>
-          <div class="faq-body">Начинаем без давления: контакт, простые действия, внимание. Потом — сцена. Игровая атмосфера и магия творят чудеса — дети раскрываются за 3-4 занятия.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Кому подходит школа?</summary>
-          <div class="faq-body">Детям 7–13 лет. Совершенно не важно, видел ли ребёнок фокусы раньше и умеет ли выступать. Важно только одно — хочет ли он попробовать.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Сколько детей в группе?</summary>
-          <div class="faq-body">До 10 человек. Это идеальный формат: каждый успевает выйти на сцену и каждый получает персональное внимание преподавателя.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Будут ли домашние задания?</summary>
-          <div class="faq-body">Нет. Весь образовательный прогресс происходит исключительно на занятиях. Ребёнок не устаёт после школы и с радостью хочет возвращаться к нам.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Когда можно начать обучение?</summary>
-          <div class="faq-body">В любое время. Наша программа построена так, что мы не привязаны к сентябрю. Позвоните нам, и мы подберём удобный день для старта.</div>
-        </details>
+        <div class="faq-item">
+          <button class="faq-question">С какого возраста принимаем?<span class="icon">+</span></button>
+          <div class="faq-answer"><p>Принимаем детей 7–13 лет. Никакого отбора — каждый начинает с основ.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Нужно ли что-то покупать?<span class="icon">+</span></button>
+          <div class="faq-answer"><p>Всё необходимое выдаётся на занятии: карты, монеты, реквизит. Приложение тоже входит в программу.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Как работает приложение?<span class="icon">+</span></button>
+          <div class="faq-answer"><p>Каждый ученик получает личный доступ к игровому дневнику. Там нет оценок — только уровни, задания и награды.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Можно попробовать перед тем, как решить?<span class="icon">+</span></button>
+          <div class="faq-answer"><p>Да. Позвоните нам — договоримся о пробном занятии без обязательств.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Как часто проходят занятия?<span class="icon">+</span></button>
+          <div class="faq-answer"><p>Раз в неделю. Занятие длится два полноценных часа.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Где проходят занятия?<span class="icon">+</span></button>
+          <div class="faq-answer"><p>В удобных залах в разных районах Ярославля. Точный адрес ближайшего скажем при звонке.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Сколько детей в группе?<span class="icon">+</span></button>
+          <div class="faq-answer"><p>Небольшие группы — до 10 человек. Каждому ребёнку хватает внимания.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Что если ребёнок стесняется?<span class="icon">+</span></button>
+          <div class="faq-answer"><p>Большинство детей приходят стеснительными. Фокусы помогают раскрыться — обычно через 2–3 занятия ребёнка не узнать.</p></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="divider-mark"><img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt=""></div>
+  <div class="divider" aria-hidden="true"><span></span><img src="assets/logo/logo.png" alt="" /><span></span></div>
 
-  <!-- ═══════════ CONTACT ═══════════ -->
-  <section class="section" data-reveal>
+  <section id="start">
     <div class="container">
-      <div class="contact-panel">
-        <h2>Свяжитесь с нами</h2>
-        <p class="sub">
-          Расскажем подробнее о школе, ответим на вопросы и подберём удобное время для первого занятия. Без навязывания — решение принимаете вы после разговора.
-        </p>
-        <a class="premium-phone" href="tel:+79092763386" style="margin: 0 auto;">
-          <span class="label">Позвонить руководителю</span>
-          <span class="num">+7 909 276-33-86</span>
-        </a>
-        <p style="margin-top:20px; font-size: 14px; opacity: 0.7;">Дмитрий ответит лично.</p>
+      <div class="section-header centered">
+        <p class="section-label">Старт</p>
+        <h2 class="section-title">Как начать</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;max-width:680px;margin:0 auto;">
+        <div style="text-align:center;padding:28px 20px;background:var(--card);border:1px solid var(--gold-border);border-radius:12px;">
+          <div style="font-family:var(--font-display);font-size:32px;color:var(--gold);margin-bottom:12px;">1</div>
+          <h3 style="font-family:var(--font-display);font-size:17px;margin-bottom:6px;">Позвоните</h3>
+          <p style="font-size:14px;color:var(--text-secondary);">Расскажем о школе и договоримся о пробном занятии.</p>
+        </div>
+        <div style="text-align:center;padding:28px 20px;background:var(--card);border:1px solid var(--gold-border);border-radius:12px;">
+          <div style="font-family:var(--font-display);font-size:32px;color:var(--gold);margin-bottom:12px;">2</div>
+          <h3 style="font-family:var(--font-display);font-size:17px;margin-bottom:6px;">Приходите на пробное</h3>
+          <p style="font-size:14px;color:var(--text-secondary);">Ребёнок попробует — и вы увидите его реакцию. Без обязательств.</p>
+        </div>
+        <div style="text-align:center;padding:28px 20px;background:var(--card);border:1px solid var(--gold-border);border-radius:12px;">
+          <div style="font-family:var(--font-display);font-size:32px;color:var(--gold);margin-bottom:12px;">3</div>
+          <h3 style="font-family:var(--font-display);font-size:17px;margin-bottom:6px;">Начинайте заниматься</h3>
+          <p style="font-size:14px;color:var(--text-secondary);">Раз в неделю. Два часа магии и развития.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ FOOTER ═══════════ -->
-  <footer>
-    <div class="container footer-row">
-      <span class="copy">© 2025 Abracadabra — Школа фокусов. Ярославль.</span>
-      <img src="70513379-1592-4A7D-A178-C77147F35E89.PNG" alt="" style="width:36px;height:36px;border-radius:8px;opacity:0.3;">
+  <div class="divider" aria-hidden="true"><span></span><img src="assets/logo/logo.png" alt="" /><span></span></div>
+
+  <section id="video">
+    <div class="container">
+      <div class="section-header centered">
+        <p class="section-label">Посмотрите сами</p>
+        <h2 class="section-title">Как проходят занятия</h2>
+        <p class="section-sub">Одно занятие — два часа магии, сцены и уверенности. Посмотрите, как это выглядит.</p>
+      </div>
+      <div style="max-width:720px;margin:0 auto;aspect-ratio:16/9;background:var(--card);border:1px solid var(--gold-border);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:24px;text-align:center;">
+        <div style="font-size:48px;opacity:0.4;">▶</div>
+        <p style="color:var(--text-muted);font-size:14px;">Видео появится позже</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span></span><img src="assets/logo/logo.png" alt="" /><span></span></div>
+
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <p class="section-label" style="color:var(--gold)">Свяжитесь с нами</p>
+      <h2 class="section-title">Готовы попробовать?</h2>
+      <a href="tel:+79092763386" class="contact-phone">+7 909 276-33-86</a>
+      <p>Позвоните. Мы расскажем о расписании, приложении и пробном занятии. Без спешки и обязательств.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="assets/logo/logo.png" alt="" width="22" height="22" /> Abracadabra</div>
+      <div class="footer-info">Первая школа фокусов · Ярославль · 7–13 лет</div>
+      <div class="footer-info"><a href="tel:+79092763386">+7 909 276-33-86</a></div>
     </div>
   </footer>
 
   <script>
-    (function () {
-      if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-        const io = new IntersectionObserver(es => {
-          es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } })
-        }, { threshold: 0.12 });
-        document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
-      }
-    })();
-  </script>
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('headerNav');
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        var isOpen = nav.classList.toggle('open');
+        toggle.textContent = isOpen ? '\u2715' : '\u2630';
+      });
+      nav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          nav.classList.remove('open');
+          toggle.textContent = '\u2630';
+        });
+      });
+    }
 
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(i) { i.classList.remove('open'); });
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    var dailyItems = document.querySelectorAll('.app-daily-item');
+    var dailyCount = document.getElementById('dailyCount');
+    var completed = 0;
+    dailyItems.forEach(function(item) {
+      item.addEventListener('click', function() {
+        item.classList.toggle('done');
+        completed = document.querySelectorAll('.app-daily-item.done').length;
+        if (dailyCount) dailyCount.textContent = completed + ' / 3';
+        updateXP();
+      });
+    });
+
+    var missions = document.querySelectorAll('.app-mission');
+    missions.forEach(function(m) {
+      m.addEventListener('click', function() {
+        m.classList.toggle('done');
+        updateXP();
+      });
+    });
+
+    function updateXP() {
+      var bar = document.getElementById('xpBar');
+      var text = document.getElementById('xpText');
+      if (!bar || !text) return;
+      var d = document.querySelectorAll('.app-daily-item.done').length;
+      var m = document.querySelectorAll('.app-mission.done').length;
+      var pct = Math.min(100, 30 + d * 12 + m * 10);
+      bar.style.width = pct + '%';
+      var total = Math.round(200 * pct / 100);
+      text.textContent = total + ' / 200 XP';
+    }
+  </script>
 </body>
 </html>
