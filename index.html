@@ -323,6 +323,23 @@
     .contact-phone:hover { color: #e6d08a; text-shadow: 0 0 60px rgba(201, 168, 76, 0.2); }
     .contact-section p { color: var(--text-secondary); max-width: 440px; margin: 0 auto; font-size: 16px; }
 
+    .highlight-card {
+      max-width: 680px; margin: 0 auto; text-align: center;
+      padding: 40px 32px; border: 1px solid var(--gold-border);
+      border-radius: 16px; background: var(--card);
+    }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px; max-width: 680px; margin: 0 auto;
+    }
+    .step-card {
+      text-align: center; padding: 28px 20px;
+      background: var(--card); border: 1px solid var(--gold-border); border-radius: 12px;
+    }
+    .step-num { font-family: var(--font-display); font-size: 32px; color: var(--gold); margin-bottom: 12px; }
+    .step-card h3 { font-family: var(--font-display); font-size: 17px; margin-bottom: 6px; color: var(--text); }
+    .step-card p { font-size: 14px; color: var(--text-secondary); }
+
     .footer { border-top: 1px solid var(--gold-border); padding: 32px 24px; }
     .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; max-width: var(--max); margin: 0 auto; }
     .footer-logo { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 15px; }
@@ -331,6 +348,8 @@
 
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Mobile First Overrides ── */
 
     @media (max-width: 1024px) {
       .header-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; flex-direction: column; background: rgba(5,8,11,0.98); padding: 20px 24px; gap: 16px; border-bottom: 1px solid var(--gold-border); z-index: 99; }
@@ -341,24 +360,100 @@
       .app-features { text-align: left; max-width: 480px; margin: 24px auto 0; }
       .creator-grid { grid-template-columns: 1fr; text-align: center; }
       .creator-photo { max-width: 420px; margin: 0 auto; }
-      .creator-photo img { height: 380px; }
+      .creator-photo img { height: auto; max-height: 380px; }
       .quote { text-align: left; }
-    }
-    @media (max-width: 768px) {
-      .hero { padding: 120px 20px 40px; }
-      section { padding: 56px 0; }
-      .grid-4, .grid-4-alt { grid-template-columns: 1fr; }
-      .app-frame { width: 260px; height: 520px; }
-      .creator-photo img { height: 300px; }
       .creator-photos { grid-template-columns: repeat(2,1fr); }
-      .contact-section { padding: 60px 20px; }
-      .footer-inner { flex-direction: column; text-align: center; }
     }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 18px; }
+      .hero { min-height: auto; padding: 130px 12px 40px; }
+      .hero-content { padding: 28px 16px 24px; margin: 0 4px; }
+      .hero-suptitle { font-size: 13px; letter-spacing: 0.2em; }
+      .hero-title { font-size: clamp(36px, 12vw, 60px); }
+      .hero-sub { font-size: 15px; }
+      .hero-age { font-size: 14px; padding: 5px 18px; }
+      .hero-phone { font-size: 15px; padding: 5px 18px; }
+      section { padding: 48px 0; }
+      .section-title { font-size: clamp(22px, 5vw, 30px); }
+      .section-sub { font-size: 14px; }
+      .grid-4, .grid-4-alt { grid-template-columns: 1fr; }
+      .card { padding: 22px 18px; }
+      .card h3 { font-size: 17px; }
+      .card p { font-size: 13px; }
+      .block { padding: 16px 12px 16px 24px; }
+      .block h3 { font-size: 16px; }
+      .block p { font-size: 13px; }
+      .app-frame { width: 100%; max-width: 300px; height: auto; min-height: 460px; margin: 0 auto; }
+      .app-screen { max-height: 440px; }
+      .app-info h2 { font-size: clamp(22px, 5vw, 30px); }
+      .creator-photo img { height: auto; max-height: 280px; width: 100%; }
+      .creator-photos { grid-template-columns: repeat(2,1fr); gap: 10px; }
+      .faq-question { font-size: 15px; padding: 14px 0; }
+      .faq-answer p { font-size: 13px; }
+      .highlight-card { padding: 28px 18px; border-radius: 12px; }
+      .step-num { font-size: 28px; }
+      .step-card { padding: 24px 16px; }
+      .step-card h3 { font-size: 15px; }
+      .contact-section { padding: 56px 16px; }
+      .contact-phone { font-size: clamp(26px, 7vw, 40px); }
+      .footer-inner { flex-direction: column; text-align: center; gap: 10px; }
+    }
+
     @media (max-width: 480px) {
-      .hero-title { font-size: 36px; }
-      .section-title { font-size: 26px; }
-      .app-frame { width: 220px; height: 440px; }
-      .creator-photos { grid-template-columns: 1fr; }
+      .container { padding: 0 14px; }
+      .header-inner { padding: 8px 14px; }
+      .logo-link { font-size: 16px; gap: 6px; }
+      .logo-link img { width: 24px; height: 24px; }
+      .hero { padding: 120px 10px 32px; }
+      .hero-content { padding: 24px 12px 20px; border-radius: 18px; }
+      .hero-suptitle { font-size: 12px; letter-spacing: 0.16em; }
+      .hero-title { font-size: clamp(32px, 14vw, 48px); }
+      .hero-sub { font-size: 14px; }
+      .hero-age { font-size: 13px; padding: 4px 14px; }
+      .hero-phone { font-size: 14px; padding: 4px 14px; }
+      .hero-phone::before { width: 10px; height: 10px; }
+      .hero-cta { gap: 10px; }
+      section { padding: 40px 0; }
+      .section-title { font-size: clamp(20px, 6vw, 26px); }
+      .section-sub { font-size: 13px; }
+      .card { padding: 18px 14px; }
+      .card h3 { font-size: 16px; }
+      .card p { font-size: 12px; }
+      .block { padding: 14px 10px 14px 20px; }
+      .block h3 { font-size: 15px; }
+      .block p { font-size: 12px; }
+      .app-frame { max-width: 280px; min-height: 400px; }
+      .app-screen { max-height: 380px; padding: 10px; }
+      .app-daily-item { font-size: 10px; padding: 6px 8px; }
+      .app-mission { padding: 8px 10px; }
+      .app-mission .title { font-size: 10px; }
+      .app-mission .desc { font-size: 9px; }
+      .app-info p { font-size: 13px; }
+      .app-features li { font-size: 12px; padding: 8px 0 8px 24px; }
+      .creator-photos { grid-template-columns: 1fr; gap: 10px; }
+      .faq-question { font-size: 14px; }
+      .highlight-card { padding: 22px 14px; border-radius: 10px; }
+      .steps-grid { gap: 14px; }
+      .step-num { font-size: 24px; }
+      .step-card { padding: 20px 14px; }
+      .step-card h3 { font-size: 14px; }
+      .step-card p { font-size: 12px; }
+      .contact-phone { font-size: clamp(24px, 8vw, 34px); }
+      .divider { padding: 24px 0; }
+    }
+
+    @media (max-width: 380px) {
+      .hero { padding: 110px 8px 28px; }
+      .hero-content { padding: 20px 10px 16px; }
+      .hero-title { font-size: 28px; }
+      .hero-sub { font-size: 13px; }
+      .hero-age, .hero-phone { font-size: 12px; padding: 4px 12px; }
+      .hero-cta { gap: 8px; }
+      .section-title { font-size: 19px; }
+      .app-frame { max-width: 250px; min-height: 360px; }
+      .app-screen { max-height: 340px; }
+      .contact-phone { font-size: 22px; }
     }
   </style>
 </head>
@@ -387,7 +482,7 @@
       <p class="hero-suptitle">Первая школа фокусов в Ярославле</p>
       <h1 class="hero-title">Abracadabra</h1>
       <p class="hero-sub">Ваш ребёнок сможет то, о чём вы даже не догадываетесь. Мы раскрываем уверенность, речь и артистизм через искусство иллюзии.</p>
-      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px;">
+      <div class="hero-cta" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px;">
         <span class="hero-age">Дети 7–13 лет</span>
         <a href="tel:+79092763386" class="hero-phone">+7 909 276-33-86</a>
       </div>
@@ -458,7 +553,7 @@
 
   <section id="championship">
     <div class="container">
-      <div style="max-width:680px;margin:0 auto;text-align:center;padding:40px 32px;border:1px solid var(--gold-border);border-radius:16px;background:var(--card);">
+      <div class="highlight-card">
         <p class="section-label">Для тех, кто хочет большего</p>
         <h2 class="section-title" style="margin-bottom:8px;">Выход на чемпионат</h2>
         <p class="section-sub" style="margin:0 auto 20px;">Если ребёнок увлечётся — появится реальная возможность выступить на чемпионате России по фокусам. А при большом желании — и на чемпионате мира. Всё зависит только от него.</p>
@@ -653,21 +748,21 @@
         <p class="section-label">Старт</p>
         <h2 class="section-title">Как начать</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;max-width:680px;margin:0 auto;">
-        <div style="text-align:center;padding:28px 20px;background:var(--card);border:1px solid var(--gold-border);border-radius:12px;">
-          <div style="font-family:var(--font-display);font-size:32px;color:var(--gold);margin-bottom:12px;">1</div>
-          <h3 style="font-family:var(--font-display);font-size:17px;margin-bottom:6px;">Позвоните</h3>
-          <p style="font-size:14px;color:var(--text-secondary);">Расскажем о школе и договоримся о пробном занятии.</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Позвоните</h3>
+          <p>Расскажем о школе и договоримся о пробном занятии.</p>
         </div>
-        <div style="text-align:center;padding:28px 20px;background:var(--card);border:1px solid var(--gold-border);border-radius:12px;">
-          <div style="font-family:var(--font-display);font-size:32px;color:var(--gold);margin-bottom:12px;">2</div>
-          <h3 style="font-family:var(--font-display);font-size:17px;margin-bottom:6px;">Приходите на пробное</h3>
-          <p style="font-size:14px;color:var(--text-secondary);">Ребёнок попробует — и вы увидите его реакцию. Без обязательств.</p>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Приходите на пробное</h3>
+          <p>Ребёнок попробует — и вы увидите его реакцию. Без обязательств.</p>
         </div>
-        <div style="text-align:center;padding:28px 20px;background:var(--card);border:1px solid var(--gold-border);border-radius:12px;">
-          <div style="font-family:var(--font-display);font-size:32px;color:var(--gold);margin-bottom:12px;">3</div>
-          <h3 style="font-family:var(--font-display);font-size:17px;margin-bottom:6px;">Начинайте заниматься</h3>
-          <p style="font-size:14px;color:var(--text-secondary);">Раз в неделю. Два часа магии и развития.</p>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Начинайте заниматься</h3>
+          <p>Раз в неделю. Два часа магии и развития.</p>
         </div>
       </div>
     </div>
