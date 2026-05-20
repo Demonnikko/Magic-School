@@ -1,1 +1,9 @@
 .vercel
+*.mp4
+*.MP4
+*.MP3
+*.mp3
+DSC_*.jpg
+DSC_*.JPG
+IMG_3321.PNG
+.DS_Store
